@@ -1,4 +1,3 @@
-package nl.hanze.hive;
 
 /**
  * IHive game.

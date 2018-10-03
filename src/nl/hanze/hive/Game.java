@@ -1,7 +1,5 @@
 package nl.hanze.hive;
 
-public static int score;
-
 public class Game implements Hive {
 
     public Game() {

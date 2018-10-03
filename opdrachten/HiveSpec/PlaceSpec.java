@@ -16,7 +16,7 @@ public class PlaceSpec {
     }
 
     @Test
-    public void placeGrasshoper() {
+    public void placeGrasshopper() {
 
     }
 

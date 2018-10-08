@@ -1,3 +1,5 @@
+import nl.hanze.hive.Game;
+import nl.hanze.hive.Hive;
 import org.junit.Test;
 
 /**
@@ -23,5 +25,11 @@ public class HiveSpec {
     @Test
     public void gameIsDraw() {
 
+    }
+
+    @Test(expected = Hive.IllegalMove.class)
+    public void moveBeforeQueenPlacement() throws Exception {
+        Game game = new Game();
+        game.move(0, 0, 0, 0);
     }
 }

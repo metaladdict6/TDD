@@ -1,3 +1,5 @@
+import nl.hanze.hive.Game;
+import nl.hanze.hive.Hive;
 import org.junit.Test;
 
 /**
@@ -5,24 +7,22 @@ import org.junit.Test;
  */
 public class SoldierAntSpec {
 
-    @Test
-    public void moveBeforeQueenPlacement() {
-
+    @Test(expected = Hive.IllegalMove.class)
+    public void moveBeforeQueenPlacement() throws Exception {
+        Game game = new Game();
+        game.move(0, 0, 0, 0);
     }
 
     @Test
-    public void makeLegalMove() {
-
+    public void makeLegalMove() throws Exception {
+        Game game = new Game();
+        game.move(0, 0, 0, 0);
     }
 
 
-    @Test
-    public void makeIllegalMove() {
-
-    }
-
-    @Test
-    public void moveToOccupiedSpace() {
-
+    @Test(expected = Hive.IllegalMove.class)
+    public void moveToOccupiedSpace() throws Exception {
+        Game game = new Game();
+        game.move(0, 0, 0, 0);
     }
 }

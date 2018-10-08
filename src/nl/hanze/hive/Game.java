@@ -2,6 +2,8 @@ package nl.hanze.hive;
 
 public class Game implements Hive {
 
+    private int score;
+
     public Game() {
         System.out.println("Hello world");
     }
@@ -62,5 +64,13 @@ public class Game implements Hive {
     @Override
     public boolean isDraw() {
         return false;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 }

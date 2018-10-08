@@ -10,13 +10,25 @@ public class SpiderSpec {
 
     }
 
+
+    @Test
+    public void moveToSameSpace() {
+
+    }
+
+    @Test
+    public void moveOverOtherPiece() {
+
+    }
+
+    @Test
+    public void moveToAlreadyVisitedField() {
+
+    }
+
     @Test
     public void makeIllegalMove() {
 
     }
 
-    @Test
-    public void placePiece() {
-        
-    }
 }

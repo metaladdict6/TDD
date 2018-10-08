@@ -10,7 +10,6 @@ public class SpiderSpec {
 
     }
 
-
     @Test
     public void moveToSameSpace() {
 
@@ -23,11 +22,6 @@ public class SpiderSpec {
 
     @Test
     public void moveToAlreadyVisitedField() {
-
-    }
-
-    @Test
-    public void makeIllegalMove() {
 
     }
 

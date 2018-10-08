@@ -3,7 +3,7 @@ package nl.hanze.hive;
 public class Game implements Hive {
 
     public Game() {
-        this.score = 0;
+        System.out.println("Hello world");
     }
 
     /**

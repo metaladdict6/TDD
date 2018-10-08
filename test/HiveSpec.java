@@ -9,4 +9,19 @@ public class HiveSpec {
     public void movePieceToUnAdjecentCell() {
 
     }
+
+    @Test
+    public void playerIsWinner() {
+
+    }
+
+    @Test
+    public void playerCanPassTurn() {
+
+    }
+
+    @Test
+    public void gameIsDraw() {
+            
+    }
 }

@@ -6,9 +6,23 @@ import org.junit.Test;
 public class SoldierAntSpec {
 
     @Test
+    public void moveBeforeQueenPlacement() {
+
+    }
+
+    @Test
     public void makeLegalMove() {
 
     }
 
 
+    @Test
+    public void makeIllegalMove() {
+
+    }
+
+    @Test
+    public void moveToOccupiedSpace() {
+
+    }
 }

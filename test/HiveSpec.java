@@ -6,7 +6,7 @@ import org.junit.Test;
 public class HiveSpec {
 
     @Test
-    public void movePieceToUnAdjecentCell() {
+    public void movePieceToNotAdjacentCell() {
 
     }
 
@@ -22,6 +22,6 @@ public class HiveSpec {
 
     @Test
     public void gameIsDraw() {
-            
+
     }
 }

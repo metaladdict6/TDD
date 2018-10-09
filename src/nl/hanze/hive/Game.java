@@ -44,7 +44,9 @@ public class Game implements Hive {
         for (Integer i = startPoint; i < endPoint + 1; i++) {
             row.put(i, new Cell(rowNumber, i));
         }
+        return row;
     }
+
     /**
      * Play a new tile.
      * @param tile Tile to play

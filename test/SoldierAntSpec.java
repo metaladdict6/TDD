@@ -7,11 +7,7 @@ import org.junit.Test;
  */
 public class SoldierAntSpec {
 
-    @Test(expected = Hive.IllegalMove.class)
-    public void moveBeforeQueenPlacement() throws Exception {
-        Game game = new Game();
-        game.move(0, 0, 0, 0);
-    }
+
 
     @Test
     public void makeLegalMove() throws Exception {

@@ -1,3 +1,4 @@
+import nl.hanze.hive.Hive;
 import org.junit.Test;
 
 /**
@@ -5,7 +6,7 @@ import org.junit.Test;
  */
 public class QueenSpec {
 
-    @Test
+    @Test(expected = Hive.IllegalMove.class)
     public void moveTwoSquares() {
 
     }
@@ -15,7 +16,7 @@ public class QueenSpec {
 
     }
 
-    @Test
+    @Test(expected = Hive.IllegalMove.class)
     public void moveToOccupiedSpace() {
 
     }

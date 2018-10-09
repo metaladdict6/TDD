@@ -7,9 +7,7 @@ public class Game implements Hive {
     private HashMap<Integer, HashMap<Integer, Cell>> Grid;
 
     public Game() {
-        System.out.println("Hello world");
-        this.Grid = new HashMap<Integer, HashMap<Integer, Cell>>();
-        this.buildGrid();
+        this.Grid = InitiateGrid();
     }
 
     /**
@@ -20,18 +18,31 @@ public class Game implements Hive {
      * The second HashMap also an Integer as a key.
      * The second HashMap contains a Cell class.
      * This needs to be popped to remove the current top piece in the cell.
+     * @return An empty grid
      */
-    private void buildGrid() {
-        HashMap<Integer, Cell> firstRow = new HashMap<Integer, Cell>();
+    private static HashMap <Integer, HashMap<Integer, Cell>> InitiateGrid() {
+        HashMap <Integer, HashMap<Integer, Cell>> grid = new HashMap<>();
         Integer rowNumber = -3;
-        this.getGrid().put(0, firstRow);
-        while (rowNumber < 4) {
-            HashMap<Integer, Cell> row = new HashMap<Integer, Cell>();
-            for (int i = 0; i < 4; i++) {
-                row.put(i, new Cell(rowNumber, i));
-            }
-            this.getGrid().put(rowNumber, row);
-            rowNumber++;
+        grid.put(rowNumber, buildGridRow(rowNumber, 0, 3));
+        rowNumber++; // - 2
+        grid.put(rowNumber, buildGridRow(rowNumber, -1, 3));
+        rowNumber++;  // - 1
+        grid.put(rowNumber, buildGridRow(rowNumber, -2, 3));
+        rowNumber++; // 0
+        grid.put(rowNumber, buildGridRow(rowNumber, -3, 3));
+        rowNumber++; // + 1
+        grid.put(rowNumber, buildGridRow(rowNumber, -3, 2));
+        rowNumber++; // + 2
+        grid.put(rowNumber, buildGridRow(rowNumber, -3, 1));
+        rowNumber++; // + 3
+        grid.put(rowNumber, buildGridRow(rowNumber, -3, 0));
+        return grid;
+    }
+
+    private static HashMap<Integer, Cell> buildGridRow(Integer rowNumber, Integer startPoint, Integer endPoint) {
+        HashMap<Integer, Cell> row = new HashMap<Integer, Cell>();
+        for (Integer i = startPoint; i < endPoint + 1; i++) {
+            row.put(i, new Cell(rowNumber, i));
         }
     }
     /**
@@ -102,7 +113,7 @@ public class Game implements Hive {
     public boolean isDraw() {
         return false;
     }
-    
+
     public HashMap<Integer, HashMap<Integer, Cell>> getGrid() {
         return Grid;
     }

@@ -4,8 +4,6 @@ import java.util.HashMap;
 
 public class Game implements Hive {
 
-    private int score;
-
     private HashMap<Integer, HashMap<Integer, Cell>> Grid;
 
     public Game() {
@@ -59,16 +57,16 @@ public class Game implements Hive {
      */
     @Override
     public void move(int fromQ, int fromR, int toQ, int toR) throws IllegalMove {
-        Cell fromCell = this.getGrid().get(fromQ).get(fromR);
+        Cell fromCell = getCell(fromQ, fromR);
         Piece piece = fromCell.pop();
-        Cell toCell = this.getGrid().get(toQ).get(toR);
+        Cell toCell = getCell(toQ, toR);
     }
 
     /**
-     * This method returns a specifice instance of the Cell class.
-     * @param q The vertical adress of the Cell we want.
-     * @param r The horizontal adress of the cell we want.
-     * @return
+     * This method returns a specific instance of the Cell class.
+     * @param q The vertical address of the Cell we want.
+     * @param r The horizontal address of the cell we want.
+     * @return The cell in accordance with q and r.
      */
     private Cell getCell(int q, int r) {
         return this.getGrid().get(q).get(r);
@@ -104,15 +102,7 @@ public class Game implements Hive {
     public boolean isDraw() {
         return false;
     }
-
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
+    
     public HashMap<Integer, HashMap<Integer, Cell>> getGrid() {
         return Grid;
     }

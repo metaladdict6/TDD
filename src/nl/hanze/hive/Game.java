@@ -39,12 +39,21 @@ public class Game implements Hive {
         return grid;
     }
 
+    /**
+     * This method creates a row for the grid.
+     * It does this through creating a loop for the x values in a row. The Y axis is incremented in a different
+     * section.
+     * @param rowNumber The row number is the vertical value of the grid. It could also be described as the Y axis.
+     * @param startPoint The starting point for the loop.
+     * @param endPoint The end point of the loop.
+     * @return A HashMap with all the cells in a row. 
+     */
     private static HashMap<Integer, Cell> buildGridRow(Integer rowNumber, Integer startPoint, Integer endPoint) {
         HashMap<Integer, Cell> row = new HashMap<Integer, Cell>();
         for (Integer i = startPoint; i < endPoint + 1; i++) {
             row.put(i, new Cell(rowNumber, i));
         }
-        return row;
+        return  row;
     }
 
     /**

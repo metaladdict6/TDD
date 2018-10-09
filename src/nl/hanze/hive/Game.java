@@ -1,16 +1,43 @@
 package nl.hanze.hive;
 
+import java.util.HashMap;
+
 public class Game implements Hive {
 
     private int score;
 
+    private HashMap<Integer, HashMap<Integer, Cell>> Grid;
+
     public Game() {
         System.out.println("Hello world");
+        this.Grid = new HashMap<Integer, HashMap<Integer, Cell>>();
+        this.buildGrid();
     }
 
     /**
+     * This method builds the grid for the game.
+     * The grid consists of two HashMaps.
+     * The first HashMap has an Integer as key and represents the vertical level of the grid.
+     * It holds another HashMap with the Horizontal level of the grid.
+     * The second HashMap also an Integer as a key.
+     * The second HashMap contains a Cell class.
+     * This needs to be popped to remove the current top piece in the cell.
+     */
+    private void buildGrid() {
+        HashMap<Integer, Cell> firstRow = new HashMap<Integer, Cell>();
+        Integer rowNumber = -3;
+        this.getGrid().put(0, firstRow);
+        while (rowNumber < 4) {
+            HashMap<Integer, Cell> row = new HashMap<Integer, Cell>();
+            for (int i = 0; i < 4; i++) {
+                row.put(i, new Cell(rowNumber, i));
+            }
+            this.getGrid().put(rowNumber, row);
+            rowNumber++;
+        }
+    }
+    /**
      * Play a new tile.
-     *
      * @param tile Tile to play
      * @param q    Q coordinate of hexagon to play to
      * @param r    R coordinate of hexagon to play to
@@ -72,5 +99,9 @@ public class Game implements Hive {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public HashMap<Integer, HashMap<Integer, Cell>> getGrid() {
+        return Grid;
     }
 }

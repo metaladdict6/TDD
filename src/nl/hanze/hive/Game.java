@@ -59,7 +59,19 @@ public class Game implements Hive {
      */
     @Override
     public void move(int fromQ, int fromR, int toQ, int toR) throws IllegalMove {
+        Cell fromCell = this.getGrid().get(fromQ).get(fromR);
+        Piece piece = fromCell.pop();
+        Cell toCell = this.getGrid().get(toQ).get(toR);
+    }
 
+    /**
+     * This method returns a specifice instance of the Cell class.
+     * @param q The vertical adress of the Cell we want.
+     * @param r The horizontal adress of the cell we want.
+     * @return
+     */
+    private Cell getCell(int q, int r) {
+        return this.getGrid().get(q).get(r);
     }
 
     /**

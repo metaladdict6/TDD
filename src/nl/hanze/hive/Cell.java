@@ -6,11 +6,12 @@ import java.util.Stack;
  * Created by rrczi on 9-10-2018.
  * This class will implement
  */
-public class Cell extends Stack {
+public class Cell extends Stack<Piece> {
 
     private int CoordinateY;
 
     private int CoordinateX;
+
 
     public Cell(int coordinateY, int coordinateX) {
         setCoordinateY(coordinateY);

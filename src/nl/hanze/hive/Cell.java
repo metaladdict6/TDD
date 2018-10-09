@@ -6,7 +6,7 @@ import java.util.Stack;
  * Created by rrczi on 9-10-2018.
  * This class will implement
  */
-public class Cell extends Stack<Piece> {
+public class Cell extends Stack<Hive.Tile> {
 
     private int CoordinateY;
 

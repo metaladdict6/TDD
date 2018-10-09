@@ -7,8 +7,8 @@ import org.junit.Test;
  */
 public class HiveSpec {
 
-    @Test
-    public void movePieceToNotAdjacentCell() {
+    @Test(expected = Hive.IllegalMove.class)
+    public void moveToSpaceWithoutNeighbours() {
 
     }
 
@@ -31,11 +31,6 @@ public class HiveSpec {
     public void moveBeforeQueenPlacement() throws Exception {
         Game game = new Game();
         game.move(0, 0, 0, 0);
-    }
-
-    @Test(expected = Hive.IllegalMove.class)
-    public void moveToSpaceWithoutNeighbours() {
-
     }
 
     @Test(expected = Hive.IllegalMove.class)

@@ -32,4 +32,14 @@ public class HiveSpec {
         Game game = new Game();
         game.move(0, 0, 0, 0);
     }
+
+    @Test(expected = Hive.IllegalMove.class)
+    public void moveToSpaceWithoutNeighbours() {
+
+    }
+
+    @Test(expected = Hive.IllegalMove.class)
+    public void breakTileChain() {
+
+    }
 }

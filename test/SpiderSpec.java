@@ -39,4 +39,6 @@ public class SpiderSpec {
         game.move(0, -3, 0, 0);
     }
 
+
+
 }

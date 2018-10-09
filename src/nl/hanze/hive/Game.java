@@ -1,13 +1,22 @@
 package nl.hanze.hive;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Game implements Hive {
 
     private HashMap<Integer, HashMap<Integer, Cell>> Grid;
 
+    private HashMap<String, ArrayList<Tile>> UnPlayedPieces;
+
+    private ArrayList<Tile> blackPlayedTiles;
+
+    private ArrayList<Tile> whitePlayedTiles;
+
     public Game() {
         this.Grid = InitiateGrid();
+        this.blackPlayedTiles = new ArrayList<>();
+        this.whitePlayedTiles = new ArrayList<>();
     }
 
     /**
@@ -20,7 +29,7 @@ public class Game implements Hive {
      * This needs to be popped to remove the current top piece in the cell.
      * @return An empty grid
      */
-    private static HashMap <Integer, HashMap<Integer, Cell>> InitiateGrid() {
+    public static HashMap <Integer, HashMap<Integer, Cell>> InitiateGrid() {
         HashMap <Integer, HashMap<Integer, Cell>> grid = new HashMap<>();
         Integer rowNumber = -3;
         grid.put(rowNumber, buildGridRow(rowNumber, 0, 3));
@@ -46,14 +55,19 @@ public class Game implements Hive {
      * @param rowNumber The row number is the vertical value of the grid. It could also be described as the Y axis.
      * @param startPoint The starting point for the loop.
      * @param endPoint The end point of the loop.
-     * @return A HashMap with all the cells in a row. 
+     * @return A HashMap with all the cells in a row.
      */
     private static HashMap<Integer, Cell> buildGridRow(Integer rowNumber, Integer startPoint, Integer endPoint) {
         HashMap<Integer, Cell> row = new HashMap<Integer, Cell>();
         for (Integer i = startPoint; i < endPoint + 1; i++) {
             row.put(i, new Cell(rowNumber, i));
         }
-        return  row;
+        return row;
+    }
+
+
+    private HashMap<String, ArrayList<Tile>> InitializePieces() {
+        return null;
     }
 
     /**
@@ -79,9 +93,11 @@ public class Game implements Hive {
      */
     @Override
     public void move(int fromQ, int fromR, int toQ, int toR) throws IllegalMove {
+
         Cell fromCell = getCell(fromQ, fromR);
-        Piece piece = fromCell.pop();
+        Tile piece = fromCell.pop();
         Cell toCell = getCell(toQ, toR);
+        toCell.add(piece);
     }
 
     /**

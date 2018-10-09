@@ -15,31 +15,28 @@ public class SpiderSpec {
     @Test
     public void makesLegalMove() throws Exception {
         Game game = new Game();
-        HashMap<Integer, HashMap<Integer, Cell>> controlGrid = Game.InitiateGrid();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
         grid.get(0).get(-3).add(Game.Tile.SPIDER);
-        controlGrid.get(0).get(0).add(Game.Tile.SPIDER);
         game.move(0, -3, 0, 0);
-        Assert.assertEquals(Game.Tile.SPIDER, grid.get(0).get(0));
+        Assert.assertEquals(Game.Tile.SPIDER, grid.get(0).get(0).pop());
 
     }
 
     @Test(expected = Hive.IllegalMove.class)
     public void moveToSameSpace() throws Exception {
         Game game = new Game();
-        game.move(0, 0, 0, 0);
+        HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
+        grid.get(0).get(-3).add(Game.Tile.SPIDER);
+        game.move(0, -3, 0, -3);
     }
 
     @Test(expected = Hive.IllegalMove.class)
     public void moveOverOtherPiece() throws Exception {
         Game game = new Game();
-        game.move(0, 0, 0, 0);
-    }
-
-    @Test(expected = Hive.IllegalMove.class)
-    public void moveToAlreadyVisitedField() throws Exception {
-        Game game = new Game();
-        game.move(0, 0, 0, 0);
+        HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
+        grid.get(0).get(-2).add(Game.Tile.BEETLE);
+        grid.get(0).get(-3).add(Game.Tile.SPIDER);
+        game.move(0, -3, 0, 0);
     }
 
 }

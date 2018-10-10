@@ -33,7 +33,7 @@ public class GrasshopperSpec {
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
         grid.get(0).get(-3).add(Game.Tile.GRASSHOPPER);
         grid.get(0).get(-2).add(Game.Tile.BEETLE);
-        grid.get(0).get(-1).add(Game.Tile.BEETLE);
+        // grid.get(0).get(-1).add(Game.Tile.BEETLE); This field is empty so it needs to throw an Exception.
         grid.get(0).get(0).add(Game.Tile.BEETLE);
         game.move(0, -3, 0, 1);
     }

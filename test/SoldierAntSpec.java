@@ -20,6 +20,16 @@ public class SoldierAntSpec {
     }
 
     @Test(expected = Hive.IllegalMove.class)
+    public void moveOverOccupiedSpace() throws Exception {
+        Game game = new Game();
+        HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
+        grid.get(0).get(-3).add(Game.Tile.SOLDIER_ANT);
+        grid.get(0).get(-2).add(Game.Tile.BEETLE);
+        grid.get(0).get(-1).add(Game.Tile.BEETLE);
+        game.move(0, -3, 0, 0);
+    }
+
+    @Test(expected = Hive.IllegalMove.class)
     public void moveToSameSpace() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();

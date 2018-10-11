@@ -94,10 +94,10 @@ public class Game implements Hive {
     @Override
     public void move(int fromQ, int fromR, int toQ, int toR) throws IllegalMove {
 
-        Cell fromCell = getCell(fromQ, fromR);
-        Tile piece = fromCell.pop();
-        Cell toCell = getCell(toQ, toR);
-        toCell.add(piece);
+        // Cell fromCell = getCell(fromQ, fromR);
+        // Tile piece = fromCell.pop();
+        // Cell toCell = getCell(toQ, toR);
+        // toCell.add(piece);
     }
 
     /**

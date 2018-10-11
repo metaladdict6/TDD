@@ -6,16 +6,33 @@ import java.util.Stack;
  * Created by rrczi on 9-10-2018.
  * This class will implement
  */
-public class Cell extends Stack<Hive.Tile> {
+public class Cell {
 
     private int Coordinate_R;
 
     private int Coordinate_Q;
 
+    private Stack<Hive.Player> tileOwnership = new Stack<>();
+
+    private Stack<Hive.Tile> tiles = new Stack<>();
 
     public Cell(int coordinateR, int coordinateQ) {
         setCoordinate_R(coordinateR);
         setCoordinate_Q(coordinateQ);
+    }
+
+    public void add(Hive.Player player, Hive.Tile tile) {
+        tileOwnership.add(player);
+        tiles.add(tile);
+    }
+
+    public Hive.Tile pop() {
+        this.tileOwnership.pop();
+        return this.tiles.pop();
+    }
+
+    public Hive.Player cellOwner() {
+        return tileOwnership.get(tileOwnership.size() - 1);
     }
 
     public int getCoordinate_R() {

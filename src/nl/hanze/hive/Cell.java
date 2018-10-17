@@ -31,6 +31,10 @@ public class Cell {
         return this.tiles.pop();
     }
 
+    public int size(){
+        return tiles.size();
+    }
+
     public Hive.Player cellOwner() {
         return tileOwnership.get(tileOwnership.size() - 1);
     }

@@ -96,4 +96,6 @@ public class HiveSpec {
         grid.get(0).get(-2).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
         game.move(-1, 0, 0, 1);
     }
+
+
 }

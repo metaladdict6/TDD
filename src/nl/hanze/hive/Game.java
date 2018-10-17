@@ -2,21 +2,49 @@ package nl.hanze.hive;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 public class Game implements Hive {
 
     private HashMap<Integer, HashMap<Integer, Cell>> Grid;
 
-    private HashMap<String, ArrayList<Tile>> UnPlayedPieces;
+    private LinkedList<Tile> blackPlayedTiles;
 
-    private ArrayList<Tile> blackPlayedTiles;
+    private LinkedList<Tile> whitePlayedTiles;
 
-    private ArrayList<Tile> whitePlayedTiles;
+    private Player currentPlayer;
 
     public Game() {
         this.Grid = InitiateGrid();
-        this.blackPlayedTiles = new ArrayList<>();
-        this.whitePlayedTiles = new ArrayList<>();
+        this.currentPlayer = Player.WHITE;
+        this.blackPlayedTiles = new LinkedList<>();
+        this.whitePlayedTiles = new LinkedList<>();
+        initTiles(this.blackPlayedTiles);
+        initTiles(this.whitePlayedTiles);
+    }
+
+    /**
+     * This method inserts all the required tiles a player should have.
+     * @param tiles The list of tiles a player has.
+     */
+    private void initTiles(LinkedList<Tile> tiles) {
+        tiles.add(Tile.QUEEN_BEE);
+        addTiles(tiles, 2, Tile.SPIDER);
+        addTiles(tiles, 2, Tile.BEETLE);
+        addTiles(tiles, 3, Tile.SOLDIER_ANT);
+        addTiles(tiles, 3, Tile.GRASSHOPPER);
+    }
+
+    /**
+     * This method inserts a specifice tile for a specifice amount in the LinkedList
+     * @param tiles The list of tiles where the tile is going to be inserted in.
+     * @param amount The amount of tiles that needs to be inserted.
+     * @param tile The tile that needs to be inserted
+     */
+    private void addTiles(LinkedList<Tile> tiles, int amount, Tile tile){
+        for(int i = 0; i < amount; i++){
+            tiles.add(tile);
+        }
     }
 
     /**
@@ -29,7 +57,7 @@ public class Game implements Hive {
      * This needs to be popped to remove the current top piece in the cell.
      * @return An empty grid
      */
-    public static HashMap <Integer, HashMap<Integer, Cell>> InitiateGrid() {
+    private static HashMap <Integer, HashMap<Integer, Cell>> InitiateGrid() {
         HashMap <Integer, HashMap<Integer, Cell>> grid = new HashMap<>();
         Integer r = -3;
         grid.put(r, buildGridRow(r, 0, 3));
@@ -65,11 +93,6 @@ public class Game implements Hive {
         return row;
     }
 
-
-    private HashMap<String, ArrayList<Tile>> InitializePieces() {
-        return null;
-    }
-
     /**
      * Play a new tile.
      * @param tile Tile to play
@@ -79,12 +102,20 @@ public class Game implements Hive {
      */
     @Override
     public void play(Tile tile, int q, int r) throws IllegalMove {
-        pass();
+        HashMap<Integer, HashMap<Integer, Cell>> grid = getGrid();
+        Cell cell = grid.get(r).get(q);
+        if(cell.size() != 0) {
+            throw new IllegalMove("The coordinates you are trying to play too is occupied");
+        }else if (false){
+
+        }
+        nextPlayer();
     }
+
+
 
     /**
      * Move an existing tile.
-     *
      * @param fromQ Q coordinate of the tile to move
      * @param fromR R coordinate of the tile to move
      * @param toQ   Q coordinate of the hexagon to move to
@@ -93,11 +124,7 @@ public class Game implements Hive {
      */
     @Override
     public void move(int fromQ, int fromR, int toQ, int toR) throws IllegalMove {
-
-        // Cell fromCell = getCell(fromQ, fromR);
-        // Tile piece = fromCell.pop();
-        // Cell toCell = getCell(toQ, toR);
-        // toCell.add(piece);
+        nextPlayer();
     }
 
     /**
@@ -112,7 +139,6 @@ public class Game implements Hive {
 
     /**
      * Pass the turn.
-     *
      * @throws IllegalMove If the turn could not be passed
      */
     @Override
@@ -122,7 +148,6 @@ public class Game implements Hive {
 
     /**
      * Check whether the given player is the winner.
-     *
      * @param player Player to check
      * @return Boolean
      */
@@ -144,4 +169,47 @@ public class Game implements Hive {
     public HashMap<Integer, HashMap<Integer, Cell>> getGrid() {
         return Grid;
     }
+
+    /**
+     * This method changes the current player making a move or placing a tile.
+     */
+    private void nextPlayer() {
+        if (currentPlayer == Player.WHITE) {
+            currentPlayer = Player.BLACK;
+        }else {
+            currentPlayer = Player.WHITE;
+        }
+    }
+
+    private ArrayList<Cell> findNeighbours(HashMap<Integer, HashMap<Integer, Cell>> grid, int q, int r){
+        ArrayList<Cell> cells = new ArrayList<>();
+        cells.add(getCell(grid, r, q - 1));             // LEFT CELL
+        cells.add(getCell(grid, r, q + 1));             // RIGHT CELL
+        cells.add(getCell(grid, r - 1, q));             // LEFT UP CELL
+        cells.add(getCell(grid, r - 1, + 1));        // RIGHT UP CELL
+        cells.add(getCell(grid, r + 1, q - 1));      // LEFT DOWN CELL;
+        cells.add(getCell(grid, r + 1, q));             // RIGHT DOWN CELL
+        return cells;
+    }
+
+
+    private Cell getCell(HashMap<Integer, HashMap<Integer, Cell>> grid, int r, int q){
+        if (grid.containsKey(r)){
+            HashMap<Integer, Cell> row = grid.get(r);
+            if (row.containsKey(q)) {
+                return row.get(q);
+            }else {
+                Cell cell = new Cell(r, q);
+                row.put(q, cell);
+                return cell;
+            }
+        }else {
+            HashMap<Integer, Cell> row = new HashMap<Integer, Cell>();
+            grid.put(r, row);
+            Cell cell = new Cell(r, q);
+            row.put(q, cell);
+            return cell;
+        }
+    }
+
 }

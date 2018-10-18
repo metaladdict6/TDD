@@ -14,6 +14,10 @@ public class Game implements Hive {
 
     private Player currentPlayer;
 
+    private boolean blackHasPlayedPiece = false;
+
+    private boolean whiteHasPlayedPiece = false;
+
     public Game() {
         this.Grid = InitiateGrid();
         this.currentPlayer = Player.WHITE;
@@ -106,8 +110,18 @@ public class Game implements Hive {
         Cell cell = grid.get(r).get(q);
         if(cell.size() != 0) {
             throw new IllegalMove("The coordinates you are trying to play too is occupied");
-        }else if (false){
+        }else{
+            ArrayList<Cell> neighbours = this.findNeighbours(grid, q, r);
+            if(allFriendsNoEnemies(neighbours)){
 
+            }
+
+        }
+
+        if (currentPlayer == Player.BLACK && !blackHasPlayedPiece) {
+            blackHasPlayedPiece = true;
+        }else if(currentPlayer == Player.WHITE && !whiteHasPlayedPiece) {
+            whiteHasPlayedPiece = true;
         }
         nextPlayer();
     }
@@ -181,6 +195,14 @@ public class Game implements Hive {
         }
     }
 
+    /**
+     * This method returns all the neighbours of a specific coordinate. This method manually changes the cells
+     * that are added to the returning list.
+     * @param grid The current grid of the game.
+     * @param q The q coordinate. This indicates the horizontal position inside the grid.
+     * @param r The r coordinate. This indicates the vertical position inside the grid.
+     * @return Returns a list of cells that indicates the neighbours of the coordinate r and q.
+     */
     private ArrayList<Cell> findNeighbours(HashMap<Integer, HashMap<Integer, Cell>> grid, int q, int r){
         ArrayList<Cell> cells = new ArrayList<>();
         cells.add(getCell(grid, r, q - 1));             // LEFT CELL
@@ -193,6 +215,13 @@ public class Game implements Hive {
     }
 
 
+    /**
+     * This method either returns the cell a player wants or creates a new cell and then returns it.
+     * @param grid The current grid of the game.
+     * @param r The r coordinate. This indicates the vertical position inside the grid.
+     * @param q The q coordinate. This indicates the horizontal position inside the grid.
+     * @return
+     */
     private Cell getCell(HashMap<Integer, HashMap<Integer, Cell>> grid, int r, int q){
         if (grid.containsKey(r)){
             HashMap<Integer, Cell> row = grid.get(r);
@@ -212,4 +241,32 @@ public class Game implements Hive {
         }
     }
 
+    /**
+     * This method returns the opponent of the  current player.
+     * @return The oppossing Player
+     */
+    private Player getOpponent(){
+        if (currentPlayer == Player.BLACK){
+            return Player.WHITE;
+        }else {
+            return Player.BLACK;
+        }
+    }
+
+    /**
+     * This method checks if all the adjecten cells contain at least one friendly cell and no opposing pieces
+     * @param neighbours A list of neighbours of the current coordinate the player wants to place an cell.
+     * @return An indication if it's legal to place a piece on the current coordinate.
+     */
+    private boolean allFriendsNoEnemies(ArrayList<Cell> neighbours) {
+        Boolean safe = false;
+        for(Cell cell : neighbours){
+            if (cell.cellOwner() == getOpponent()){
+                return false;
+            }else if (cell.cellOwner() == currentPlayer) {
+                safe = true;
+            }
+        }
+        return safe;
+    }
 }

@@ -36,6 +36,9 @@ public class Cell {
     }
 
     public Hive.Player cellOwner() {
+        if(tileOwnership.size() == 0){
+            return null;
+        }
         return tileOwnership.get(tileOwnership.size() - 1);
     }
 

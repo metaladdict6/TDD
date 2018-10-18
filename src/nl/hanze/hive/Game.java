@@ -107,15 +107,17 @@ public class Game implements Hive {
     @Override
     public void play(Tile tile, int q, int r) throws IllegalMove {
         HashMap<Integer, HashMap<Integer, Cell>> grid = getGrid();
-        Cell cell = grid.get(r).get(q);
+        Cell cell = getCell(grid, r, q);
         if(cell.size() != 0) {
             throw new IllegalMove("The coordinates you are trying to play too is occupied");
         }else{
             ArrayList<Cell> neighbours = this.findNeighbours(grid, q, r);
             if(allFriendsNoEnemies(neighbours)){
 
+            }else {
+                throw new IllegalMove("The coordinate you are trying to play too is not adject to a friendly piece or " +
+                        "is next to an opponents piece");
             }
-
         }
 
         if (currentPlayer == Player.BLACK && !blackHasPlayedPiece) {
@@ -261,10 +263,13 @@ public class Game implements Hive {
     private boolean allFriendsNoEnemies(ArrayList<Cell> neighbours) {
         Boolean safe = false;
         for(Cell cell : neighbours){
-            if (cell.cellOwner() == getOpponent()){
-                return false;
-            }else if (cell.cellOwner() == currentPlayer) {
-                safe = true;
+            Player cellOwner = cell.cellOwner();
+            if (cellOwner != null) {
+                if (cellOwner == getOpponent()){
+                    return false;
+                }else if (cellOwner == currentPlayer) {
+                    safe = true;
+                }
             }
         }
         return safe;

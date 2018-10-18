@@ -14,6 +14,10 @@ public class Game implements Hive {
 
     private Player currentPlayer;
 
+    private Cell blackQueenCell;
+
+    private Cell whiteQueenCell;
+
     private boolean blackHasPlayedPiece = false;
 
     private boolean whiteHasPlayedPiece = false;
@@ -113,13 +117,12 @@ public class Game implements Hive {
         }else{
             ArrayList<Cell> neighbours = this.findNeighbours(grid, q, r);
             if(allFriendsNoEnemies(neighbours)){
-
+                getCell(q, r).add(currentPlayer, tile);
             }else {
                 throw new IllegalMove("The coordinate you are trying to play too is not adject to a friendly piece or " +
                         "is next to an opponents piece");
             }
         }
-
         if (currentPlayer == Player.BLACK && !blackHasPlayedPiece) {
             blackHasPlayedPiece = true;
         }else if(currentPlayer == Player.WHITE && !whiteHasPlayedPiece) {
@@ -140,7 +143,26 @@ public class Game implements Hive {
      */
     @Override
     public void move(int fromQ, int fromR, int toQ, int toR) throws IllegalMove {
+        if (canIMove()){
+            throw new IllegalMove("You have to place your Queen before moving your pieces");
+        }
         nextPlayer();
+    }
+
+    /**
+     * This method checks if the current player may move his pieces.
+     * @return A boolean thats says false or true.
+     */
+    public boolean canIMove(){
+        if (currentPlayer == Player.BLACK) {
+            if (blackQueenCell == null) {
+                return false;
+            }
+        }else {
+            if (whiteQueenCell == null) {
+            }
+        }
+        return true;
     }
 
     /**
@@ -169,6 +191,13 @@ public class Game implements Hive {
      */
     @Override
     public boolean isWinner(Player player) {
+        Cell queenCell = null;
+        if(player == Player.WHITE) {
+            queenCell = whiteQueenCell;
+        }else {
+            queenCell = blackQueenCell;
+        }
+
         return false;
     }
 
@@ -179,7 +208,7 @@ public class Game implements Hive {
      */
     @Override
     public boolean isDraw() {
-        return false;
+        return isWinner(Player.WHITE) && isWinner(Player.BLACK);
     }
 
     public HashMap<Integer, HashMap<Integer, Cell>> getGrid() {
@@ -273,5 +302,9 @@ public class Game implements Hive {
             }
         }
         return safe;
+    }
+
+    public Cell getWhiteQueenCell() {
+        return whiteQueenCell;
     }
 }

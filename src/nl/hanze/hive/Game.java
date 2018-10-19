@@ -173,6 +173,7 @@ public class Game implements Hive {
             }
         }else {
             if (whiteQueenCell == null) {
+                return false;
             }
         }
         return true;

@@ -17,9 +17,11 @@ public class HiveSpec {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
         grid.get(0).get(2).add(Game.Player.BLACK, Game.Tile.QUEEN_BEE);
+        game.setBlackQueenCell(grid.get(0).get(2));
         grid.get(0).get(3).add(Game.Player.WHITE, Game.Tile.BEETLE);
         grid.get(1).get(1).add(Game.Player.WHITE, Game.Tile.BEETLE);
         grid.get(1).get(0).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
+        game.setWhiteQueenCell(grid.get(1).get(0));
         grid.get(-1).get(2).add(Game.Player.WHITE, Game.Tile.BEETLE);
         grid.get(-1).get(3).add(Game.Player.WHITE, Game.Tile.BEETLE);
         game.move(3, -1, 3, -2);

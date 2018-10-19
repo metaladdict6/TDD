@@ -1,6 +1,7 @@
 import nl.hanze.hive.Cell;
 import nl.hanze.hive.Game;
 import nl.hanze.hive.Hive;
+import nl.hanze.hive.SpiderMoveException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -28,7 +29,7 @@ public class SpiderSpec {
 
     }
 
-    @Test(expected = Hive.IllegalMove.class)
+    @Test(expected = SpiderMoveException.class)
     public void moveToSameSpace() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -39,7 +40,7 @@ public class SpiderSpec {
         game.move(-3, 0, -3, 0);
     }
 
-    @Test(expected = Hive.IllegalMove.class)
+    @Test(expected = SpiderMoveException.class)
     public void moveOverOtherPiece() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();

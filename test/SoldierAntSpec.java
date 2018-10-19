@@ -1,6 +1,7 @@
 import nl.hanze.hive.Cell;
 import nl.hanze.hive.Game;
 import nl.hanze.hive.Hive;
+import nl.hanze.hive.SoldierAntMoveException;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -11,7 +12,7 @@ import java.util.HashMap;
  */
 public class SoldierAntSpec {
 
-    @Test(expected = Hive.IllegalMove.class)
+    @Test(expected = SoldierAntMoveException.class)
     public void moveToOccupiedSpace() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -20,7 +21,7 @@ public class SoldierAntSpec {
         game.move(0, -3, 0, -2);
     }
 
-    @Test(expected = Hive.IllegalMove.class)
+    @Test(expected = SoldierAntMoveException.class)
     public void moveOverOccupiedSpace() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -30,7 +31,7 @@ public class SoldierAntSpec {
         game.move(0, -3, 0, 0);
     }
 
-    @Test(expected = Hive.IllegalMove.class)
+    @Test(expected = SoldierAntMoveException.class)
     public void moveToSameSpace() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();

@@ -1,6 +1,7 @@
 import nl.hanze.hive.Cell;
 import nl.hanze.hive.Game;
 import nl.hanze.hive.Hive;
+import nl.hanze.hive.QueenMoveException;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -11,7 +12,7 @@ import java.util.HashMap;
  */
 public class QueenSpec {
 
-    @Test(expected = Hive.IllegalMove.class)
+    @Test(expected = QueenMoveException.class)
     public void moveTwoSquares() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -20,7 +21,7 @@ public class QueenSpec {
     }
 
 
-    @Test(expected = Hive.IllegalMove.class)
+    @Test(expected = QueenMoveException.class)
     public void moveToOccupiedSpace() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();

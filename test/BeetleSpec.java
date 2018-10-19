@@ -1,6 +1,6 @@
+import nl.hanze.hive.BeetleMoveException;
 import nl.hanze.hive.Cell;
 import nl.hanze.hive.Game;
-import nl.hanze.hive.Hive;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -11,7 +11,7 @@ import java.util.HashMap;
  */
 public class BeetleSpec {
 
-    @Test(expected = Hive.IllegalMove.class)
+    @Test(expected = BeetleMoveException.class)
     public void moveTwoSquares() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();

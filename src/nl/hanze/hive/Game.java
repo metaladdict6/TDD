@@ -18,6 +18,8 @@ public class Game implements Hive {
 
     private Cell whiteQueenCell;
 
+
+
     private boolean blackHasPlayedPiece = false;
 
     private boolean whiteHasPlayedPiece = false;
@@ -117,7 +119,8 @@ public class Game implements Hive {
         }else{
             ArrayList<Cell> neighbours = this.findNeighbours(grid, q, r);
             if(allFriendsNoEnemies(neighbours)){
-                getCell(q, r).add(currentPlayer, tile);
+                cell.add(currentPlayer, tile);
+                this.updateQueenCoordinate(tile, cell);
             }else {
                 throw new IllegalMove("The coordinate you are trying to play too is not adject to a friendly piece or " +
                         "is next to an opponents piece");
@@ -131,6 +134,16 @@ public class Game implements Hive {
         nextPlayer();
     }
 
+
+    private void updateQueenCoordinate(Tile tile, Cell cell){
+        if (tile == Tile.QUEEN_BEE){
+            if (currentPlayer == Player.WHITE){
+                whiteQueenCell = cell;
+            }else {
+                blackQueenCell = cell;
+            }
+        }
+    }
 
 
     /**
@@ -306,5 +319,17 @@ public class Game implements Hive {
 
     public Cell getWhiteQueenCell() {
         return whiteQueenCell;
+    }
+
+    public Cell getBlackQueenCell() {
+        return blackQueenCell;
+    }
+
+    public void setBlackQueenCell(Cell blackQueenCell) {
+        this.blackQueenCell = blackQueenCell;
+    }
+
+    public void setWhiteQueenCell(Cell whiteQueenCell) {
+        this.whiteQueenCell = whiteQueenCell;
     }
 }

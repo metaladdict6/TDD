@@ -18,12 +18,6 @@ public class Game implements Hive {
 
     private Cell whiteQueenCell;
 
-
-
-    private boolean blackHasPlayedPiece = false;
-
-    private boolean whiteHasPlayedPiece = false;
-
     public Game() {
         this.Grid = InitiateGrid();
         this.currentPlayer = Player.WHITE;
@@ -126,15 +120,14 @@ public class Game implements Hive {
                         "is next to an opponents piece");
             }
         }
-        if (currentPlayer == Player.BLACK && !blackHasPlayedPiece) {
-            blackHasPlayedPiece = true;
-        }else if(currentPlayer == Player.WHITE && !whiteHasPlayedPiece) {
-            whiteHasPlayedPiece = true;
-        }
         nextPlayer();
     }
 
-
+    /**
+     * This method sets the intial position of the Queen.
+     * @param tile The tile that just has been placed.
+     * @param cell The cell the tile has been placed in.
+     */
     private void updateQueenCoordinate(Tile tile, Cell cell){
         if (tile == Tile.QUEEN_BEE){
             if (currentPlayer == Player.WHITE){
@@ -156,8 +149,10 @@ public class Game implements Hive {
      */
     @Override
     public void move(int fromQ, int fromR, int toQ, int toR) throws IllegalMove {
-        if (canIMove()){
+        if (!queenPlayed()){
             throw new IllegalMove("You have to place your Queen before moving your pieces");
+        }else if(!followsMoveRules(fromQ, fromR, toQ, toR)){
+            throw new IllegalMove("You have to move your piece next to another piece.");
         }
         nextPlayer();
     }
@@ -166,7 +161,7 @@ public class Game implements Hive {
      * This method checks if the current player may move his pieces.
      * @return A boolean thats says false or true.
      */
-    public boolean canIMove(){
+    public boolean queenPlayed(){
         if (currentPlayer == Player.BLACK) {
             if (blackQueenCell == null) {
                 return false;
@@ -177,6 +172,19 @@ public class Game implements Hive {
             }
         }
         return true;
+    }
+
+    private boolean followsMoveRules(int fromQ, int fromR, int toQ, int toR) {
+        ArrayList<Cell> neighbours = findNeighbours(getGrid(), toQ, toR);
+        int neighoursAmount = 0;
+        for(Cell cell: neighbours) {
+            if(cell.getCoordinate_R() != fromR && cell.getCoordinate_Q() != toQ){
+                if (cell.cellOwner() != null) {
+                    neighoursAmount++;
+                }
+            }
+        }
+        return neighoursAmount > 0;
     }
 
     /**

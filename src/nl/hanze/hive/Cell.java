@@ -6,7 +6,7 @@ import java.util.Stack;
  * Created by rrczi on 9-10-2018.
  * This class will implement
  */
-public class Cell {
+public class Cell implements Cloneable{
 
     private int Coordinate_R;
 
@@ -29,6 +29,10 @@ public class Cell {
     public Hive.Tile pop() {
         this.tileOwnership.pop();
         return this.tiles.pop();
+    }
+
+    public Hive.Tile getTopTile() {
+        return this.tiles.get(tiles.size() - 1);
     }
 
     public int size(){
@@ -57,4 +61,5 @@ public class Cell {
     public void setCoordinate_Q(int coordinate_Q) {
         Coordinate_Q = coordinate_Q;
     }
+
 }

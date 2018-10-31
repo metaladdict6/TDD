@@ -16,7 +16,9 @@ public class QueenSpec {
     public void moveTwoSquares() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
-        grid.get(0).get(-3).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
+        grid.get(-3).get(0).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
+        grid.get(0).get(0).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        game.setWhiteQueenCell(grid.get(-3).get(0));
         game.move(0, -3, 0, -1);
     }
 
@@ -25,8 +27,10 @@ public class QueenSpec {
     public void moveToOccupiedSpace() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
+        grid.get(-3).get(2).add(Game.Player.WHITE, Game.Tile.BEETLE);
         grid.get(-3).get(1).add(Game.Player.WHITE, Game.Tile.BEETLE);
         grid.get(-3).get(0).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
+        game.setWhiteQueenCell(grid.get(-3).get(0));
         game.move(0, -3, 1, -3);
     }
 }

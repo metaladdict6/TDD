@@ -279,14 +279,31 @@ public class Game implements Hive {
         return cells;
     }
 
-
     /**
-     * This method either returns the cell a player wants or creates a new cell and then returns it.
-     * @param grid The current grid of the game.
-     * @param r The r coordinate. This indicates the vertical position inside the grid.
-     * @param q The q coordinate. This indicates the horizontal position inside the grid.
-     * @return
+     * This method is used by the move handler to check if any move breaks the tile chain.
+     * @param q The horizontal coordinate that is being checked for neighbours at this point
+     * @param r The vertical coordinate that is being checked for neighbours at this point
+     * @param grid The grid a tile has been moved and to check if there's any rule breaking.
+     * @return The neighbours based the q and r variable.
      */
+    public ArrayList<Cell> findNeighbours(int q, int r,  HashMap<Integer, HashMap<Integer, Cell>> grid ) {
+        ArrayList<Cell> cells = new ArrayList<>();
+        cells.add(getCell(grid, r, q - 1));        // LEFT CELL
+        cells.add(getCell(grid, r, q + 1));        // RIGHT CELL
+        cells.add(getCell(grid, r - 1, q));        // LEFT UP CELL
+        cells.add(getCell(grid, r - 1, q + 1)); // RIGHT UP CELL
+        cells.add(getCell(grid, r + 1, q - 1)); // LEFT DOWN CELL;
+        cells.add(getCell(grid, r + 1, q));        // RIGHT DOWN CELL
+        return cells;
+    }
+
+        /**
+         * This method either returns the cell a player wants or creates a new cell and then returns it.
+         * @param grid The current grid of the game.
+         * @param r The r coordinate. This indicates the vertical position inside the grid.
+         * @param q The q coordinate. This indicates the horizontal position inside the grid.
+         * @return
+         */
     private Cell getCell(HashMap<Integer, HashMap<Integer, Cell>> grid, int r, int q){
         if (grid.containsKey(r)){
             HashMap<Integer, Cell> row = grid.get(r);

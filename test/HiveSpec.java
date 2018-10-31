@@ -88,7 +88,7 @@ public class HiveSpec {
     public void moveBeforeQueenPlacement() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
-        grid.get(0).get(0).add(Game.Player.BLACK, Game.Tile.BEETLE);
+        grid.get(0).get(-3).add(Game.Player.BLACK, Game.Tile.BEETLE);
         grid.get(0).get(-1).add(Game.Player.WHITE, Game.Tile.BEETLE);
         game.move(-1, 0, 0, -1);
     }

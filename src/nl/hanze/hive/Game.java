@@ -12,13 +12,16 @@ public class Game implements Hive {
 
     private LinkedList<Tile> whitePlayedTiles;
 
-    private Player currentPlayer;
+    public Player currentPlayer;
 
     private Cell blackQueenCell;
 
     private Cell whiteQueenCell;
 
+    private MoveHandler moveHandler;
+
     public Game() {
+        this.moveHandler = new MoveHandler(this);
         this.Grid = InitiateGrid();
         this.currentPlayer = Player.WHITE;
         this.blackPlayedTiles = new LinkedList<>();
@@ -111,7 +114,7 @@ public class Game implements Hive {
         if(cell.size() != 0) {
             throw new IllegalMove("The coordinates you are trying to play too is occupied");
         }else{
-            ArrayList<Cell> neighbours = this.findNeighbours(grid, q, r);
+            ArrayList<Cell> neighbours = this.findNeighbours(q, r);
             if(allFriendsNoEnemies(neighbours)){
                 cell.add(currentPlayer, tile);
                 this.updateQueenCoordinate(tile, cell);
@@ -149,13 +152,12 @@ public class Game implements Hive {
      */
     @Override
     public void move(int fromQ, int fromR, int toQ, int toR) throws IllegalMove {
-        if (!queenPlayed()){
-            throw new IllegalMove("You have to place your Queen before moving your pieces");
-        }else if(!followsMoveRules(fromQ, fromR, toQ, toR)){
-            throw new IllegalMove("You have to move your piece next to another piece.");
-        }
+        moveHandler.moveTile(fromQ, fromR, toQ, toR);
         nextPlayer();
     }
+
+
+
 
     /**
      * This method checks if the current player may move his pieces.
@@ -174,18 +176,6 @@ public class Game implements Hive {
         return true;
     }
 
-    private boolean followsMoveRules(int fromQ, int fromR, int toQ, int toR) {
-        ArrayList<Cell> neighbours = findNeighbours(getGrid(), toQ, toR);
-        int neighoursAmount = 0;
-        for(Cell cell: neighbours) {
-            if(cell.getCoordinate_R() != fromR && cell.getCoordinate_Q() != toQ){
-                if (cell.cellOwner() != null) {
-                    neighoursAmount++;
-                }
-            }
-        }
-        return neighoursAmount > 0;
-    }
 
     /**
      * This method returns a specific instance of the Cell class.
@@ -193,7 +183,7 @@ public class Game implements Hive {
      * @param r The horizontal address of the cell we want.
      * @return The cell in accordance with q and r.
      */
-    private Cell getCell(int q, int r) {
+    public Cell getCell(int q, int r) {
         return this.getGrid().get(r).get(q);
     }
 
@@ -222,7 +212,7 @@ public class Game implements Hive {
         if (queenCell == null) {
             return false;
         }
-        ArrayList<Cell> neighbours = findNeighbours(this.Grid, queenCell.getCoordinate_Q(), queenCell.getCoordinate_R());
+        ArrayList<Cell> neighbours = findNeighbours(queenCell.getCoordinate_Q(), queenCell.getCoordinate_R());
         for(Cell neighbour: neighbours) {
             Player cellOwner = neighbour.cellOwner();
             if (player != cellOwner) {
@@ -260,12 +250,12 @@ public class Game implements Hive {
     /**
      * This method returns all the neighbours of a specific coordinate. This method manually changes the cells
      * that are added to the returning list.
-     * @param grid The current grid of the game.
      * @param q The q coordinate. This indicates the horizontal position inside the grid.
      * @param r The r coordinate. This indicates the vertical position inside the grid.
      * @return Returns a list of cells that indicates the neighbours of the coordinate r and q.
      */
-    private ArrayList<Cell> findNeighbours(HashMap<Integer, HashMap<Integer, Cell>> grid, int q, int r){
+    public ArrayList<Cell> findNeighbours(int q, int r){
+        HashMap<Integer, HashMap<Integer, Cell>> grid = this.getGrid();
         ArrayList<Cell> cells = new ArrayList<>();
         cells.add(getCell(grid, r, q - 1));        // LEFT CELL
         cells.add(getCell(grid, r, q + 1));        // RIGHT CELL
@@ -346,14 +336,6 @@ public class Game implements Hive {
             }
         }
         return safe;
-    }
-
-    public Cell getWhiteQueenCell() {
-        return whiteQueenCell;
-    }
-
-    public Cell getBlackQueenCell() {
-        return blackQueenCell;
     }
 
     public void setBlackQueenCell(Cell blackQueenCell) {

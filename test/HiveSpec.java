@@ -44,12 +44,13 @@ public class HiveSpec {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
         grid.get(0).get(2).add(Game.Player.BLACK, Game.Tile.QUEEN_BEE);
-        grid.get(0).get(1).add(Game.Player.WHITE, Game.Tile.BEETLE);
-        grid.get(0).get(3).add(Game.Player.WHITE, Game.Tile.BEETLE);
-        grid.get(1).get(1).add(Game.Player.WHITE, Game.Tile.BEETLE);
-        grid.get(1).get(2).add(Game.Player.WHITE, Game.Tile.BEETLE);
-        grid.get(-1).get(2).add(Game.Player.WHITE, Game.Tile.BEETLE);
-        grid.get(-1).get(3).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        game.setBlackQueenCell(grid.get(0).get(2));
+        grid.get(0).get(1).add(Game.Player.WHITE, Game.Tile.BEETLE); // LEFT
+        grid.get(0).get(3).add(Game.Player.WHITE, Game.Tile.BEETLE); // RIGHT
+        grid.get(1).get(1).add(Game.Player.WHITE, Game.Tile.BEETLE); // LEFT DOWN
+        grid.get(1).get(2).add(Game.Player.WHITE, Game.Tile.BEETLE); // RIGHT DOWN
+        grid.get(-1).get(2).add(Game.Player.WHITE, Game.Tile.BEETLE); // LEFT UP
+        grid.get(-1).get(3).add(Game.Player.WHITE, Game.Tile.BEETLE); // RIGHT UP
         Assert.assertTrue(game.isWinner(Hive.Player.WHITE));
     }
 
@@ -65,6 +66,7 @@ public class HiveSpec {
         // Setting up the white win scenario
         grid.get(0).get(1).add(Game.Player.WHITE, Game.Tile.BEETLE);
         grid.get(0).get(2).add(Game.Player.BLACK, Game.Tile.QUEEN_BEE);
+        game.setBlackQueenCell(grid.get(0).get(2));
         grid.get(0).get(3).add(Game.Player.WHITE, Game.Tile.BEETLE);
         grid.get(1).get(1).add(Game.Player.WHITE, Game.Tile.BEETLE);
         grid.get(1).get(2).add(Game.Player.WHITE, Game.Tile.BEETLE);
@@ -73,6 +75,7 @@ public class HiveSpec {
         // Setting up the black win scenario
         grid.get(0).get(0).add(Game.Player.BLACK, Game.Tile.BEETLE);
         grid.get(0).get(-1).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
+        game.setWhiteQueenCell( grid.get(0).get(-1));
         grid.get(0).get(-2).add(Game.Player.BLACK, Game.Tile.BEETLE);
         grid.get(1).get(-1).add(Game.Player.BLACK, Game.Tile.BEETLE);
         grid.get(1).get(-2).add(Game.Player.BLACK, Game.Tile.BEETLE);

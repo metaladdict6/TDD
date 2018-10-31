@@ -215,12 +215,21 @@ public class Game implements Hive {
     public boolean isWinner(Player player) {
         Cell queenCell = null;
         if(player == Player.WHITE) {
-            queenCell = whiteQueenCell;
-        }else {
             queenCell = blackQueenCell;
+        }else {
+            queenCell = whiteQueenCell;
         }
-
-        return false;
+        if (queenCell == null) {
+            return false;
+        }
+        ArrayList<Cell> neighbours = findNeighbours(this.Grid, queenCell.getCoordinate_Q(), queenCell.getCoordinate_R());
+        for(Cell neighbour: neighbours) {
+            Player cellOwner = neighbour.cellOwner();
+            if (player != cellOwner) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -258,12 +267,25 @@ public class Game implements Hive {
      */
     private ArrayList<Cell> findNeighbours(HashMap<Integer, HashMap<Integer, Cell>> grid, int q, int r){
         ArrayList<Cell> cells = new ArrayList<>();
-        cells.add(getCell(grid, r, q - 1));             // LEFT CELL
-        cells.add(getCell(grid, r, q + 1));             // RIGHT CELL
-        cells.add(getCell(grid, r - 1, q));             // LEFT UP CELL
-        cells.add(getCell(grid, r - 1, + 1));        // RIGHT UP CELL
-        cells.add(getCell(grid, r + 1, q - 1));      // LEFT DOWN CELL;
-        cells.add(getCell(grid, r + 1, q));             // RIGHT DOWN CELL
+        cells.add(getCell(grid, r, q - 1));        // LEFT CELL
+        cells.add(getCell(grid, r, q + 1));        // RIGHT CELL
+        cells.add(getCell(grid, r - 1, q));        // LEFT UP CELL
+        cells.add(getCell(grid, r - 1, q + 1)); // RIGHT UP CELL
+        cells.add(getCell(grid, r + 1, q - 1)); // LEFT DOWN CELL;
+        cells.add(getCell(grid, r + 1, q));        // RIGHT DOWN CELL
+
+//        System.out.println("LEFT CELL = " + r + " and " + (q-1));
+//        System.out.println(getCell(grid, r, q - 1).cellOwner());
+//        System.out.println("RIGHT CELL = " + r + " and " + (q+1));
+//        System.out.println(getCell(grid, r, q + 1).cellOwner());
+//        System.out.println("LEFT UP CELL = " + (r - 1) + " and " + (q));
+//        System.out.println(getCell(grid, r - 1, q).cellOwner());
+//        System.out.println("RIGHT UP CELL = " + (r - 1) + " and " + (q + 1));
+//        System.out.println(getCell(grid, r - 1, + 1).cellOwner());
+//        System.out.println("LEFT DOWN CELL = " + (r + 1) + " and " + (q - 1));
+//        System.out.println(getCell(grid, r + 1, q - 1).cellOwner());
+//        System.out.println("RIGHT DOWN CELL = " + (r + 1) + " and " + (q));
+//        System.out.println(getCell(grid, r + 1, q).cellOwner());
         return cells;
     }
 

@@ -19,6 +19,12 @@ public class Cell implements Cloneable{
     public Cell(int coordinateR, int coordinateQ) {
         setCoordinate_R(coordinateR);
         setCoordinate_Q(coordinateQ);
+        this.tileOwnership = new Stack<>();
+        this.tiles = new Stack<>();
+    }
+
+    public Cell(int coordinateR, int coordinateQ, Stack<Hive.Player> tileOwnership,  Stack<Hive.Tile> tiles){
+
     }
 
     public void add(Hive.Player player, Hive.Tile tile) {
@@ -32,6 +38,9 @@ public class Cell implements Cloneable{
     }
 
     public Hive.Tile getTopTile() {
+        if (tiles.size() == 0) {
+            return null;
+        }
         return this.tiles.get(tiles.size() - 1);
     }
 
@@ -62,4 +71,7 @@ public class Cell implements Cloneable{
         Coordinate_Q = coordinate_Q;
     }
 
+    public Cell clone() throws CloneNotSupportedException {
+        return (Cell)super.clone();
+    }
 }

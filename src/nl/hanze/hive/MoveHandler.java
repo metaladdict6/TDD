@@ -19,7 +19,7 @@ public class MoveHandler {
     }
 
     void moveTile(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
-        Cell fromCell = followGenericRules(fromQ, fromR, toQ, toR);
+        Cell fromCell = genericRulesChecker(fromQ, fromR, toQ, toR);
         Hive.Tile tile = fromCell.getTopTile();
         switch (tile){
             case BEETLE:
@@ -42,35 +42,79 @@ public class MoveHandler {
         fromCell.pop();
     }
 
-    private Cell followGenericRules(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
+    /**
+     * This method checks for the rules that apply to every tile.
+     * @param fromQ Starting horizontal position.
+     * @param fromR Starting vertical position.
+     * @param toQ Destination horizontal position
+     * @param toR Destination vertical position.
+     * @return The from cell that will be poped if every other check also works.
+     * @throws Hive.IllegalMove
+     */
+    private Cell genericRulesChecker(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
+        Cell fromCell = game.getCell(fromQ, fromR);
         if (!game.queenPlayed()){
             throw new Hive.IllegalMove("You have to place your Queen before moving your pieces");
         }else if(!followsMoveRules(fromQ, fromR, toQ, toR)){
             throw new Hive.IllegalMove("You have to move your piece next to another piece.");
-        }
-        Cell fromCell = game.getCell(fromQ, fromR);
-        if (fromCell.cellOwner() != game.currentPlayer){
+        }else if(fromCell.size() == 0) {
+            throw new Hive.IllegalMove("Nothing to move");
+        }else if (fromCell.cellOwner() != game.currentPlayer){
             throw new Hive.IllegalMove("You cannot move the piece of another player!");
+        // } else if(checkIfBreaksTileChain(fromQ, fromR, toQ, toR)) {
+        //    throw new Hive.IllegalMove("You cannot break the tile chain!");
+        }else {
+            return fromCell;
         }
-        if(checkIfBreaksTileChain(fromQ, fromR, toQ, toR)) {
-
-        }
-        return fromCell;
     }
 
+    /**
+     * This method checks if the move breaks the
+     * @param fromQ Starting horizontal position.
+     * @param fromR Starting vertical position.
+     * @param toQ Destination horizontal position
+     * @param toR Destination vertical position.
+     * @return If this breaks the chain or not.
+     */
     private boolean checkIfBreaksTileChain(int fromQ, int fromR, int toQ, int toR) {
-        HashMap<Integer, HashMap<Integer, Cell>> gridCopy = new  HashMap<Integer, HashMap<Integer, Cell>>();
-        HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
-        for(Integer key: grid.keySet()){
-            HashMap<Integer, Cell> rowCopy = new HashMap<Integer, Cell>();
-            gridCopy.put(key, rowCopy);
-
-            for(Integer rowKey: grid.get(key).keySet()) {
-
+        HashMap<Integer, HashMap<Integer, Cell>> grid = copyGrid();
+        Cell current = grid.get(fromR).get(fromQ);
+        grid.get(toR).get(toQ).add(game.currentPlayer, current.pop());
+        for(Integer key: grid.keySet()) {
+            HashMap<Integer, Cell> row = grid.get(key);
+            for(Integer rowKey: row.keySet()) {
+                Cell cell = row.get(rowKey);
+                if (cell.size() != 0) {
+                    ArrayList<Cell> neighbours = game.findNeighbours(cell.getCoordinate_Q(), cell.getCoordinate_R(), grid);
+                    if (neighbours.size() == 0) {
+                        return true;
+                    }
+                }
             }
         }
-
         return false;
+    }
+
+    /**
+     * This method copies the whole grid so that we can test for a situation without changing the game state.
+     * @return A full copy of the current game grid.
+     */
+    private HashMap<Integer, HashMap<Integer, Cell>> copyGrid() {
+        HashMap<Integer, HashMap<Integer, Cell>> gridCopy = new HashMap<>();
+        HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
+        for(Integer key: grid.keySet()){
+            HashMap<Integer, Cell> rowCopy = new HashMap<>();
+            gridCopy.put(key, rowCopy);
+            HashMap<Integer, Cell> row = grid.get(key);
+            for(Integer rowKey: row.keySet()) {
+                try {
+                    rowCopy.put(rowKey, row.get(rowKey).clone());
+                }catch (CloneNotSupportedException exception) {
+                    System.out.println(exception.getMessage());
+                }
+            }
+        }
+        return gridCopy;
     }
 
     private void moveBeetle(int fromQ, int fromR, int toQ, Hive.Tile tile) throws Hive.IllegalMove {

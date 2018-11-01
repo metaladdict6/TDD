@@ -10,18 +10,27 @@ import java.util.*;
  * It will check if moves are legal.
  * It will also play tiles and update the location of the Queen in the game state.
  */
-public class MoveHandler {
+class MoveHandler {
 
     private Game game;
 
     /**
-     * The move handle wil handle any moves of the game. It will also throw the neccesary exceptions.
+     * The move handle wil handle any moves of the game. It will also throw the necessary exceptions.
      * @param game The game the handler wil handle moves for.
      */
     MoveHandler(Game game) {
         this.game = game;
     }
 
+    /**
+     * This is the generic move method of the class. This will deal with all the moving after the checks have been
+     * done that the move is actually legal.
+     * @param fromQ The origin Q
+     * @param fromR The origin R
+     * @param toQ The destination Q
+     * @param toR The destination R
+     * @throws Hive.IllegalMove
+     */
     void moveTile(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
         Cell fromCell = genericRulesChecker(fromQ, fromR, toQ, toR);
         Cell toCell = checkTileSpecificRules(fromQ, fromR, toQ, toR, fromCell);
@@ -49,8 +58,17 @@ public class MoveHandler {
         }
     }
 
-
-    private Cell checkTileSpecificRules(int fromQ, int fromR, int toQ, int toR, Cell fromCell) throws Hive.IllegalMove {
+    /**
+     * This method call all the method's that deal with any and all generic rules that might occur in the game.
+     * It return the cell the player is attemting to move from.
+     * @param fromQ Starting horizontal position.
+     * @param fromR Starting vertical position.
+     * @param toQ Destination horizontal position
+     * @param toR Destination vertical position.
+     * @return The cell the tile is starting from.
+     * @throws Hive.IllegalMove
+     */
+    public Cell checkTileSpecificRules(int fromQ, int fromR, int toQ, int toR, Cell fromCell) throws Hive.IllegalMove {
         Hive.Tile tile = fromCell.getTopTile();
         switch (tile){
             case BEETLE:
@@ -76,7 +94,7 @@ public class MoveHandler {
      * @return The from cell that will be poped if every other check also works.
      * @throws Hive.IllegalMove
      */
-    private Cell genericRulesChecker(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
+    public Cell genericRulesChecker(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
         Cell fromCell = game.getCell(fromQ, fromR);
         if (!game.queenPlayed()){
             throw new Hive.IllegalMove("You have to place your Queen before moving your pieces");

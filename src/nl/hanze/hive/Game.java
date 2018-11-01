@@ -111,20 +111,6 @@ public class Game implements Hive {
         }
     }
 
-    /**
-     * This method sets the intial position of the Queen.
-     * @param tile The tile that just has been placed.
-     * @param cell The cell the tile has been placed in.
-     */
-    private void updateQueenCoordinate(Tile tile, Cell cell){
-        if (tile == Tile.QUEEN_BEE){
-            if (currentPlayer == Player.WHITE){
-                whiteQueenCell = cell;
-            }else {
-                blackQueenCell = cell;
-            }
-        }
-    }
 
     /**
      * Move an existing tile.
@@ -163,7 +149,12 @@ public class Game implements Hive {
      */
     @Override
     public void pass() throws IllegalMove {
+        try{
+            Game game = new Game();
 
+        }catch (Exception exception) {
+
+        }
     }
 
     /**

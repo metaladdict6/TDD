@@ -4,7 +4,7 @@ import java.util.Stack;
 
 /**
  * Created by rrczi on 9-10-2018.
- * This
+ * This class will contain any and all tiles.
  */
 public class Cell implements Cloneable{
 

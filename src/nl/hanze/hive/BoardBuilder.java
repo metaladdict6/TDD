@@ -6,7 +6,7 @@ import java.util.LinkedList;
 /**
  * Created by robert on 1-11-18.
  */
-public class GameBuilder {
+public class BoardBuilder {
 
 
     /**
@@ -68,7 +68,7 @@ public class GameBuilder {
     }
 
     /**
-     * This method inserts a specifice tile for a specifice amount in the LinkedList
+     * This method inserts a specific tile for a specific amount in the LinkedList
      * @param tiles The list of tiles where the tile is going to be inserted in.
      * @param amount The amount of tiles that needs to be inserted.
      * @param tile The tile that needs to be inserted

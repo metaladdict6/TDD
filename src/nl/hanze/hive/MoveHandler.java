@@ -6,7 +6,9 @@ import java.util.*;
 
 /**
  * Created by robert on 31-10-18.
- * This class will handle all the moves in the game. It will check
+ * This class will handle all the moves in the game.
+ * It will check if moves are legal.
+ * It will also play tiles and update the location of the Queen in the game state.
  */
 public class MoveHandler {
 
@@ -26,8 +28,27 @@ public class MoveHandler {
         if (toCell == null) {
             throw new Hive.IllegalMove("The cell you want to move to is null");
         }
+        Hive.Tile tile = fromCell.getTopTile();
         toCell.add(game.currentPlayer, fromCell.pop());
+        if (tile == Hive.Tile.QUEEN_BEE) {
+            updateQueen(toCell);
+        }
     }
+
+
+    /**
+     * This method update the location of the cell the Queen is located in.
+     * This is kept updated so that the isWinner method is easily executed.
+     * @param cell The cell the Queen is currently located in.
+     */
+    public void updateQueen(Cell cell) {
+        if (game.currentPlayer == Hive.Player.WHITE) {
+            game.setWhiteQueenCell(cell);
+        }else {
+            game.setBlackQueenCell(cell);
+        }
+    }
+
 
     private Cell checkTileSpecificRules(int fromQ, int fromR, int toQ, int toR, Cell fromCell) throws Hive.IllegalMove {
         Hive.Tile tile = fromCell.getTopTile();
@@ -121,6 +142,16 @@ public class MoveHandler {
         return gridCopy;
     }
 
+    /**
+     * This method returns the cell the beetle wants to move to. If it is an illegal move it will throw
+     * an exception.
+     * @param fromQ The origin Q
+     * @param fromR The origin R
+     * @param toQ The destination Q
+     * @param toR The destination R
+     * @return Cell The cell the Beetle is going to move to.
+     * @throws Hive.IllegalMove Will be BeetleMoveException so a proper test can be written for this method.
+     */
     private Cell moveBeetle(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
         Cell cell = game.getCell(toQ, toR);
         if(calculateDistanceRoundedDown(fromQ, fromR, toQ, toR) > 1) {
@@ -183,7 +214,6 @@ public class MoveHandler {
         if (cell.size() > 0) {
             throw new QueenMoveException("You cannot move to an occupied space.");
         }
-        this.game.setWhiteQueenCell(cell);
         return cell;
     }
 
@@ -210,6 +240,14 @@ public class MoveHandler {
         return cell;
     }
 
+    /**
+     * This method checks if the destination has the minimum of one neighbour.
+     * @param fromQ The origin Q
+     * @param fromR The origin R
+     * @param toQ The destination Q
+     * @param toR The destination R
+     * @return
+     */
     private boolean followsMoveRules(int fromQ, int fromR, int toQ, int toR) {
         ArrayList<Cell> neighbours = game.findNeighbours(toQ, toR);
         int neighoursAmount = 0;
@@ -255,6 +293,17 @@ public class MoveHandler {
         return Math.sqrt(absoluteValue);
     }
 
+    /**
+     * This method checks the solider ant can make it's way to it's destination.
+     * It does this moving along the cell's that are closest to it's destination.
+     * If it cannot move without turning back, it returns an exception.
+     * This is guaranteed by a HashSet that keeps count of the visited cells.
+     * @param fromQ The origin Q
+     * @param fromR The origin R
+     * @param toQ The destination Q
+     * @param toR The destination R
+     * @return A boolean representing if the ant can actually make the move.
+     */
     private boolean soldierAntCanMove(int fromQ, int fromR, int toQ, int toR) {
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
         Cell currentCell = game.getCell(fromQ, fromR);
@@ -263,7 +312,6 @@ public class MoveHandler {
         while (!currentCell.equals(desintation)) {
             HashMap<Double, Cell> options = new HashMap<>();
             ArrayList<Cell> neighbours = game.findNeighbours(currentCell.getCoordinate_Q(), currentCell.getCoordinate_R());
-
             for (Cell neighbour : neighbours) {
                 if (neighbour.equals(desintation)) {
                     return true;
@@ -282,6 +330,14 @@ public class MoveHandler {
         return false;
     }
 
+    /**
+     * This method counts the amount of steps spider needs to make along the board to reach it's destination.
+     * @param fromQ The origin Q
+     * @param fromR The origin R
+     * @param toQ The destination Q
+     * @param toR The destination R
+     * @return The amount of steps it would require for the spider to make it to it's destination.
+     */
     private int requiredSpiderSteps(int fromQ, int fromR, int toQ, int toR) {
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
         Cell currentCell = game.getCell(fromQ, fromR);
@@ -312,6 +368,17 @@ public class MoveHandler {
         return steps;
     }
 
+    /**
+     * This method returns a model with a boolean and a step counter. The stepcounter counnts how many steps it took
+     * the grasshopper to reach it's destination. The boolean keeps count of if it actually jump over another piece in
+     * the process.
+     * @param fromQ The origin Q
+     * @param fromR The origin R
+     * @param toQ The destination Q
+     * @param toR The destination R
+     * @return
+     * @throws Hive.IllegalMove
+     */
     private GrassHopperStepResult requiredGrasshopperSteps(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
         Cell currentCell = game.getCell(fromQ, fromR);
@@ -346,6 +413,14 @@ public class MoveHandler {
         return new GrassHopperStepResult(steps, false);
     }
 
+    /**
+     * This method makes sure the grasshopper traveled in a straight line.
+     * @param fromQ The origin Q
+     * @param fromR The origin R
+     * @param toQ The destination Q
+     * @param toR The destination R
+     * @return
+     */
     private boolean grassHopperTravelingInStraightLine(int fromQ, int fromR, int toQ, int toR) {
         if (fromQ == toQ) {
             return true;

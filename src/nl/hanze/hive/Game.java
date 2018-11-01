@@ -8,9 +8,9 @@ public class Game implements Hive {
 
     private HashMap<Integer, HashMap<Integer, Cell>> Grid;
 
-    private LinkedList<Tile> blackPlayedTiles;
+    private LinkedList<Tile> blackNotPlayedTiles;
 
-    private LinkedList<Tile> whitePlayedTiles;
+    private LinkedList<Tile> whiteNotPlayedTiles;
 
     public Hive.Player currentPlayer;
 
@@ -22,18 +22,16 @@ public class Game implements Hive {
 
     public Game() {
         this.moveHandler = new MoveHandler(this);
-        this.Grid = GameBuilder.InitiateGrid();
+        this.Grid = BoardBuilder.InitiateGrid();
         this.currentPlayer = Player.WHITE;
-        this.blackPlayedTiles = new LinkedList<>();
-        this.whitePlayedTiles = new LinkedList<>();
-        GameBuilder.initTiles(this.blackPlayedTiles);
-        GameBuilder.initTiles(this.whitePlayedTiles);
+        this.blackNotPlayedTiles = new LinkedList<>();
+        this.whiteNotPlayedTiles = new LinkedList<>();
+        BoardBuilder.initTiles(this.blackNotPlayedTiles);
+        BoardBuilder.initTiles(this.whiteNotPlayedTiles);
     }
 
-
-
     /**
-     * Play a new tile.
+     * This method contains all the logic for making sure the tile is placed without breaking any rules.
      * @param tile Tile to play
      * @param q    Q coordinate of hexagon to play to
      * @param r    R coordinate of hexagon to play to
@@ -41,21 +39,76 @@ public class Game implements Hive {
      */
     @Override
     public void play(Tile tile, int q, int r) throws IllegalMove {
-        HashMap<Integer, HashMap<Integer, Cell>> grid = getGrid();
-        Cell cell = getCell(grid, r, q);
-        if(cell.size() != 0) {
-            throw new IllegalMove("The coordinates you are trying to play too is occupied");
-        }else{
-            ArrayList<Cell> neighbours = this.findNeighbours(q, r);
-            if(allFriendsNoEnemies(neighbours)){
-                cell.add(currentPlayer, tile);
-                this.updateQueenCoordinate(tile, cell);
-            }else {
-                throw new IllegalMove("The coordinate you are trying to play too is not adject to a friendly piece or " +
-                        "is next to an opponents piece");
+        if (isPieceAvailable(tile)) {
+            HashMap<Integer, HashMap<Integer, Cell>> grid = getGrid();
+            Cell cell = getCell(grid, r, q);
+            if(cell.size() != 0) {
+                throw new IllegalMove("The coordinates you are trying to play too is occupied");
+            }else{
+                ArrayList<Cell> neighbours = this.findNeighbours(q, r);
+                if(!hasPlayedTile()) {
+                    playTile(cell, tile);
+                }else if(allFriendsNoEnemies(neighbours)){
+                    playTile(cell, tile);
+                }else {
+                    throw new IllegalMove("The coordinate you are trying to play too is not adjunct to a friendly piece or " +
+                            "is next to an opponents piece");
+                }
             }
+            nextPlayer();
+        }else {
+            throw new IllegalMove("This piece isn't available");
         }
-        nextPlayer();
+    }
+
+    /**
+     * This method checks if the current player has played any tiles.
+     * @return If the current player has played a tile.
+     */
+    private boolean hasPlayedTile() {
+        if(currentPlayer == Player.WHITE) {
+            return whiteNotPlayedTiles.size() == 11;
+        }else {
+            return blackNotPlayedTiles.size() == 11;
+        }
+    }
+
+    /**
+     * This method plays the tile onto the board.
+     * @param cell The cell the tile is played on.
+     * @param tile The tile that is being played.
+     */
+    private void playTile(Cell cell, Tile tile){
+        cell.add(currentPlayer, tile);
+        if(tile == Tile.QUEEN_BEE) {
+            this.moveHandler.updateQueen(cell);
+        }
+        updatePieces(tile);
+    }
+
+    /**
+     * This method checks if the player isn't trying to play tile he doesn't have.
+     * @param tile The tile the player wants to play.
+     * @return
+     */
+    private boolean isPieceAvailable(Tile tile) {
+        if (this.currentPlayer == Player.WHITE) {
+            return whiteNotPlayedTiles.contains(tile);
+        }else {
+            return blackNotPlayedTiles.contains(tile);
+        }
+    }
+
+    /**
+     * This method removes one of the played tiles.
+     * @param tile The tile that needs to be removed from one of the players lists.
+     */
+    private void updatePieces(Tile tile) {
+        if (this.currentPlayer == Player.WHITE) {
+            this.whiteNotPlayedTiles.removeFirstOccurrence(tile);
+        }else {
+            this.blackNotPlayedTiles.removeFirstOccurrence(tile);
+        }
     }
 
     /**
@@ -268,5 +321,13 @@ public class Game implements Hive {
 
     public void setWhiteQueenCell(Cell whiteQueenCell) {
         this.whiteQueenCell = whiteQueenCell;
+    }
+
+    public void setBlackNotPlayedTiles(LinkedList<Tile> blackNotPlayedTiles) {
+        this.blackNotPlayedTiles = blackNotPlayedTiles;
+    }
+
+    public void setWhiteNotPlayedTiles(LinkedList<Tile> whiteNotPlayedTiles) {
+        this.whiteNotPlayedTiles = whiteNotPlayedTiles;
     }
 }

@@ -155,7 +155,11 @@ public class MoveHandler {
         GrassHopperStepResult result = requiredGrasshopperSteps(fromQ, fromR, toQ, toR);
         if (currentCell.equals(desintation)) {
             throw new GrassHopperMoveException("The grasshopper can't move to the same cell he began");
+        }else if(desintation.cellOwner() != null) {
+            throw  new GrassHopperMoveException("The grasshopper can't move to an occupied space.");
         }else if(result.isGoesOverPiece()) {
+            throw  new GrassHopperMoveException("The grasshopper has to jump over at least one piece");
+        }else if(result.getSteps() > 1) {
             throw  new GrassHopperMoveException("The grasshopper has to jump over at least one piece");
         }
         return desintation;
@@ -280,7 +284,7 @@ public class MoveHandler {
         return steps;
     }
 
-    private GrassHopperStepResult requiredGrasshopperSteps(int fromQ, int fromR, int toQ, int toR){
+    private GrassHopperStepResult requiredGrasshopperSteps(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
         Cell currentCell = game.getCell(fromQ, fromR);
         Cell desintation = game.getCell(toQ, toR);
@@ -299,12 +303,31 @@ public class MoveHandler {
                 }
             }
             double key = Collections.min(options.keySet());
-            currentCell = options.get(key);
-            if(currentCell.cellOwner() == null){
+            Cell closestCell = options.get(key);
+            if(closestCell.cellOwner() == null){
                 return new GrassHopperStepResult(steps, false);
+            }else if(!grassHopperTravelingInStraightLine(currentCell.getCoordinate_Q(), currentCell.getCoordinate_Q(),
+                    closestCell.getCoordinate_Q(), closestCell.getCoordinate_R())) {
+                throw new GrassHopperMoveException("You have to move in a straight line!");
+            }else {
+                currentCell = closestCell;
             }
+
         }
         return new GrassHopperStepResult(steps, false);
+    }
+
+    private boolean grassHopperTravelingInStraightLine(int fromQ, int fromR, int toQ, int toR) {
+        if (fromQ == toQ) {
+            return true;
+        }else if(fromR == toR) {
+            return true;
+        }else if((fromQ - 1) == toQ && (fromR + 1) == toR) {
+            return true;
+        }else if((fromQ + 1) == toQ && (fromR - 1) == toR) {
+            return true;
+        }
+        return false;
     }
 }
 

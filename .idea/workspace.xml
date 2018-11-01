@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6079205-ce21-4ff6-a8c6-0ae945402a35" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperStepResult.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/nl/hanze/hive/Game.java" afterPath="$PROJECT_DIR$/src/nl/hanze/hive/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperMoveException.java" afterPath="$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperMoveException.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java" afterPath="$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/SpiderSpec.java" afterPath="$PROJECT_DIR$/test/SpiderSpec.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -150,8 +146,8 @@
       <file leaf-file-name="MoveHandler.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="434">
-              <caret line="303" column="63" lean-forward="false" selection-start-line="303" selection-start-column="63" selection-end-line="303" selection-end-column="63" />
+            <state relative-caret-position="238">
+              <caret line="320" column="27" lean-forward="true" selection-start-line="320" selection-start-column="27" selection-end-line="320" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#checkTileSpecificRules#0;class#MoveHandler#0" expanded="false" />
@@ -168,21 +164,10 @@
                 <element signature="docComment;method#moveSpider#0;class#MoveHandler#0" expanded="false" />
                 <element signature="method#moveSpider#0;class#MoveHandler#0" expanded="false" />
                 <element signature="method#followsMoveRules#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#calculateDistanceRoundedDown#0;class#MoveHandler#0" expanded="false" />
                 <element signature="docComment;method#calculateDistance#0;class#MoveHandler#0" expanded="false" />
                 <element signature="method#calculateDistance#0;class#MoveHandler#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GrassHopperStepResult.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperStepResult.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-              <folding>
-                <element signature="e#224#225#0" expanded="true" />
-                <element signature="e#260#261#0" expanded="true" />
+                <element signature="method#requiredSpiderSteps#0;class#MoveHandler#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -1267,7 +1252,7 @@
       <workItem from="1541007995154" duration="8370000" />
       <workItem from="1541060376607" duration="6554000" />
       <workItem from="1541070593041" duration="3704000" />
-      <workItem from="1541082202374" duration="4998000" />
+      <workItem from="1541082202374" duration="6802000" />
     </task>
     <task id="LOCAL-00001" summary="More infra">
       <created>1539875834088</created>
@@ -1339,7 +1324,14 @@
       <option name="project" value="LOCAL" />
       <updated>1541079898706</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Expanded the grasshopper&#10;Added model for the grasshopper&#10;Seperate method for the spider and the grasshopper">
+      <created>1541087774547</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1541087774547</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1375,7 +1367,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50782000" />
+    <option name="totallyTimeSpent" value="52586000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
@@ -1433,7 +1425,8 @@
     <MESSAGE value="Changed SoldierAntSpec so that the board state is valid and doesn't trigger the generic rules exception&#10;Changed SoliderAntMoveException so that it takes the super from IllegalMoveException&#10;Optimalised the tile specifice checks to retun the cell the player wants to go to. Also changed moveTile method so that it only gets the cells affected by the move and then popping the moved tile directly into the new cell it's being placed into.&#10;" />
     <MESSAGE value="SoldierAntSpec works for 2/3 test. The third one is really tricked and has to be expanded to work properly. &#10;Some of the test has been edited to follow the generic placing rules etc.&#10;The beetleMoveException has been expanded to include a message if required.&#10;The BeetleSpec is finished." />
     <MESSAGE value="Added test to Queen tests&#10;Added constructor for SpiderMoveException&#10;Changed exception message in move tile" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added test to Queen tests&#10;Added constructor for SpiderMoveException&#10;Changed exception message in move tile" />
+    <MESSAGE value="Expanded the grasshopper&#10;Added model for the grasshopper&#10;Seperate method for the spider and the grasshopper" />
+    <option name="LAST_COMMIT_MESSAGE" value="Expanded the grasshopper&#10;Added model for the grasshopper&#10;Seperate method for the spider and the grasshopper" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1711,17 +1704,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperStepResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-          <folding>
-            <element signature="e#224#225#0" expanded="true" />
-            <element signature="e#260#261#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/Game.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="146">
@@ -1749,10 +1731,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperStepResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="12" column="19" lean-forward="false" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
+          <folding>
+            <element signature="e#224#225#0" expanded="true" />
+            <element signature="e#260#261#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="303" column="63" lean-forward="false" selection-start-line="303" selection-start-column="63" selection-end-line="303" selection-end-column="63" />
+        <state relative-caret-position="238">
+          <caret line="320" column="27" lean-forward="true" selection-start-line="320" selection-start-column="27" selection-end-line="320" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#checkTileSpecificRules#0;class#MoveHandler#0" expanded="false" />
@@ -1769,8 +1762,10 @@
             <element signature="docComment;method#moveSpider#0;class#MoveHandler#0" expanded="false" />
             <element signature="method#moveSpider#0;class#MoveHandler#0" expanded="false" />
             <element signature="method#followsMoveRules#0;class#MoveHandler#0" expanded="false" />
+            <element signature="method#calculateDistanceRoundedDown#0;class#MoveHandler#0" expanded="false" />
             <element signature="docComment;method#calculateDistance#0;class#MoveHandler#0" expanded="false" />
             <element signature="method#calculateDistance#0;class#MoveHandler#0" expanded="false" />
+            <element signature="method#requiredSpiderSteps#0;class#MoveHandler#0" expanded="false" />
           </folding>
         </state>
       </provider>

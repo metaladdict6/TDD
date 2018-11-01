@@ -2,9 +2,7 @@ package nl.hanze.hive;
 
 import com.sun.istack.internal.NotNull;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * Created by robert on 31-10-18.
@@ -145,6 +143,8 @@ public class MoveHandler {
             throw new SoldierAntMoveException("You may not move to the same space");
         }else if(cell.cellOwner() != null) {
             throw new SoldierAntMoveException("You cannot move to an occupied space");
+        }else if(!soldierAntCanMove(fromQ, fromR, toQ, toR)) {
+            throw new SoldierAntMoveException("No path to destination!");
         }
         return cell;
     }
@@ -252,6 +252,33 @@ public class MoveHandler {
         double toRMinusFromRPowerTwo = Math.pow(toRMinusFromR, 2);
         double absoluteValue = toQMinusFromQPowerTwo + toRMinusFromRPowerTwo;
         return Math.sqrt(absoluteValue);
+    }
+
+    public boolean soldierAntCanMove(int fromQ, int fromR, int toQ, int toR) {
+        HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
+        Cell currentCell = game.getCell(fromQ, fromR);
+        Cell desintation = game.getCell(toQ, toR);
+        HashSet<Cell> visisted = new HashSet<>();
+        while (!currentCell.equals(desintation)) {
+            HashMap<Double, Cell> options = new HashMap<>();
+            ArrayList<Cell> neighbours = game.findNeighbours(currentCell.getCoordinate_Q(), currentCell.getCoordinate_R());
+
+            for (Cell neighbour : neighbours) {
+                if (neighbour.equals(desintation)) {
+                    return true;
+                } else if (neighbour.cellOwner() == null && !visisted.contains(neighbour)) {
+                    options.put(calculateDistance(neighbour.getCoordinate_Q(), neighbour.getCoordinate_R(),
+                            desintation.getCoordinate_Q(), desintation.getCoordinate_R()), neighbour);
+                }
+            }
+            Set<Double> keys = options.keySet();
+            if (keys.size() == 0) {
+                return false;
+            }
+            double key = Collections.min(keys);
+            currentCell = options.get(key);
+        }
+        return false;
     }
 
     private int requiredSpiderSteps(int fromQ, int fromR, int toQ, int toR) {

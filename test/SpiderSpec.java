@@ -52,6 +52,7 @@ public class SpiderSpec {
         grid.get(0).get(-3).add(Game.Player.WHITE, Game.Tile.SPIDER);
         grid.get(-1).get(-2).add(Game.Player.WHITE, Game.Tile.BEETLE);
         grid.get(-2).get(-1).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
+        game.setWhiteQueenCell(grid.get(-2).get(-1));
         grid.get(0).get(-3).add(Game.Player.WHITE, Game.Tile.SPIDER);
         game.move(-3, 0, 0, -3);
     }

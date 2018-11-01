@@ -2,6 +2,7 @@ import nl.hanze.hive.Cell;
 import nl.hanze.hive.Game;
 import nl.hanze.hive.Hive;
 import nl.hanze.hive.SoldierAntMoveException;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -24,14 +25,22 @@ public class SoldierAntSpec {
     }
 
     @Test(expected = SoldierAntMoveException.class)
-    public void moveOverOccupiedSpace() throws Exception {
+    public void cannotMoveThroughMaze() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
-        grid.get(0).get(-3).add(Game.Player.WHITE, Game.Tile.SOLDIER_ANT);
-        grid.get(0).get(-2).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
-        game.setWhiteQueenCell(grid.get(0).get(-2));
+        grid.get(-1).get(1).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        grid.get(-1).get(0).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        grid.get(0).get(1).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
         grid.get(0).get(-1).add(Game.Player.WHITE, Game.Tile.BEETLE);
-        game.move(-3, 0, 0, 0);
+        grid.get(1).get(-1).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        grid.get(1).get(1).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        grid.get(2).get(0).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        grid.get(2).get(-1).add(Game.Player.WHITE, Game.Tile.BEETLE);
+
+        grid.get(0).get(0).add(Game.Player.WHITE, Game.Tile.SOLDIER_ANT);
+        game.setWhiteQueenCell(grid.get(0).get(-2));
+        grid.get(0).get(2).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        game.move(0, 0, 3, 0);
     }
 
     @Test(expected = SoldierAntMoveException.class)

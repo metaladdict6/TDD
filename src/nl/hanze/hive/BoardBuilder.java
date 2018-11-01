@@ -56,6 +56,28 @@ public class BoardBuilder {
     }
 
     /**
+     * This method copies the whole grid so that we can test for a situation without changing the game state.
+     * @param grid A complete grid of a game;
+     * @return A full copy of the given game grid.
+     */
+    public static HashMap<Integer, HashMap<Integer, Cell>> copyGrid(HashMap<Integer, HashMap<Integer, Cell>> grid) {
+        HashMap<Integer, HashMap<Integer, Cell>> gridCopy = new HashMap<>();
+        for(Integer key: grid.keySet()){
+            HashMap<Integer, Cell> rowCopy = new HashMap<>();
+            gridCopy.put(key, rowCopy);
+            HashMap<Integer, Cell> row = grid.get(key);
+            for(Integer rowKey: row.keySet()) {
+                try {
+                    rowCopy.put(rowKey, row.get(rowKey).clone());
+                }catch (CloneNotSupportedException exception) {
+                    System.out.println(exception.getMessage());
+                }
+            }
+        }
+        return gridCopy;
+    }
+
+    /**
      * This method inserts all the required tiles a player should have.
      * @param tiles The list of tiles a player has.
      */

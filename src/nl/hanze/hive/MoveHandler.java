@@ -120,7 +120,7 @@ class MoveHandler {
      * @return If this breaks the chain or not.
      */
     private boolean checkIfBreaksTileChain(int fromQ, int fromR, int toQ, int toR) {
-        HashMap<Integer, HashMap<Integer, Cell>> grid = copyGrid();
+        HashMap<Integer, HashMap<Integer, Cell>> grid = BoardBuilder.copyGrid(game.getGrid());
         Cell current = grid.get(fromR).get(fromQ);
         grid.get(toR).get(toQ).add(game.currentPlayer, current.pop());
         for(Integer key: grid.keySet()) {
@@ -136,28 +136,6 @@ class MoveHandler {
             }
         }
         return false;
-    }
-
-    /**
-     * This method copies the whole grid so that we can test for a situation without changing the game state.
-     * @return A full copy of the current game grid.
-     */
-    private HashMap<Integer, HashMap<Integer, Cell>> copyGrid() {
-        HashMap<Integer, HashMap<Integer, Cell>> gridCopy = new HashMap<>();
-        HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
-        for(Integer key: grid.keySet()){
-            HashMap<Integer, Cell> rowCopy = new HashMap<>();
-            gridCopy.put(key, rowCopy);
-            HashMap<Integer, Cell> row = grid.get(key);
-            for(Integer rowKey: row.keySet()) {
-                try {
-                    rowCopy.put(rowKey, row.get(rowKey).clone());
-                }catch (CloneNotSupportedException exception) {
-                    System.out.println(exception.getMessage());
-                }
-            }
-        }
-        return gridCopy;
     }
 
     /**

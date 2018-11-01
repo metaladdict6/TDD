@@ -149,12 +149,15 @@ public class Game implements Hive {
      */
     @Override
     public void pass() throws IllegalMove {
-        try{
-            Game game = new Game();
+       Game game = new Game();
+       game.setGrid(this.Grid);
+       for(Integer key: game.getGrid().keySet()) {
+           HashMap<Integer, Cell> row = game.getGrid().get(key);
+           for(Integer rowKey: row.keySet()){
 
-        }catch (Exception exception) {
-
-        }
+           }
+       }
+       nextPlayer();
     }
 
     /**
@@ -320,5 +323,9 @@ public class Game implements Hive {
 
     public void setWhiteNotPlayedTiles(LinkedList<Tile> whiteNotPlayedTiles) {
         this.whiteNotPlayedTiles = whiteNotPlayedTiles;
+    }
+
+    public void setGrid(HashMap<Integer, HashMap<Integer, Cell>> grid) {
+        this.Grid = grid;
     }
 }

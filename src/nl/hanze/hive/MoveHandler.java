@@ -6,6 +6,7 @@ import java.util.*;
 
 /**
  * Created by robert on 31-10-18.
+ * This class will handle all the moves in the game. It will check
  */
 public class MoveHandler {
 
@@ -64,7 +65,7 @@ public class MoveHandler {
             throw new Hive.IllegalMove("Nothing to move");
         }else if (fromCell.cellOwner() != game.currentPlayer){
             throw new Hive.IllegalMove("You cannot move the piece of another player!");
-        // } else if(checkIfBreaksTileChain(fromQ, fromR, toQ, toR)) {
+        //} else if(checkIfBreaksTileChain(fromQ, fromR, toQ, toR)) {
         //    throw new Hive.IllegalMove("You cannot break the tile chain!");
         }else {
             return fromCell;
@@ -254,7 +255,7 @@ public class MoveHandler {
         return Math.sqrt(absoluteValue);
     }
 
-    public boolean soldierAntCanMove(int fromQ, int fromR, int toQ, int toR) {
+    private boolean soldierAntCanMove(int fromQ, int fromR, int toQ, int toR) {
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
         Cell currentCell = game.getCell(fromQ, fromR);
         Cell desintation = game.getCell(toQ, toR);

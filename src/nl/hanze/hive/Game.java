@@ -12,7 +12,7 @@ public class Game implements Hive {
 
     private LinkedList<Tile> whitePlayedTiles;
 
-    public Player currentPlayer;
+    public Hive.Player currentPlayer;
 
     private Cell blackQueenCell;
 
@@ -22,83 +22,15 @@ public class Game implements Hive {
 
     public Game() {
         this.moveHandler = new MoveHandler(this);
-        this.Grid = InitiateGrid();
+        this.Grid = GameBuilder.InitiateGrid();
         this.currentPlayer = Player.WHITE;
         this.blackPlayedTiles = new LinkedList<>();
         this.whitePlayedTiles = new LinkedList<>();
-        initTiles(this.blackPlayedTiles);
-        initTiles(this.whitePlayedTiles);
+        GameBuilder.initTiles(this.blackPlayedTiles);
+        GameBuilder.initTiles(this.whitePlayedTiles);
     }
 
-    /**
-     * This method inserts all the required tiles a player should have.
-     * @param tiles The list of tiles a player has.
-     */
-    private void initTiles(LinkedList<Tile> tiles) {
-        tiles.add(Tile.QUEEN_BEE);
-        addTiles(tiles, 2, Tile.SPIDER);
-        addTiles(tiles, 2, Tile.BEETLE);
-        addTiles(tiles, 3, Tile.SOLDIER_ANT);
-        addTiles(tiles, 3, Tile.GRASSHOPPER);
-    }
 
-    /**
-     * This method inserts a specifice tile for a specifice amount in the LinkedList
-     * @param tiles The list of tiles where the tile is going to be inserted in.
-     * @param amount The amount of tiles that needs to be inserted.
-     * @param tile The tile that needs to be inserted
-     */
-    private void addTiles(LinkedList<Tile> tiles, int amount, Tile tile){
-        for(int i = 0; i < amount; i++){
-            tiles.add(tile);
-        }
-    }
-
-    /**
-     * This method builds the grid for the game.
-     * The grid consists of two HashMaps.
-     * The first HashMap has an Integer as key and represents the vertical level of the grid.
-     * It holds another HashMap with the Horizontal level of the grid.
-     * The second HashMap also an Integer as a key.
-     * The second HashMap contains a Cell class.
-     * This needs to be popped to remove the current top piece in the cell.
-     * @return An empty grid
-     */
-    private static HashMap <Integer, HashMap<Integer, Cell>> InitiateGrid() {
-        HashMap <Integer, HashMap<Integer, Cell>> grid = new HashMap<>();
-        Integer r = -3;
-        grid.put(r, buildGridRow(r, 0, 3));
-        r++; // - 2
-        grid.put(r, buildGridRow(r, -1, 3));
-        r++;  // - 1
-        grid.put(r, buildGridRow(r, -2, 3));
-        r++; // 0
-        grid.put(r, buildGridRow(r, -3, 3));
-        r++; // + 1
-        grid.put(r, buildGridRow(r, -3, 2));
-        r++; // + 2
-        grid.put(r, buildGridRow(r, -3, 1));
-        r++; // + 3
-        grid.put(r, buildGridRow(r, -3, 0));
-        return grid;
-    }
-
-    /**
-     * This method creates a row for the grid.
-     * It does this through creating a loop for the x values in a row. The Y axis is incremented in a different
-     * section.
-     * @param r The row number is the vertical value of the grid. It could also be described as the Y axis.
-     * @param startPoint The starting point for the loop.
-     * @param endPoint The end point of the loop.
-     * @return A HashMap with all the cells in a row.
-     */
-    private static HashMap<Integer, Cell> buildGridRow(Integer r, Integer startPoint, Integer endPoint) {
-        HashMap<Integer, Cell> row = new HashMap<Integer, Cell>();
-        for (Integer q = startPoint; q < endPoint + 1; q++) {
-            row.put(q, new Cell(r, q));
-        }
-        return row;
-    }
 
     /**
      * Play a new tile.
@@ -141,7 +73,6 @@ public class Game implements Hive {
         }
     }
 
-
     /**
      * Move an existing tile.
      * @param fromQ Q coordinate of the tile to move
@@ -155,9 +86,6 @@ public class Game implements Hive {
         moveHandler.moveTile(fromQ, fromR, toQ, toR);
         nextPlayer();
     }
-
-
-
 
     /**
      * This method checks if the current player may move his pieces.
@@ -176,9 +104,6 @@ public class Game implements Hive {
         return true;
     }
 
-
-
-
     /**
      * Pass the turn.
      * @throws IllegalMove If the turn could not be passed
@@ -194,7 +119,7 @@ public class Game implements Hive {
      * @return Boolean
      */
     @Override
-    public boolean isWinner(Player player) {
+    public boolean isWinner(Hive.Player player) {
         Cell queenCell = null;
         if(player == Player.WHITE) {
             queenCell = blackQueenCell;
@@ -222,10 +147,6 @@ public class Game implements Hive {
     @Override
     public boolean isDraw() {
         return isWinner(Player.WHITE) && isWinner(Player.BLACK);
-    }
-
-    public HashMap<Integer, HashMap<Integer, Cell>> getGrid() {
-        return Grid;
     }
 
     /**
@@ -276,8 +197,7 @@ public class Game implements Hive {
      * @return The cell in accordance with q and r.
      */
     public Cell getCell(int q, int r) {
-        // return getCell(this.getGrid(), r, q); optimalisation
-        return this.getGrid().get(r).get(q);
+        return getCell(this.getGrid(), r, q);
     }
 
         /**
@@ -305,8 +225,6 @@ public class Game implements Hive {
             return cell;
         }
     }
-
-
 
     /**
      * This method returns the opponent of the  current player.
@@ -338,6 +256,10 @@ public class Game implements Hive {
             }
         }
         return safe;
+    }
+
+    public HashMap<Integer, HashMap<Integer, Cell>> getGrid() {
+        return Grid;
     }
 
     public void setBlackQueenCell(Cell blackQueenCell) {

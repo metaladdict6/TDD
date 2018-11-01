@@ -4,7 +4,7 @@ import java.util.Stack;
 
 /**
  * Created by rrczi on 9-10-2018.
- * This class will implement
+ * This
  */
 public class Cell implements Cloneable{
 

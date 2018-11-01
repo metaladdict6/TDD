@@ -35,6 +35,10 @@ public class PlacingTileSpec {
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
         game.play(Hive.Tile.SPIDER, 0, -3);
         game.play(Game.Tile.SOLDIER_ANT, -1, -3);
+    }
+
+    @Test(expected =  Hive.IllegalMove.class)
+    public void placeTooManyPieces() {
 
     }
 }

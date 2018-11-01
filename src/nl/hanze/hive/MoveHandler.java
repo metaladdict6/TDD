@@ -1,6 +1,9 @@
 package nl.hanze.hive;
 
+import com.sun.istack.internal.NotNull;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 /**
@@ -121,7 +124,7 @@ public class MoveHandler {
 
     private Cell moveBeetle(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
         Cell cell = game.getCell(toQ, toR);
-        if(calculateMovesBetweenCells(fromQ, fromR, toQ, toR) > 1) {
+        if(calculateDistanceRoundedDown(fromQ, fromR, toQ, toR) > 1) {
             throw new BeetleMoveException("You cannot move the beetle more then one cell!");
         }
         return cell;
@@ -147,7 +150,15 @@ public class MoveHandler {
     }
 
     private Cell moveGrasshopper(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
-        return null;
+        Cell currentCell = game.getCell(fromQ, fromR);
+        Cell desintation = game.getCell(toQ, toR);
+        GrassHopperStepResult result = requiredGrasshopperSteps(fromQ, fromR, toQ, toR);
+        if (currentCell.equals(desintation)) {
+            throw new GrassHopperMoveException("The grasshopper can't move to the same cell he began");
+        }else if(result.isGoesOverPiece()) {
+            throw  new GrassHopperMoveException("The grasshopper has to jump over at least one piece");
+        }
+        return desintation;
     }
 
     /**
@@ -160,7 +171,7 @@ public class MoveHandler {
      * @throws Hive.IllegalMove The throw Exception if the move is invalid.
      */
     private Cell moveQueen(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
-        if (calculateMovesBetweenCells(fromQ, fromR, toQ, toR) > 1) {
+        if (calculateDistanceRoundedDown(fromQ, fromR, toQ, toR) > 1) {
             throw new QueenMoveException("You cannot move more then one tile!");
         }
         Cell cell = game.getCell(toQ, toR);
@@ -182,7 +193,8 @@ public class MoveHandler {
      * @throws Hive.IllegalMove
      */
     private Cell moveSpider(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
-        int travelDistance = calculateMovesBetweenCells(fromQ, fromR, toQ, toR);
+        int travelDistance = requiredSpiderSteps(fromQ, fromR, toQ, toR);
+        Cell cell = game.getCell(toQ, toR);
         if(fromQ == toQ && fromR == toR) {
             throw new SpiderMoveException("You cannot move to the same space.");
         }else if(travelDistance < 3) {
@@ -190,7 +202,6 @@ public class MoveHandler {
         }else if(travelDistance > 3) {
             throw new SpiderMoveException("You cannot move more then three cells");
         }
-        Cell cell = game.getCell(toQ, toR);
         return cell;
     }
 
@@ -208,6 +219,19 @@ public class MoveHandler {
     }
 
     /**
+     * This method calculates the distance between two coordinates and rounds it down.
+     * This method is used to check if a tile is being moved too far or not far enough.
+     * @param fromQ The horizontal starting position
+     * @param fromR The vertical starting position.
+     * @param toQ The horizontal destination position.
+     * @param toR The vertical destination position.
+     * @return The distance between these positions.
+     */
+    private int calculateDistanceRoundedDown(int fromQ, int fromR, int toQ, int toR) {
+        return calculateDistance(fromQ, fromR, toQ, toR).intValue();
+    }
+
+    /**
      * This method calculates the distance between two coordinates.
      * This method is used to check if a tile is being moved too far or not far enough.
      * @param fromQ The horizontal starting position
@@ -216,13 +240,71 @@ public class MoveHandler {
      * @param toR The vertical destination position.
      * @return The distance between these positions.
      */
-    private int calculateMovesBetweenCells(int fromQ, int fromR, int toQ, int toR) {
+    @NotNull
+    private Double calculateDistance(int fromQ, int fromR, int toQ, int toR) {
         double toQMinusFromQ = toQ - fromQ;
         double toQMinusFromQPowerTwo = Math.pow(toQMinusFromQ, 2);
         double toRMinusFromR = toR - fromR;
         double toRMinusFromRPowerTwo = Math.pow(toRMinusFromR, 2);
         double absoluteValue = toQMinusFromQPowerTwo + toRMinusFromRPowerTwo;
-        Double result = Math.sqrt(absoluteValue);
-        return result.intValue();
+        return Math.sqrt(absoluteValue);
+    }
+
+    private int requiredSpiderSteps(int fromQ, int fromR, int toQ, int toR) {
+        HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
+        Cell currentCell = game.getCell(fromQ, fromR);
+        Cell desintation = game.getCell(toQ, toR);
+        int steps = 0;
+        while (!currentCell.equals(desintation)) {
+            steps++;
+            if(steps > 3) {
+                return steps;
+            }
+            HashMap<Double, Cell> options = new HashMap<>();
+            ArrayList<Cell> neighbours = game.findNeighbours(currentCell.getCoordinate_Q(), currentCell.getCoordinate_R());
+            for (Cell neighbour: neighbours) {
+                if (neighbour.equals(desintation)) {
+                    return steps;
+                }else if(neighbour.cellOwner() != null && false) {
+                    options.put(calculateDistance(currentCell.getCoordinate_Q(), currentCell.getCoordinate_R(),
+                            neighbour.getCoordinate_Q(), currentCell.getCoordinate_R()), neighbour);
+                }else if(neighbour.cellOwner() == null) {
+                    options.put(calculateDistance( neighbour.getCoordinate_Q(), currentCell.getCoordinate_R(),
+                            desintation.getCoordinate_Q(), desintation.getCoordinate_R()), neighbour);
+                }
+            }
+            double key = Collections.min(options.keySet());
+            currentCell = options.get(key);
+        }
+
+        return steps;
+    }
+
+    private GrassHopperStepResult requiredGrasshopperSteps(int fromQ, int fromR, int toQ, int toR){
+        HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
+        Cell currentCell = game.getCell(fromQ, fromR);
+        Cell desintation = game.getCell(toQ, toR);
+        int steps = 0;
+        boolean crossedPaths = false;
+        while (!currentCell.equals(desintation)) {
+            steps++;
+            HashMap<Double, Cell> options = new HashMap<>();
+            ArrayList<Cell> neighbours = game.findNeighbours(currentCell.getCoordinate_Q(), currentCell.getCoordinate_R());
+            for (Cell neighbour: neighbours) {
+                if (neighbour.equals(desintation)) {
+                    return new GrassHopperStepResult(steps, crossedPaths);
+                }else if(neighbour.cellOwner() != null) {
+                    options.put(calculateDistance(currentCell.getCoordinate_Q(), currentCell.getCoordinate_R(),
+                            neighbour.getCoordinate_Q(), currentCell.getCoordinate_R()), neighbour);
+                }
+            }
+            double key = Collections.min(options.keySet());
+            currentCell = options.get(key);
+            if(currentCell.cellOwner() == null){
+                return new GrassHopperStepResult(steps, false);
+            }
+        }
+        return new GrassHopperStepResult(steps, false);
     }
 }
+

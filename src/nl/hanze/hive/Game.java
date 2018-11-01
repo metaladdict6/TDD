@@ -177,15 +177,7 @@ public class Game implements Hive {
     }
 
 
-    /**
-     * This method returns a specific instance of the Cell class.
-     * @param q The vertical address of the Cell we want.
-     * @param r The horizontal address of the cell we want.
-     * @return The cell in accordance with q and r.
-     */
-    public Cell getCell(int q, int r) {
-        return this.getGrid().get(r).get(q);
-    }
+
 
     /**
      * Pass the turn.
@@ -256,27 +248,7 @@ public class Game implements Hive {
      */
     public ArrayList<Cell> findNeighbours(int q, int r){
         HashMap<Integer, HashMap<Integer, Cell>> grid = this.getGrid();
-        ArrayList<Cell> cells = new ArrayList<>();
-        cells.add(getCell(grid, r, q - 1));        // LEFT CELL
-        cells.add(getCell(grid, r, q + 1));        // RIGHT CELL
-        cells.add(getCell(grid, r - 1, q));        // LEFT UP CELL
-        cells.add(getCell(grid, r - 1, q + 1)); // RIGHT UP CELL
-        cells.add(getCell(grid, r + 1, q - 1)); // LEFT DOWN CELL;
-        cells.add(getCell(grid, r + 1, q));        // RIGHT DOWN CELL
-
-//        System.out.println("LEFT CELL = " + r + " and " + (q-1));
-//        System.out.println(getCell(grid, r, q - 1).cellOwner());
-//        System.out.println("RIGHT CELL = " + r + " and " + (q+1));
-//        System.out.println(getCell(grid, r, q + 1).cellOwner());
-//        System.out.println("LEFT UP CELL = " + (r - 1) + " and " + (q));
-//        System.out.println(getCell(grid, r - 1, q).cellOwner());
-//        System.out.println("RIGHT UP CELL = " + (r - 1) + " and " + (q + 1));
-//        System.out.println(getCell(grid, r - 1, + 1).cellOwner());
-//        System.out.println("LEFT DOWN CELL = " + (r + 1) + " and " + (q - 1));
-//        System.out.println(getCell(grid, r + 1, q - 1).cellOwner());
-//        System.out.println("RIGHT DOWN CELL = " + (r + 1) + " and " + (q));
-//        System.out.println(getCell(grid, r + 1, q).cellOwner());
-        return cells;
+        return this.findNeighbours(q, r, grid);
     }
 
     /**
@@ -295,6 +267,17 @@ public class Game implements Hive {
         cells.add(getCell(grid, r + 1, q - 1)); // LEFT DOWN CELL;
         cells.add(getCell(grid, r + 1, q));        // RIGHT DOWN CELL
         return cells;
+    }
+
+    /**
+     * This method returns a specific instance of the Cell class.
+     * @param q The vertical address of the Cell we want.
+     * @param r The horizontal address of the cell we want.
+     * @return The cell in accordance with q and r.
+     */
+    public Cell getCell(int q, int r) {
+        // return getCell(this.getGrid(), r, q); optimalisation
+        return this.getGrid().get(r).get(q);
     }
 
         /**
@@ -322,6 +305,8 @@ public class Game implements Hive {
             return cell;
         }
     }
+
+
 
     /**
      * This method returns the opponent of the  current player.

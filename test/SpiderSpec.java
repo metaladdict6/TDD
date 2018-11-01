@@ -54,7 +54,6 @@ public class SpiderSpec {
         grid.get(-2).get(-1).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
         grid.get(0).get(-3).add(Game.Player.WHITE, Game.Tile.SPIDER);
         game.move(-3, 0, 0, -3);
-        Assert.assertEquals(Game.Tile.SPIDER, grid.get(-3).get(0).pop());
     }
 
 

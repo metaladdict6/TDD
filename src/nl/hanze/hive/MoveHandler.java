@@ -20,30 +20,29 @@ public class MoveHandler {
 
     void moveTile(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
         Cell fromCell = genericRulesChecker(fromQ, fromR, toQ, toR);
-        Cell toCell = checkTileSpecificeRules(fromQ, fromR, toQ, toR, fromCell);
+        Cell toCell = checkTileSpecificRules(fromQ, fromR, toQ, toR, fromCell);
         if (toCell == null) {
             throw new Hive.IllegalMove("TO CELL IS NULL");
         }
         toCell.add(game.currentPlayer, fromCell.pop());
     }
 
-    private Cell checkTileSpecificeRules(int fromQ, int fromR, int toQ, int toR, Cell fromCell) throws Hive.IllegalMove {
+    private Cell checkTileSpecificRules(int fromQ, int fromR, int toQ, int toR, Cell fromCell) throws Hive.IllegalMove {
         Hive.Tile tile = fromCell.getTopTile();
         switch (tile){
             case BEETLE:
-                return moveBeetle(fromQ, fromR, toQ, tile);
+                return moveBeetle(fromQ, fromR, toQ, toR);
             case GRASSHOPPER:
-                return moveGrasshopper(fromQ, fromR, toQ, tile);
+                return moveGrasshopper(fromQ, fromR, toQ, toR);
             case QUEEN_BEE:
-                return moveQueen(fromQ, fromR, toQ, toR, tile);
+                return moveQueen(fromQ, fromR, toQ, toR);
             case SPIDER:
-                return moveSpider(fromQ, fromR, toQ, toR, tile);
+                return moveSpider(fromQ, fromR, toQ, toR);
             case SOLDIER_ANT:
-                return moveSoldierAnt(fromQ, fromR, toQ, toR, tile);
+                return moveSoldierAnt(fromQ, fromR, toQ, toR);
         }
         throw new Hive.IllegalMove("There is no valid tile");
     }
-
 
     /**
      * This method checks for the rules that apply to every tile.
@@ -120,8 +119,12 @@ public class MoveHandler {
         return gridCopy;
     }
 
-    private Cell moveBeetle(int fromQ, int fromR, int toQ, Hive.Tile tile) throws Hive.IllegalMove {
-        return null;
+    private Cell moveBeetle(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
+        Cell cell = game.getCell(toQ, toR);
+        if(calculateMovesBetweenCells(fromQ, fromR, toQ, toR) > 1) {
+            throw new BeetleMoveException("You cannot move the beetle more then one cell!");
+        }
+        return cell;
     }
 
     /**
@@ -133,7 +136,7 @@ public class MoveHandler {
      * @return
      * @throws Hive.IllegalMove
      */
-    private Cell moveSoldierAnt(int fromQ, int fromR, int toQ, int toR, Hive.Tile tile) throws Hive.IllegalMove {
+    private Cell moveSoldierAnt(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
         Cell cell = game.getCell(toQ, toR);
         if (fromQ == toQ && fromR == toR) {
             throw new SoldierAntMoveException("You may not move to the same space");
@@ -143,7 +146,7 @@ public class MoveHandler {
         return cell;
     }
 
-    private Cell moveGrasshopper(int fromQ, int fromR, int toQ, Hive.Tile tile) throws Hive.IllegalMove {
+    private Cell moveGrasshopper(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
         return null;
     }
 
@@ -156,7 +159,7 @@ public class MoveHandler {
      * @return Cell The cell the Queen is going to move to.
      * @throws Hive.IllegalMove The throw Exception if the move is invalid.
      */
-    private Cell moveQueen(int fromQ, int fromR, int toQ, int toR, Hive.Tile tile) throws Hive.IllegalMove {
+    private Cell moveQueen(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
         if (calculateMovesBetweenCells(fromQ, fromR, toQ, toR) > 1) {
             throw new QueenMoveException("You cannot move more then one tile!");
         }
@@ -178,7 +181,7 @@ public class MoveHandler {
      * @return Cell The cell the Spider is going to move to.
      * @throws Hive.IllegalMove
      */
-    private Cell moveSpider(int fromQ, int fromR, int toQ, int toR, Hive.Tile tile) throws Hive.IllegalMove {
+    private Cell moveSpider(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
         return null;
     }
 
@@ -195,6 +198,15 @@ public class MoveHandler {
         return neighoursAmount > 0;
     }
 
+    /**
+     * This method calculates the distance between two coordinates.
+     * This method is used to check if a tile is being moved too far or not far enough.
+     * @param fromQ The horizontal starting position
+     * @param fromR The vertical starting position.
+     * @param toQ The horizontal destination position.
+     * @param toR The vertical destination position.
+     * @return The distance between these positions.
+     */
     private int calculateMovesBetweenCells(int fromQ, int fromR, int toQ, int toR) {
         double absoluteValue = (toQ - fromQ)^2 + (toR - fromR)^2;
         Double result = Math.sqrt(absoluteValue);

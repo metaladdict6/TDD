@@ -20,7 +20,7 @@ public class SoldierAntSpec {
         game.setWhiteQueenCell(grid.get(0).get(-2));
         grid.get(0).get(-2).add(Game.Player.WHITE, Game.Tile.BEETLE);
         grid.get(0).get(-3).add(Game.Player.WHITE, Game.Tile.SOLDIER_ANT);
-        game.move(0, -3, 0, -2);
+        game.move(-3, 0, -2, 0);
     }
 
     @Test(expected = SoldierAntMoveException.class)
@@ -31,16 +31,16 @@ public class SoldierAntSpec {
         grid.get(0).get(-2).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
         game.setWhiteQueenCell(grid.get(0).get(-2));
         grid.get(0).get(-1).add(Game.Player.WHITE, Game.Tile.BEETLE);
-        game.move(0, -3, 0, 0);
+        game.move(-3, 0, 0, 0);
     }
 
     @Test(expected = SoldierAntMoveException.class)
     public void moveToSameSpace() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
-        grid.get(0).get(-2).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
+        grid.get(-3).get(1).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
         game.setWhiteQueenCell(grid.get(0).get(-2));
-        grid.get(0).get(-3).add(Game.Player.WHITE, Game.Tile.SOLDIER_ANT);
+        grid.get(-3).get(0).add(Game.Player.WHITE, Game.Tile.SOLDIER_ANT);
         game.move(0, -3, 0, -3);
 
     }

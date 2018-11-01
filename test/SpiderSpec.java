@@ -16,28 +16,33 @@ import java.util.HashMap;
 public class SpiderSpec {
 
     @Test
-    public void makesLegalMove() throws Exception {
+    public void makesLegalMove() {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
         grid.get(0).get(-3).add(Game.Player.WHITE, Game.Tile.SPIDER);
         grid.get(0).get(-2).add(Game.Player.WHITE, Game.Tile.SOLDIER_ANT);
         grid.get(-1).get(-1).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        grid.get(-1).get(0).add(Game.Player.WHITE, Game.Tile.BEETLE);
         grid.get(-2).get(0).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
+        game.setWhiteQueenCell(grid.get(-2).get(0));
         grid.get(0).get(-3).add(Game.Player.WHITE, Game.Tile.SPIDER);
-        game.move(-3, 0, 0, -3);
-        Assert.assertEquals(Game.Tile.SPIDER, grid.get(-3).get(0).pop());
-
+        try{
+            game.move(-3, 0, 0, -3);
+        }catch (Exception exception) {
+            System.out.print(exception.getMessage());
+        }finally {
+            Assert.assertEquals(Game.Tile.SPIDER, grid.get(-3).get(0).getTopTile());
+        }
     }
 
     @Test(expected = SpiderMoveException.class)
     public void moveToSameSpace() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
-        grid.get(0).get(-2).add(Game.Player.WHITE, Game.Tile.SOLDIER_ANT);
-        grid.get(-1).get(-1).add(Game.Player.WHITE, Game.Tile.BEETLE);
         grid.get(-2).get(0).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
-        grid.get(0).get(-3).add(Game.Player.WHITE, Game.Tile.SPIDER);
-        game.move(-3, 0, -3, 0);
+        game.setWhiteQueenCell(grid.get(-2).get(0));
+        grid.get(-2).get(1).add(Game.Player.WHITE, Game.Tile.SPIDER);
+        game.move(1, -2, 1, -2);
     }
 
     @Test(expected = SpiderMoveException.class)

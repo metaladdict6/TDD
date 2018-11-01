@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6079205-ce21-4ff6-a8c6-0ae945402a35" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java" afterPath="$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/nl/hanze/hive/SoldierAntMoveException.java" afterPath="$PROJECT_DIR$/src/nl/hanze/hive/SoldierAntMoveException.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/HiveSpec.java" afterPath="$PROJECT_DIR$/test/HiveSpec.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/SoldierAntSpec.java" afterPath="$PROJECT_DIR$/test/SoldierAntSpec.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/nl/hanze/hive/SpiderMoveException.java" afterPath="$PROJECT_DIR$/src/nl/hanze/hive/SpiderMoveException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/QueenSpec.java" afterPath="$PROJECT_DIR$/test/QueenSpec.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/SpiderSpec.java" afterPath="$PROJECT_DIR$/test/SpiderSpec.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -147,60 +146,49 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/Game.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2844">
-              <caret line="232" column="5" lean-forward="false" selection-start-line="232" selection-start-column="5" selection-end-line="232" selection-end-column="5" />
-              <folding>
-                <element signature="method#InitiateGrid#0;class#Game#0" expanded="false" />
-                <element signature="method#buildGridRow#0;class#Game#0" expanded="false" />
-                <element signature="docComment;method#move#0;class#Game#0" expanded="false" />
-                <element signature="method#queenPlayed#0;class#Game#0" expanded="false" />
-                <element signature="docComment;method#getCell#0;class#Game#0" expanded="false" />
-                <element signature="method#pass#0;class#Game#0" expanded="false" />
-                <element signature="method#isWinner#0;class#Game#0" expanded="false" />
-                <element signature="docComment;method#isDraw#0;class#Game#0" expanded="false" />
-                <element signature="e#7397#7398#0" expanded="true" />
-                <element signature="e#7468#7469#0" expanded="true" />
-                <element signature="method#nextPlayer#0;class#Game#0" expanded="false" />
-                <element signature="docComment;method#findNeighbours#0;class#Game#0" expanded="false" />
-                <element signature="method#findNeighbours#0;class#Game#0" expanded="false" />
-                <element signature="docComment;method#findNeighbours#1;class#Game#0" expanded="false" />
-                <element signature="docComment;method#getCell#1;class#Game#0" expanded="false" />
-                <element signature="method#getCell#1;class#Game#0" expanded="false" />
-                <element signature="docComment;method#getOpponent#0;class#Game#0" expanded="false" />
-                <element signature="method#getOpponent#0;class#Game#0" expanded="false" />
-                <element signature="docComment;method#allFriendsNoEnemies#0;class#Game#0" expanded="false" />
-                <element signature="method#allFriendsNoEnemies#0;class#Game#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="MoveHandler.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="197" column="33" lean-forward="true" selection-start-line="197" selection-start-column="33" selection-end-line="197" selection-end-column="33" />
+            <state relative-caret-position="206">
+              <caret line="217" column="7" lean-forward="true" selection-start-line="217" selection-start-column="7" selection-end-line="217" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#checkTileSpecificeRules#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#checkTileSpecificRules#0;class#MoveHandler#0" expanded="false" />
                 <element signature="docComment;method#genericRulesChecker#0;class#MoveHandler#0" expanded="false" />
                 <element signature="docComment;method#checkIfBreaksTileChain#0;class#MoveHandler#0" expanded="false" />
                 <element signature="method#checkIfBreaksTileChain#0;class#MoveHandler#0" expanded="false" />
                 <element signature="docComment;method#copyGrid#0;class#MoveHandler#0" expanded="false" />
                 <element signature="method#copyGrid#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#moveBeetle#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#moveSoldierAnt#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#moveSoldierAnt#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#moveQueen#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#moveQueen#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#moveSpider#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#followsMoveRules#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#calculateMovesBetweenCells#0;class#MoveHandler#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SoldierAntSpec.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/SoldierAntSpec.java">
+      <file leaf-file-name="SpiderSpec.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/SpiderSpec.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="16" column="31" lean-forward="false" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+            <state relative-caret-position="234">
+              <caret line="29" column="29" lean-forward="true" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QueenSpec.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/QueenSpec.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="21" column="32" lean-forward="true" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -576,13 +564,17 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/test/PlacingTileSpec.java" />
         <option value="$PROJECT_DIR$/src/nl/hanze/hive/QueenMoveException.java" />
-        <option value="$PROJECT_DIR$/test/QueenSpec.java" />
         <option value="$PROJECT_DIR$/src/nl/hanze/hive/Game.java" />
         <option value="$PROJECT_DIR$/src/nl/hanze/hive/Cell.java" />
         <option value="$PROJECT_DIR$/src/nl/hanze/hive/SoldierAntMoveException.java" />
         <option value="$PROJECT_DIR$/test/HiveSpec.java" />
-        <option value="$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java" />
         <option value="$PROJECT_DIR$/test/SoldierAntSpec.java" />
+        <option value="$PROJECT_DIR$/test/BeetleSpec.java" />
+        <option value="$PROJECT_DIR$/src/nl/hanze/hive/BeetleMoveException.java" />
+        <option value="$PROJECT_DIR$/src/nl/hanze/hive/SpiderMoveException.java" />
+        <option value="$PROJECT_DIR$/test/SpiderSpec.java" />
+        <option value="$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java" />
+        <option value="$PROJECT_DIR$/test/QueenSpec.java" />
       </list>
     </option>
   </component>
@@ -682,7 +674,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -729,6 +720,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
@@ -770,14 +762,14 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.QueenSpec">
-    <configuration default="false" name="SoldierAntSpec" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.SpiderSpec.makesLegalMove">
+    <configuration default="false" name="SpiderSpec" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="TDD" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="SoldierAntSpec" />
+      <option name="MAIN_CLASS_NAME" value="SpiderSpec" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
@@ -792,77 +784,77 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="QueenSpec" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="SpiderSpec.makesLegalMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="TDD" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="SpiderSpec" />
+      <option name="METHOD_NAME" value="makesLegalMove" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="QueenSpec.moveToOccupiedSpace" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="TDD" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="QueenSpec" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="All in TDD" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="TDD" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="package" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="PlacingTileSpec" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="TDD" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="PlacingTileSpec" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="SoldierAntSpec.moveToOccupiedSpace" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="TDD" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="SoldierAntSpec" />
       <option name="METHOD_NAME" value="moveToOccupiedSpace" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="QueenSpec.moveTwoSquares" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="TDD" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="QueenSpec" />
+      <option name="METHOD_NAME" value="moveTwoSquares" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="QueenSpec.moveDiagonally" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="TDD" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="QueenSpec" />
+      <option name="METHOD_NAME" value="moveDiagonally" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
       <option name="PARAMETERS" />
@@ -1192,19 +1184,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.SoldierAntSpec" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.QueenSpec" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.All in TDD" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.PlacingTileSpec" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.SoldierAntSpec.moveToOccupiedSpace" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.SpiderSpec" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.SpiderSpec.makesLegalMove" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.QueenSpec.moveToOccupiedSpace" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.QueenSpec.moveTwoSquares" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.QueenSpec.moveDiagonally" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.QueenSpec" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.PlacingTileSpec" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.SoldierAntSpec.moveToOccupiedSpace" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.All in TDD" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.SoldierAntSpec" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.SpiderSpec.makesLegalMove" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.QueenSpec.moveDiagonally" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.QueenSpec.moveTwoSquares" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.SpiderSpec" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.QueenSpec.moveToOccupiedSpace" />
       </list>
     </recent_temporary>
   </component>
@@ -1238,7 +1230,8 @@
       <workItem from="1540992312548" duration="5565000" />
       <workItem from="1541000197200" duration="1447000" />
       <workItem from="1541007995154" duration="8370000" />
-      <workItem from="1541060376607" duration="51000" />
+      <workItem from="1541060376607" duration="6554000" />
+      <workItem from="1541070593041" duration="1781000" />
     </task>
     <task id="LOCAL-00001" summary="More infra">
       <created>1539875834088</created>
@@ -1289,43 +1282,57 @@
       <option name="project" value="LOCAL" />
       <updated>1541016054677</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Changed SoldierAntSpec so that the board state is valid and doesn't trigger the generic rules exception&#10;Changed SoliderAntMoveException so that it takes the super from IllegalMoveException&#10;Optimalised the tile specifice checks to retun the cell the player wants to go to. Also changed moveTile method so that it only gets the cells affected by the move and then popping the moved tile directly into the new cell it's being placed into.&#10;">
+      <created>1541060624776</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1541060624776</updated>
+    </task>
+    <task id="LOCAL-00009" summary="SoldierAntSpec works for 2/3 test. The third one is really tricked and has to be expanded to work properly. &#10;Some of the test has been edited to follow the generic placing rules etc.&#10;The beetleMoveException has been expanded to include a message if required.&#10;The BeetleSpec is finished.">
+      <created>1541063034752</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1541063034752</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_in_TDD - 2018.10.31 at 21h 42m 22s.xml">
-      <configuration name="All in TDD" configurationId="JUnit" />
+    <history-entry file="QueenSpec_moveDiagonally - 2018.11.01 at 14h 22m 53s.xml">
+      <configuration name="QueenSpec.moveDiagonally" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_TDD - 2018.10.31 at 21h 43m 07s.xml">
-      <configuration name="All in TDD" configurationId="JUnit" />
+    <history-entry file="QueenSpec_moveDiagonally - 2018.11.01 at 14h 22m 55s.xml">
+      <configuration name="QueenSpec.moveDiagonally" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PlacingTileSpec - 2018.10.31 at 21h 42m 15s.xml">
-      <configuration name="PlacingTileSpec" configurationId="JUnit" />
+    <history-entry file="QueenSpec_moveDiagonally - 2018.11.01 at 14h 23m 24s.xml">
+      <configuration name="QueenSpec.moveDiagonally" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PlacingTileSpec - 2018.11.01 at 09h 20m 09s.xml">
-      <configuration name="PlacingTileSpec" configurationId="JUnit" />
+    <history-entry file="QueenSpec_moveDiagonally - 2018.11.01 at 14h 36m 33s.xml">
+      <configuration name="QueenSpec.moveDiagonally" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="QueenSpec - 2018.10.31 at 21h 41m 51s.xml">
-      <configuration name="QueenSpec" configurationId="JUnit" />
+    <history-entry file="QueenSpec_moveDiagonally - 2018.11.01 at 14h 37m 52s.xml">
+      <configuration name="QueenSpec.moveDiagonally" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="QueenSpec - 2018.10.31 at 21h 42m 18s.xml">
-      <configuration name="QueenSpec" configurationId="JUnit" />
+    <history-entry file="QueenSpec_moveTwoSquares - 2018.11.01 at 14h 16m 48s.xml">
+      <configuration name="QueenSpec.moveTwoSquares" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="QueenSpec - 2018.11.01 at 09h 20m 26s.xml">
-      <configuration name="QueenSpec" configurationId="JUnit" />
+    <history-entry file="SpiderSpec_makesLegalMove - 2018.11.01 at 11h 08m 04s.xml">
+      <configuration name="SpiderSpec.makesLegalMove" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SoldierAntSpec - 2018.10.31 at 21h 41m 29s.xml">
-      <configuration name="SoldierAntSpec" configurationId="JUnit" />
+    <history-entry file="SpiderSpec_makesLegalMove - 2018.11.01 at 14h 18m 38s.xml">
+      <configuration name="SpiderSpec.makesLegalMove" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SoldierAntSpec_moveToOccupiedSpace - 2018.10.31 at 21h 44m 26s.xml">
-      <configuration name="SoldierAntSpec.moveToOccupiedSpace" configurationId="JUnit" />
+    <history-entry file="SpiderSpec_makesLegalMove - 2018.11.01 at 14h 20m 17s.xml">
+      <configuration name="SpiderSpec.makesLegalMove" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SoldierAntSpec_moveToSameSpace - 2018.10.31 at 21h 39m 40s.xml">
-      <configuration name="SoldierAntSpec.moveToSameSpace" configurationId="JUnit" />
+    <history-entry file="SpiderSpec_makesLegalMove - 2018.11.01 at 14h 43m 55s.xml">
+      <configuration name="SpiderSpec.makesLegalMove" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35577000" />
+    <option name="totallyTimeSpent" value="43861000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
@@ -1380,19 +1387,27 @@
     <MESSAGE value="Created a moveHandler &#10;I created this because I thought the game class was becoming way too big." />
     <MESSAGE value="Progression&#10;Queen move exception is being thrown when we expect it. &#10;Accidently broke move without neighbours, but fixed that in this version. &#10;Now working on repairing &quot;move breaks tile chain&quot;." />
     <MESSAGE value="BreakTileChain unit test doesn't work... yet.&#10;For some reason the method's, now in comments, break all the current unit tests with a nullpoint exception.&#10;Have to get back to it later." />
-    <option name="LAST_COMMIT_MESSAGE" value="BreakTileChain unit test doesn't work... yet.&#10;For some reason the method's, now in comments, break all the current unit tests with a nullpoint exception.&#10;Have to get back to it later." />
+    <MESSAGE value="Changed SoldierAntSpec so that the board state is valid and doesn't trigger the generic rules exception&#10;Changed SoliderAntMoveException so that it takes the super from IllegalMoveException&#10;Optimalised the tile specifice checks to retun the cell the player wants to go to. Also changed moveTile method so that it only gets the cells affected by the move and then popping the moved tile directly into the new cell it's being placed into.&#10;" />
+    <MESSAGE value="SoldierAntSpec works for 2/3 test. The third one is really tricked and has to be expanded to work properly. &#10;Some of the test has been edited to follow the generic placing rules etc.&#10;The beetleMoveException has been expanded to include a message if required.&#10;The BeetleSpec is finished." />
+    <option name="LAST_COMMIT_MESSAGE" value="SoldierAntSpec works for 2/3 test. The third one is really tricked and has to be expanded to work properly. &#10;Some of the test has been edited to follow the generic placing rules etc.&#10;The beetleMoveException has been expanded to include a message if required.&#10;The BeetleSpec is finished." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java</url>
-          <line>59</line>
+          <line>26</line>
           <properties />
-          <option name="timeStamp" value="47" />
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java</url>
+          <line>225</line>
+          <properties />
+          <option name="timeStamp" value="63" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="52" />
+      <option name="time" value="65" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1401,35 +1416,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="12" lean-forward="false" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/SpiderSpec.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/Hive.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="38" column="7" lean-forward="false" selection-start-line="38" selection-start-column="7" selection-end-line="38" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="21" lean-forward="true" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/Game.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -1489,6 +1475,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1548,18 +1537,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/SpiderSpec.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/PlacingTileSpec.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="14" column="41" lean-forward="false" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1599,35 +1580,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/Cell.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="34" lean-forward="true" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/BeetleSpec.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="16" column="71" lean-forward="true" selection-start-line="16" selection-start-column="71" selection-end-line="16" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/QueenSpec.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/QueenMoveException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="13" column="5" lean-forward="true" selection-start-line="7" selection-start-column="4" selection-end-line="13" selection-end-column="5" />
           <folding>
-            <element signature="e#167#168#0" expanded="true" />
-            <element signature="e#190#191#0" expanded="true" />
+            <element signature="e#167#168#0" expanded="false" />
+            <element signature="e#190#191#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1637,8 +1596,8 @@
         <state relative-caret-position="198">
           <caret line="11" column="42" lean-forward="false" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
           <folding>
-            <element signature="e#177#178#0" expanded="true" />
-            <element signature="e#200#201#0" expanded="true" />
+            <element signature="e#177#178#0" expanded="false" />
+            <element signature="e#200#201#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1679,26 +1638,101 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/Cell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="34" column="21" lean-forward="false" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test/SoldierAntSpec.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="16" column="31" lean-forward="false" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+        <state relative-caret-position="182">
+          <caret line="31" column="52" lean-forward="true" selection-start-line="31" selection-start-column="52" selection-end-line="31" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/BeetleSpec.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="16" column="27" lean-forward="false" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/BeetleMoveException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="28" lean-forward="false" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
+          <folding>
+            <element signature="e#210#211#0" expanded="true" />
+            <element signature="e#240#241#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/SpiderMoveException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="21" lean-forward="false" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+          <folding>
+            <element signature="e#183#184#0" expanded="true" />
+            <element signature="e#213#214#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/java/lang/Math.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="92" column="25" lean-forward="false" selection-start-line="92" selection-start-column="25" selection-end-line="92" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/QueenSpec.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="21" column="32" lean-forward="true" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/SpiderSpec.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="29" column="29" lean-forward="true" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="197" column="33" lean-forward="true" selection-start-line="197" selection-start-column="33" selection-end-line="197" selection-end-column="33" />
+        <state relative-caret-position="206">
+          <caret line="217" column="7" lean-forward="true" selection-start-line="217" selection-start-column="7" selection-end-line="217" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#checkTileSpecificeRules#0;class#MoveHandler#0" expanded="false" />
+            <element signature="method#checkTileSpecificRules#0;class#MoveHandler#0" expanded="false" />
             <element signature="docComment;method#genericRulesChecker#0;class#MoveHandler#0" expanded="false" />
             <element signature="docComment;method#checkIfBreaksTileChain#0;class#MoveHandler#0" expanded="false" />
             <element signature="method#checkIfBreaksTileChain#0;class#MoveHandler#0" expanded="false" />
             <element signature="docComment;method#copyGrid#0;class#MoveHandler#0" expanded="false" />
             <element signature="method#copyGrid#0;class#MoveHandler#0" expanded="false" />
+            <element signature="method#moveBeetle#0;class#MoveHandler#0" expanded="false" />
+            <element signature="docComment;method#moveSoldierAnt#0;class#MoveHandler#0" expanded="false" />
+            <element signature="method#moveSoldierAnt#0;class#MoveHandler#0" expanded="false" />
+            <element signature="docComment;method#moveQueen#0;class#MoveHandler#0" expanded="false" />
+            <element signature="method#moveQueen#0;class#MoveHandler#0" expanded="false" />
+            <element signature="docComment;method#moveSpider#0;class#MoveHandler#0" expanded="false" />
+            <element signature="method#followsMoveRules#0;class#MoveHandler#0" expanded="false" />
+            <element signature="docComment;method#calculateMovesBetweenCells#0;class#MoveHandler#0" expanded="false" />
           </folding>
         </state>
       </provider>

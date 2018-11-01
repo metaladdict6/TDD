@@ -22,7 +22,7 @@ public class MoveHandler {
         Cell fromCell = genericRulesChecker(fromQ, fromR, toQ, toR);
         Cell toCell = checkTileSpecificRules(fromQ, fromR, toQ, toR, fromCell);
         if (toCell == null) {
-            throw new Hive.IllegalMove("TO CELL IS NULL");
+            throw new Hive.IllegalMove("The cell you want to move to is null");
         }
         toCell.add(game.currentPlayer, fromCell.pop());
     }
@@ -182,7 +182,16 @@ public class MoveHandler {
      * @throws Hive.IllegalMove
      */
     private Cell moveSpider(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
-        return null;
+        int travelDistance = calculateMovesBetweenCells(fromQ, fromR, toQ, toR);
+        if(fromQ == toQ && fromR == toR) {
+            throw new SpiderMoveException("You cannot move to the same space.");
+        }else if(travelDistance < 3) {
+            throw new SpiderMoveException("You cannot move less then three cells");
+        }else if(travelDistance > 3) {
+            throw new SpiderMoveException("You cannot move more then three cells");
+        }
+        Cell cell = game.getCell(toQ, toR);
+        return cell;
     }
 
     private boolean followsMoveRules(int fromQ, int fromR, int toQ, int toR) {
@@ -208,7 +217,11 @@ public class MoveHandler {
      * @return The distance between these positions.
      */
     private int calculateMovesBetweenCells(int fromQ, int fromR, int toQ, int toR) {
-        double absoluteValue = (toQ - fromQ)^2 + (toR - fromR)^2;
+        double toQMinusFromQ = toQ - fromQ;
+        double toQMinusFromQPowerTwo = Math.pow(toQMinusFromQ, 2);
+        double toRMinusFromR = toR - fromR;
+        double toRMinusFromRPowerTwo = Math.pow(toRMinusFromR, 2);
+        double absoluteValue = toQMinusFromQPowerTwo + toRMinusFromRPowerTwo;
         Double result = Math.sqrt(absoluteValue);
         return result.intValue();
     }

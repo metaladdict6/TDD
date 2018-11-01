@@ -157,9 +157,9 @@ public class MoveHandler {
             throw new GrassHopperMoveException("The grasshopper can't move to the same cell he began");
         }else if(desintation.cellOwner() != null) {
             throw  new GrassHopperMoveException("The grasshopper can't move to an occupied space.");
-        }else if(result.isGoesOverPiece()) {
+        }else if(!result.isGoesOverPiece()) {
             throw  new GrassHopperMoveException("The grasshopper has to jump over at least one piece");
-        }else if(result.getSteps() > 1) {
+        }else if(result.getSteps() >= 2) {
             throw  new GrassHopperMoveException("The grasshopper has to jump over at least one piece");
         }
         return desintation;
@@ -291,11 +291,11 @@ public class MoveHandler {
         int steps = 0;
         boolean crossedPaths = false;
         while (!currentCell.equals(desintation)) {
-            steps++;
             HashMap<Double, Cell> options = new HashMap<>();
             ArrayList<Cell> neighbours = game.findNeighbours(currentCell.getCoordinate_Q(), currentCell.getCoordinate_R());
             for (Cell neighbour: neighbours) {
                 if (neighbour.equals(desintation)) {
+                    steps++;
                     return new GrassHopperStepResult(steps, crossedPaths);
                 }else if(neighbour.cellOwner() != null) {
                     options.put(calculateDistance(currentCell.getCoordinate_Q(), currentCell.getCoordinate_R(),
@@ -305,11 +305,12 @@ public class MoveHandler {
             double key = Collections.min(options.keySet());
             Cell closestCell = options.get(key);
             if(closestCell.cellOwner() == null){
-                return new GrassHopperStepResult(steps, false);
+                throw new GrassHopperMoveException("You cannot move over unoccupied spaces");
             }else if(!grassHopperTravelingInStraightLine(currentCell.getCoordinate_Q(), currentCell.getCoordinate_Q(),
                     closestCell.getCoordinate_Q(), closestCell.getCoordinate_R())) {
                 throw new GrassHopperMoveException("You have to move in a straight line!");
             }else {
+                steps++;
                 currentCell = closestCell;
             }
 

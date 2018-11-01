@@ -53,7 +53,8 @@ public class HiveSpec {
 
     @Test
     public void playerCanPassTurn() {
-
+        Game game = new Game();
+        Assert.assertTrue(false);
     }
 
     @Test

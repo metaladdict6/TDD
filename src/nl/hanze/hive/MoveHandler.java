@@ -20,27 +20,30 @@ public class MoveHandler {
 
     void moveTile(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
         Cell fromCell = genericRulesChecker(fromQ, fromR, toQ, toR);
+        Cell toCell = checkTileSpecificeRules(fromQ, fromR, toQ, toR, fromCell);
+        if (toCell == null) {
+            throw new Hive.IllegalMove("TO CELL IS NULL");
+        }
+        toCell.add(game.currentPlayer, fromCell.pop());
+    }
+
+    private Cell checkTileSpecificeRules(int fromQ, int fromR, int toQ, int toR, Cell fromCell) throws Hive.IllegalMove {
         Hive.Tile tile = fromCell.getTopTile();
         switch (tile){
             case BEETLE:
-                moveBeetle(fromQ, fromR, toQ, tile);
-                break;
+                return moveBeetle(fromQ, fromR, toQ, tile);
             case GRASSHOPPER:
-                moveGrasshopper(fromQ, fromR, toQ, tile);
-                break;
+                return moveGrasshopper(fromQ, fromR, toQ, tile);
             case QUEEN_BEE:
-                moveQueen(fromQ, fromR, toQ, toR, tile);
-                fromCell.pop();
-                break;
+                return moveQueen(fromQ, fromR, toQ, toR, tile);
             case SPIDER:
-                moveSpider(fromQ, fromR, toQ, toR, tile);
-                break;
+                return moveSpider(fromQ, fromR, toQ, toR, tile);
             case SOLDIER_ANT:
-                moveSoldierAnt(fromQ, fromR, toQ, toR, tile);
-                break;
+                return moveSoldierAnt(fromQ, fromR, toQ, toR, tile);
         }
-        fromCell.pop();
+        throw new Hive.IllegalMove("There is no valid tile");
     }
+
 
     /**
      * This method checks for the rules that apply to every tile.
@@ -117,14 +120,31 @@ public class MoveHandler {
         return gridCopy;
     }
 
-    private void moveBeetle(int fromQ, int fromR, int toQ, Hive.Tile tile) throws Hive.IllegalMove {
-
+    private Cell moveBeetle(int fromQ, int fromR, int toQ, Hive.Tile tile) throws Hive.IllegalMove {
+        return null;
     }
 
-    private void moveSoldierAnt(int fromQ, int fromR, int toQ, int toR, Hive.Tile tile) throws Hive.IllegalMove {
+    /**
+     * This method return the cell the Soldier ant will be moved to if the move doesn't break any rules.
+     * @param fromQ The origin Q
+     * @param fromR The origin R
+     * @param toQ The destination Q
+     * @param toR The destination R
+     * @return
+     * @throws Hive.IllegalMove
+     */
+    private Cell moveSoldierAnt(int fromQ, int fromR, int toQ, int toR, Hive.Tile tile) throws Hive.IllegalMove {
+        Cell cell = game.getCell(toQ, toR);
+        if (fromQ == toQ && fromR == toR) {
+            throw new SoldierAntMoveException("You may not move to the same space");
+        }else if(cell.cellOwner() != null) {
+            throw new SoldierAntMoveException("You cannot move to an occupied space");
+        }
+        return cell;
     }
 
-    private void moveGrasshopper(int fromQ, int fromR, int toQ, Hive.Tile tile) throws Hive.IllegalMove {
+    private Cell moveGrasshopper(int fromQ, int fromR, int toQ, Hive.Tile tile) throws Hive.IllegalMove {
+        return null;
     }
 
     /**
@@ -133,9 +153,10 @@ public class MoveHandler {
      * @param fromR The origin R
      * @param toQ The destination Q
      * @param toR The destination R
+     * @return Cell The cell the Queen is going to move to.
      * @throws Hive.IllegalMove The throw Exception if the move is invalid.
      */
-    private void moveQueen(int fromQ, int fromR, int toQ, int toR, Hive.Tile tile) throws Hive.IllegalMove {
+    private Cell moveQueen(int fromQ, int fromR, int toQ, int toR, Hive.Tile tile) throws Hive.IllegalMove {
         if (calculateMovesBetweenCells(fromQ, fromR, toQ, toR) > 1) {
             throw new QueenMoveException("You cannot move more then one tile!");
         }
@@ -143,8 +164,8 @@ public class MoveHandler {
         if (cell.size() > 0) {
             throw new QueenMoveException("You cannot move to an occupied space.");
         }
-        cell.add(game.currentPlayer, tile);
         this.game.setWhiteQueenCell(cell);
+        return cell;
     }
 
 
@@ -154,10 +175,11 @@ public class MoveHandler {
      * @param fromR The origin R
      * @param toQ The destination Q
      * @param toR The destination R
+     * @return Cell The cell the Spider is going to move to.
      * @throws Hive.IllegalMove
      */
-    private void moveSpider(int fromQ, int fromR, int toQ, int toR, Hive.Tile tile) throws Hive.IllegalMove {
-
+    private Cell moveSpider(int fromQ, int fromR, int toQ, int toR, Hive.Tile tile) throws Hive.IllegalMove {
+        return null;
     }
 
     private boolean followsMoveRules(int fromQ, int fromR, int toQ, int toR) {

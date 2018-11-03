@@ -47,8 +47,6 @@ public class Game implements Hive {
 
     }
 
-
-
     /**
      * Move an existing tile.
      * @param fromQ Q coordinate of the tile to move
@@ -97,7 +95,7 @@ public class Game implements Hive {
     /**
      * This method checks if the player can actually
      * @param message The message that will be edited if the method finds a move or play.
-     * @return If the current player can actually play a move or not.
+     * @return If the current player can actually can do a move and or play a tile.
      */
     private boolean hasValidMovesOrCanPlayTile(String message){
         Game game = new Game();

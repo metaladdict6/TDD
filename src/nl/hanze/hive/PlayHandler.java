@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Created by robert on 3-11-18.
+ * Created by robert on 31-10-18.
+ * This class handles any and all concerning the playing of tiles.
+ * The decision was made to keep the tiles in the game itself because it's part of the state of game.
+ * This class could be expanded as to accept the game as a variable as well, but that isn't the current scope of
+ * the project.
  */
 public class PlayHandler {
 

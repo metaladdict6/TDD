@@ -8,7 +8,9 @@ import java.util.*;
  * Created by robert on 31-10-18.
  * This class will handle all the moves in the game.
  * It will check if moves are legal.
- * It will also play tiles and update the location of the Queen in the game state.
+ * It will also update the location of the Queen in the game state if the Queen is moved.
+ * This class could be expanded as to accept the game as a variable as well, but that isn't the current scope of
+ * the project.
  */
 class MoveHandler {
 

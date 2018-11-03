@@ -82,10 +82,11 @@ public class HiveSpec {
             game.getBlackNotPlayedTiles().removeFirstOccurrence(Hive.Tile.SPIDER);
             game.getCell(-1, 0).add(Hive.Player.WHITE, Hive.Tile.SPIDER);
             game.getBlackNotPlayedTiles().removeFirstOccurrence(Hive.Tile.SPIDER);
-            game.getCell(-1, -1).add(Hive.Player.WHITE, Hive.Tile.BEETLE);
+            game.getCell(-1, -1).add(Hive.Player.WHITE, Hive.Tile.SOLDIER_ANT);
             game.getWhiteNotPlayedTiles().removeFirstOccurrence(Hive.Tile.BEETLE);
             game.getCell(-1, -2).add(Hive.Player.BLACK, Hive.Tile.SPIDER);
             game.getBlackNotPlayedTiles().removeFirstOccurrence(Hive.Tile.SPIDER);
+            game.getCell(0, -1).add(Hive.Player.BLACK, Hive.Tile.BEETLE);
             game.pass();
         }catch (Exception exception) {
             System.out.println(exception.getMessage());
@@ -137,7 +138,7 @@ public class HiveSpec {
         grid.get(0).get(-1).add(Game.Player.WHITE, Game.Tile.BEETLE);
         grid.get(0).get(-2).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
         game.setWhiteQueenCell(grid.get(0).get(-2));
-        game.move(-1, 0, 0, 1);
+        game.move(-1, 0, -3, 0);
     }
 
 

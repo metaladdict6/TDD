@@ -96,7 +96,7 @@ class MoveHandler {
      * @return The from cell that will be poped if every other check also works.
      * @throws Hive.IllegalMove
      */
-    public Cell genericRulesChecker(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
+    Cell genericRulesChecker(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
         Cell fromCell = game.getCell(fromQ, fromR);
         if (!game.queenPlayed()){
             throw new Hive.IllegalMove("You have to place your Queen before moving your pieces");
@@ -106,8 +106,8 @@ class MoveHandler {
             throw new Hive.IllegalMove("Nothing to move");
         }else if (fromCell.cellOwner() != game.currentPlayer){
             throw new Hive.IllegalMove("You cannot move the piece of another player!");
-      //  } else if(breaksTileChain(fromQ, fromR, toQ, toR)) {
-        //    throw new Hive.IllegalMove("You cannot break the tile chain!");
+        } else if(breaksTileChain(fromQ, fromR, toQ, toR)) {
+            throw new Hive.IllegalMove("You cannot break the tile chain!");
         }else {
             return fromCell;
         }
@@ -123,14 +123,17 @@ class MoveHandler {
      */
     private boolean breaksTileChain(int fromQ, int fromR, int toQ, int toR) {
         HashMap<Integer, HashMap<Integer, Cell>> grid = BoardBuilder.copyGrid(game.getGrid());
-        Cell current = game.getCell(fromQ, fromR);
-        game.getCell(toQ, toR).add(game.currentPlayer, current.pop());
-        ArrayList<Cell> neighbours = game.findNeighbours(fromQ, toQ, grid);
+        Cell current = grid.get(fromR).get(fromQ);
+        grid.get(fromR).get(fromQ).add(game.currentPlayer, current.pop());
+        ArrayList<Cell> neighbours = game.findNeighbours(fromQ, fromR, grid);
         for(Cell neighbour: neighbours) {
             ArrayList<Boolean> hasNeigbours = new ArrayList<>();
             if(neighbour.size() > 0){
                 for(Cell cell: game.findNeighbours(neighbour.getCoordinate_Q(), neighbour.getCoordinate_R(), grid)){
-                    hasNeigbours.add(cell.size() == 0);
+                    if(!(cell.getCoordinate_R() == neighbour.getCoordinate_R() &&
+                            neighbour.getCoordinate_Q() == cell.getCoordinate_Q())) {
+                        hasNeigbours.add(cell.size() != 0);
+                    }
                 }
                 if(!hasNeigbours.contains(Boolean.TRUE)){
                     return true;
@@ -154,6 +157,8 @@ class MoveHandler {
         Cell cell = game.getCell(toQ, toR);
         if(calculateDistanceRoundedDown(fromQ, fromR, toQ, toR) > 1) {
             throw new BeetleMoveException("You cannot move the beetle more then one cell!");
+        }else if(fromQ == toQ && fromR == toR){
+            throw new BeetleMoveException("You cannot move to the same space!");
         }
         return cell;
     }

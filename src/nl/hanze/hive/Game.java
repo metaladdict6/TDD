@@ -99,7 +99,10 @@ public class Game implements Hive {
      */
     private boolean hasValidMovesOrCanPlayTile(String message){
         Game game = new Game();
-
+        Cell blackQUeen = this.blackQueenCell;
+        Cell whiteQueen = this.whiteQueenCell;
+        game.setWhiteQueenCell(game.getGrid().get(whiteQueen.getCoordinate_R()).get(whiteQueen.getCoordinate_Q()));
+        game.setBlackQueenCell(game.getGrid().get(blackQUeen.getCoordinate_R()).get(blackQUeen.getCoordinate_Q()));
         game.setGrid(BoardBuilder.copyGrid(this.Grid));
         game.setWhiteNotPlayedTiles(new LinkedList<>(this.whiteNotPlayedTiles));
         game.setBlackNotPlayedTiles(new LinkedList<>(this.blackNotPlayedTiles));
@@ -115,9 +118,9 @@ public class Game implements Hive {
                     try {
                         game.play(tile, fromQ, fromR);
                         message = " You can play " + tile + " at q = " + fromQ + " r =" + fromR;
+                        System.out.println(message);
                         return true;
                     } catch (IllegalMove illegalMove) {
-                        System.out.println(illegalMove.getMessage());
                     }
                 }
                 for(Integer toR: game.getGrid().keySet()) {
@@ -140,6 +143,7 @@ public class Game implements Hive {
             String destinationCoordinates = "q = " + toQ + " r =" + toR;
             String startingCoordinates = "q = " + fromQ + " r = " + fromR;
             message = "There is a valid coordinate from " + startingCoordinates + " to " + destinationCoordinates;
+            System.out.println(message);
             return true;
         }catch (IllegalMove illegalMove){
             System.out.println(illegalMove.getMessage());

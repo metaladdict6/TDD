@@ -8,7 +8,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/nl/hanze/hive/Game.java" afterPath="$PROJECT_DIR$/src/nl/hanze/hive/Game.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java" afterPath="$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/nl/hanze/hive/PlayHandler.java" afterPath="$PROJECT_DIR$/src/nl/hanze/hive/PlayHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/HiveSpec.java" afterPath="$PROJECT_DIR$/test/HiveSpec.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -145,7 +144,102 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/Game.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-329">
+              <caret line="99" column="62" lean-forward="false" selection-start-line="99" selection-start-column="62" selection-end-line="99" selection-end-column="62" />
+              <folding>
+                <element signature="method#Game#0;class#Game#0" expanded="false" />
+                <element signature="docComment;method#move#0;class#Game#0" expanded="false" />
+                <element signature="method#move#0;class#Game#0" expanded="false" />
+                <element signature="docComment;method#queenPlayed#0;class#Game#0" expanded="false" />
+                <element signature="method#queenPlayed#0;class#Game#0" expanded="false" />
+                <element signature="docComment;method#pass#0;class#Game#0" expanded="false" />
+                <element signature="method#pass#0;class#Game#0" expanded="false" />
+                <element signature="docComment;method#hasValidMovesOrCanPlayTile#0;class#Game#0" expanded="false" />
+                <element signature="method#hasValidMovesOrCanPlayTile#0;class#Game#0" expanded="false" />
+                <element signature="method#checkIfMovePossible#0;class#Game#0" expanded="false" />
+                <element signature="method#getCurrntPlayersTile#0;class#Game#0" expanded="false" />
+                <element signature="docComment;method#isWinner#0;class#Game#0" expanded="false" />
+                <element signature="method#isWinner#0;class#Game#0" expanded="false" />
+                <element signature="docComment;method#isDraw#0;class#Game#0" expanded="false" />
+                <element signature="docComment;method#nextPlayer#0;class#Game#0" expanded="false" />
+                <element signature="docComment;method#findNeighbours#0;class#Game#0" expanded="false" />
+                <element signature="method#findNeighbours#0;class#Game#0" expanded="false" />
+                <element signature="docComment;method#findNeighbours#1;class#Game#0" expanded="false" />
+                <element signature="method#findNeighbours#1;class#Game#0" expanded="false" />
+                <element signature="docComment;method#getCell#0;class#Game#0" expanded="false" />
+                <element signature="docComment;method#getCell#1;class#Game#0" expanded="false" />
+                <element signature="method#getCell#1;class#Game#0" expanded="false" />
+                <element signature="method#getOpponent#0;class#Game#0" expanded="false" />
+                <element signature="method#setBlackNotPlayedTiles#0;class#Game#0" expanded="false" />
+                <element signature="method#setWhiteNotPlayedTiles#0;class#Game#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MoveHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="116">
+              <caret line="144" column="0" lean-forward="true" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="docComment;method#MoveHandler#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#moveTile#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#updateQueen#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#updateQueen#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#checkTileSpecificRules#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#genericRulesChecker#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#genericRulesChecker#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#breaksTileChain#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#breaksTileChain#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#moveBeetle#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#moveSoldierAnt#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#moveSoldierAnt#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#moveGrasshopper#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#moveQueen#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#moveQueen#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#moveSpider#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#moveSpider#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#followsMoveRules#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#followsMoveRules#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#calculateDistanceRoundedDown#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#calculateDistanceRoundedDown#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#calculateDistance#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#calculateDistance#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#soldierAntCanMove#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#soldierAntCanMove#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#requiredSpiderSteps#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#requiredSpiderSteps#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#requiredGrasshopperSteps#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#requiredGrasshopperSteps#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#grassHopperTravelingInStraightLine#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#grassHopperTravelingInStraightLine#0;class#MoveHandler#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HiveSpec.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test/HiveSpec.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="84" column="77" lean-forward="false" selection-start-line="84" selection-start-column="77" selection-end-line="84" selection-end-column="77" />
+              <folding>
+                <element signature="method#moveToTwoLevelsInOneMove#0;class#HiveSpec#0" expanded="false" />
+                <element signature="method#playerIsWinner#0;class#HiveSpec#0" expanded="false" />
+                <element signature="method#gameIsDraw#0;class#HiveSpec#0" expanded="false" />
+                <element signature="method#moveBeforeQueenPlacement#0;class#HiveSpec#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -528,11 +622,11 @@
         <option value="$PROJECT_DIR$/test/PlacingTileSpec.java" />
         <option value="$PROJECT_DIR$/src/nl/hanze/hive/Cell.java" />
         <option value="$PROJECT_DIR$/src/nl/hanze/hive/BoardBuilder.java" />
-        <option value="$PROJECT_DIR$/test/HiveSpec.java" />
         <option value="$PROJECT_DIR$/src/nl/hanze/hive/PlayHandler.java" />
-        <option value="$PROJECT_DIR$/src/nl/hanze/hive/Game.java" />
         <option value="$PROJECT_DIR$/test/BeetleSpec.java" />
+        <option value="$PROJECT_DIR$/src/nl/hanze/hive/Game.java" />
         <option value="$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java" />
+        <option value="$PROJECT_DIR$/test/HiveSpec.java" />
       </list>
     </option>
   </component>
@@ -722,7 +816,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.All in TDD">
+  <component name="RunManager" selected="JUnit.HiveSpec.playerCanPassTurn">
     <configuration default="false" name="All in TDD" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="TDD" />
@@ -732,48 +826,6 @@
       <option name="MAIN_CLASS_NAME" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="package" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="SoldierAntSpec" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="TDD" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="SoldierAntSpec" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="SoldierAntSpec.moveToSameSpace" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="TDD" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="SoldierAntSpec" />
-      <option name="METHOD_NAME" value="moveToSameSpace" />
-      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -815,6 +867,48 @@
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="BeetleSpec" />
       <option name="METHOD_NAME" value="moveTwoSquares" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="HiveSpec.breakTileChain" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="TDD" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="HiveSpec" />
+      <option name="METHOD_NAME" value="breakTileChain" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="HiveSpec.playerCanPassTurn" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="TDD" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="HiveSpec" />
+      <option name="METHOD_NAME" value="playerCanPassTurn" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
       <option name="PARAMETERS" />
@@ -1145,18 +1239,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="JUnit.All in TDD" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.SoldierAntSpec" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.SoldierAntSpec.moveToSameSpace" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.SoldierAntSpec.cannotMoveThroughMaze" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.BeetleSpec.moveTwoSquares" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.SoldierAntSpec.cannotMoveThroughMaze" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.BeetleSpec.moveTwoSquares" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.HiveSpec.breakTileChain" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.HiveSpec.playerCanPassTurn" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.All in TDD" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.BeetleSpec.moveTwoSquares" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.SoldierAntSpec.cannotMoveThroughMaze" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.SoldierAntSpec.moveToSameSpace" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.SoldierAntSpec" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.HiveSpec.playerCanPassTurn" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.All in TDD" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.HiveSpec.breakTileChain" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.BeetleSpec.moveTwoSquares" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.SoldierAntSpec.cannotMoveThroughMaze" />
       </list>
     </recent_temporary>
   </component>
@@ -1194,7 +1288,7 @@
       <workItem from="1541070593041" duration="3704000" />
       <workItem from="1541082202374" duration="8326000" />
       <workItem from="1541099142902" duration="11163000" />
-      <workItem from="1541238278275" duration="11907000" />
+      <workItem from="1541238278275" duration="13836000" />
     </task>
     <task id="LOCAL-00001" summary="More infra">
       <created>1539875834088</created>
@@ -1336,47 +1430,54 @@
       <option name="project" value="LOCAL" />
       <updated>1541242381546</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Found a new way to check the tile chain but it's still breaking every other unit test for some reason">
+      <created>1541250226351</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1541250226351</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_in_TDD - 2018.11.03 at 13h 58m 18s.xml">
+    <history-entry file="All_in_TDD - 2018.11.03 at 14h 22m 53s.xml">
       <configuration name="All in TDD" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_TDD - 2018.11.03 at 13h 59m 04s.xml">
+    <history-entry file="All_in_TDD - 2018.11.03 at 14h 26m 19s.xml">
       <configuration name="All in TDD" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_TDD - 2018.11.03 at 13h 59m 41s.xml">
-      <configuration name="All in TDD" configurationId="JUnit" />
+    <history-entry file="HiveSpec_breakTileChain - 2018.11.03 at 14h 21m 54s.xml">
+      <configuration name="HiveSpec.breakTileChain" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_TDD - 2018.11.03 at 14h 01m 22s.xml">
-      <configuration name="All in TDD" configurationId="JUnit" />
+    <history-entry file="HiveSpec_breakTileChain - 2018.11.03 at 14h 32m 25s.xml">
+      <configuration name="HiveSpec.breakTileChain" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_TDD - 2018.11.03 at 14h 02m 17s.xml">
-      <configuration name="All in TDD" configurationId="JUnit" />
+    <history-entry file="HiveSpec_playerCanPassTurn - 2018.11.03 at 14h 27m 48s.xml">
+      <configuration name="HiveSpec.playerCanPassTurn" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BeetleSpec_moveTwoSquares - 2018.11.03 at 14h 02m 06s.xml">
-      <configuration name="BeetleSpec.moveTwoSquares" configurationId="JUnit" />
+    <history-entry file="HiveSpec_playerCanPassTurn - 2018.11.03 at 14h 29m 38s.xml">
+      <configuration name="HiveSpec.playerCanPassTurn" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SoldierAntSpec - 2018.11.03 at 13h 58m 59s.xml">
-      <configuration name="SoldierAntSpec" configurationId="JUnit" />
+    <history-entry file="HiveSpec_playerCanPassTurn - 2018.11.03 at 14h 32m 08s.xml">
+      <configuration name="HiveSpec.playerCanPassTurn" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SoldierAntSpec_cannotMoveThroughMaze - 2018.11.03 at 13h 59m 30s.xml">
-      <configuration name="SoldierAntSpec.cannotMoveThroughMaze" configurationId="JUnit" />
+    <history-entry file="HiveSpec_playerCanPassTurn - 2018.11.03 at 14h 32m 28s.xml">
+      <configuration name="HiveSpec.playerCanPassTurn" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SoldierAntSpec_moveToSameSpace - 2018.11.03 at 13h 59m 13s.xml">
-      <configuration name="SoldierAntSpec.moveToSameSpace" configurationId="JUnit" />
+    <history-entry file="HiveSpec_playerCanPassTurn - 2018.11.03 at 14h 34m 16s.xml">
+      <configuration name="HiveSpec.playerCanPassTurn" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SoldierAntSpec_moveToSameSpace - 2018.11.03 at 13h 59m 17s.xml">
-      <configuration name="SoldierAntSpec.moveToSameSpace" configurationId="JUnit" />
+    <history-entry file="HiveSpec_playerCanPassTurn - 2018.11.03 at 14h 34m 59s.xml">
+      <configuration name="HiveSpec.playerCanPassTurn" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77180000" />
+    <option name="totallyTimeSpent" value="79109000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1441,7 +1542,8 @@
     <MESSAGE value="started with the pass method" />
     <MESSAGE value="Added the playHandler.&#10;The playHandler wil handle any and all processes as far as play tiles is concerned&#10;Removed method from the game method to reflect this.&#10;Also continued worked on the pass method&#10;Added javadoc to BoardBuilder" />
     <MESSAGE value="Javadoc" />
-    <option name="LAST_COMMIT_MESSAGE" value="Javadoc" />
+    <MESSAGE value="Found a new way to check the tile chain but it's still breaking every other unit test for some reason" />
+    <option name="LAST_COMMIT_MESSAGE" value="Found a new way to check the tile chain but it's still breaking every other unit test for some reason" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1466,12 +1568,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java</url>
-          <line>74</line>
+          <line>137</line>
           <properties />
-          <option name="timeStamp" value="119" />
+          <option name="timeStamp" value="126" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="120" />
+      <option name="time" value="127" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1526,8 +1628,11 @@
             <element signature="docComment;method#queenPlayed#0;class#Game#0" expanded="false" />
             <element signature="method#queenPlayed#0;class#Game#0" expanded="false" />
             <element signature="docComment;method#pass#0;class#Game#0" expanded="false" />
+            <element signature="method#pass#0;class#Game#0" expanded="false" />
             <element signature="docComment;method#hasValidMovesOrCanPlayTile#0;class#Game#0" expanded="false" />
+            <element signature="method#hasValidMovesOrCanPlayTile#0;class#Game#0" expanded="false" />
             <element signature="method#checkIfMovePossible#0;class#Game#0" expanded="false" />
+            <element signature="method#getCurrntPlayersTile#0;class#Game#0" expanded="false" />
             <element signature="docComment;method#isWinner#0;class#Game#0" expanded="false" />
             <element signature="method#isWinner#0;class#Game#0" expanded="false" />
             <element signature="docComment;method#isDraw#0;class#Game#0" expanded="false" />
@@ -1535,6 +1640,7 @@
             <element signature="docComment;method#findNeighbours#0;class#Game#0" expanded="false" />
             <element signature="method#findNeighbours#0;class#Game#0" expanded="false" />
             <element signature="docComment;method#findNeighbours#1;class#Game#0" expanded="false" />
+            <element signature="method#findNeighbours#1;class#Game#0" expanded="false" />
             <element signature="docComment;method#getCell#0;class#Game#0" expanded="false" />
             <element signature="docComment;method#getCell#1;class#Game#0" expanded="false" />
             <element signature="method#getCell#1;class#Game#0" expanded="false" />
@@ -1746,36 +1852,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="228" column="25" lean-forward="false" selection-start-line="228" selection-start-column="18" selection-end-line="228" selection-end-column="25" />
-          <folding>
-            <element signature="method#Game#0;class#Game#0" expanded="false" />
-            <element signature="docComment;method#move#0;class#Game#0" expanded="false" />
-            <element signature="method#move#0;class#Game#0" expanded="false" />
-            <element signature="docComment;method#queenPlayed#0;class#Game#0" expanded="false" />
-            <element signature="method#queenPlayed#0;class#Game#0" expanded="false" />
-            <element signature="docComment;method#pass#0;class#Game#0" expanded="false" />
-            <element signature="docComment;method#hasValidMovesOrCanPlayTile#0;class#Game#0" expanded="false" />
-            <element signature="method#checkIfMovePossible#0;class#Game#0" expanded="false" />
-            <element signature="docComment;method#isWinner#0;class#Game#0" expanded="false" />
-            <element signature="method#isWinner#0;class#Game#0" expanded="false" />
-            <element signature="docComment;method#isDraw#0;class#Game#0" expanded="false" />
-            <element signature="docComment;method#nextPlayer#0;class#Game#0" expanded="false" />
-            <element signature="docComment;method#findNeighbours#0;class#Game#0" expanded="false" />
-            <element signature="method#findNeighbours#0;class#Game#0" expanded="false" />
-            <element signature="docComment;method#findNeighbours#1;class#Game#0" expanded="false" />
-            <element signature="docComment;method#getCell#0;class#Game#0" expanded="false" />
-            <element signature="docComment;method#getCell#1;class#Game#0" expanded="false" />
-            <element signature="method#getCell#1;class#Game#0" expanded="false" />
-            <element signature="method#getOpponent#0;class#Game#0" expanded="false" />
-            <element signature="method#setBlackNotPlayedTiles#0;class#Game#0" expanded="false" />
-            <element signature="method#setWhiteNotPlayedTiles#0;class#Game#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/SoldierAntSpec.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="530">
@@ -1812,10 +1888,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-329">
+          <caret line="99" column="62" lean-forward="false" selection-start-line="99" selection-start-column="62" selection-end-line="99" selection-end-column="62" />
+          <folding>
+            <element signature="method#Game#0;class#Game#0" expanded="false" />
+            <element signature="docComment;method#move#0;class#Game#0" expanded="false" />
+            <element signature="method#move#0;class#Game#0" expanded="false" />
+            <element signature="docComment;method#queenPlayed#0;class#Game#0" expanded="false" />
+            <element signature="method#queenPlayed#0;class#Game#0" expanded="false" />
+            <element signature="docComment;method#pass#0;class#Game#0" expanded="false" />
+            <element signature="method#pass#0;class#Game#0" expanded="false" />
+            <element signature="docComment;method#hasValidMovesOrCanPlayTile#0;class#Game#0" expanded="false" />
+            <element signature="method#hasValidMovesOrCanPlayTile#0;class#Game#0" expanded="false" />
+            <element signature="method#checkIfMovePossible#0;class#Game#0" expanded="false" />
+            <element signature="method#getCurrntPlayersTile#0;class#Game#0" expanded="false" />
+            <element signature="docComment;method#isWinner#0;class#Game#0" expanded="false" />
+            <element signature="method#isWinner#0;class#Game#0" expanded="false" />
+            <element signature="docComment;method#isDraw#0;class#Game#0" expanded="false" />
+            <element signature="docComment;method#nextPlayer#0;class#Game#0" expanded="false" />
+            <element signature="docComment;method#findNeighbours#0;class#Game#0" expanded="false" />
+            <element signature="method#findNeighbours#0;class#Game#0" expanded="false" />
+            <element signature="docComment;method#findNeighbours#1;class#Game#0" expanded="false" />
+            <element signature="method#findNeighbours#1;class#Game#0" expanded="false" />
+            <element signature="docComment;method#getCell#0;class#Game#0" expanded="false" />
+            <element signature="docComment;method#getCell#1;class#Game#0" expanded="false" />
+            <element signature="method#getCell#1;class#Game#0" expanded="false" />
+            <element signature="method#getOpponent#0;class#Game#0" expanded="false" />
+            <element signature="method#setBlackNotPlayedTiles#0;class#Game#0" expanded="false" />
+            <element signature="method#setWhiteNotPlayedTiles#0;class#Game#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="109" column="10" lean-forward="false" selection-start-line="109" selection-start-column="10" selection-end-line="109" selection-end-column="10" />
+        <state relative-caret-position="116">
+          <caret line="144" column="0" lean-forward="true" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;method#MoveHandler#0;class#MoveHandler#0" expanded="false" />
@@ -1824,9 +1934,10 @@
             <element signature="method#updateQueen#0;class#MoveHandler#0" expanded="false" />
             <element signature="docComment;method#checkTileSpecificRules#0;class#MoveHandler#0" expanded="false" />
             <element signature="docComment;method#genericRulesChecker#0;class#MoveHandler#0" expanded="false" />
+            <element signature="method#genericRulesChecker#0;class#MoveHandler#0" expanded="false" />
             <element signature="docComment;method#breaksTileChain#0;class#MoveHandler#0" expanded="false" />
+            <element signature="method#breaksTileChain#0;class#MoveHandler#0" expanded="false" />
             <element signature="docComment;method#moveBeetle#0;class#MoveHandler#0" expanded="false" />
-            <element signature="method#moveBeetle#0;class#MoveHandler#0" expanded="false" />
             <element signature="docComment;method#moveSoldierAnt#0;class#MoveHandler#0" expanded="false" />
             <element signature="method#moveSoldierAnt#0;class#MoveHandler#0" expanded="false" />
             <element signature="method#moveGrasshopper#0;class#MoveHandler#0" expanded="false" />
@@ -1854,8 +1965,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/HiveSpec.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="136" column="45" lean-forward="true" selection-start-line="136" selection-start-column="45" selection-end-line="136" selection-end-column="45" />
+        <state relative-caret-position="312">
+          <caret line="84" column="77" lean-forward="false" selection-start-line="84" selection-start-column="77" selection-end-line="84" selection-end-column="77" />
           <folding>
             <element signature="method#moveToTwoLevelsInOneMove#0;class#HiveSpec#0" expanded="false" />
             <element signature="method#playerIsWinner#0;class#HiveSpec#0" expanded="false" />

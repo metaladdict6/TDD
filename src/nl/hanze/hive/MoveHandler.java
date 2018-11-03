@@ -106,7 +106,7 @@ class MoveHandler {
             throw new Hive.IllegalMove("Nothing to move");
         }else if (fromCell.cellOwner() != game.currentPlayer){
             throw new Hive.IllegalMove("You cannot move the piece of another player!");
-        //} else if(checkIfBreaksTileChain(fromQ, fromR, toQ, toR)) {
+      //  } else if(breaksTileChain(fromQ, fromR, toQ, toR)) {
         //    throw new Hive.IllegalMove("You cannot break the tile chain!");
         }else {
             return fromCell;
@@ -121,19 +121,19 @@ class MoveHandler {
      * @param toR Destination vertical position.
      * @return If this breaks the chain or not.
      */
-    private boolean checkIfBreaksTileChain(int fromQ, int fromR, int toQ, int toR) {
+    private boolean breaksTileChain(int fromQ, int fromR, int toQ, int toR) {
         HashMap<Integer, HashMap<Integer, Cell>> grid = BoardBuilder.copyGrid(game.getGrid());
-        Cell current = grid.get(fromR).get(fromQ);
-        grid.get(toR).get(toQ).add(game.currentPlayer, current.pop());
-        for(Integer key: grid.keySet()) {
-            HashMap<Integer, Cell> row = grid.get(key);
-            for(Integer rowKey: row.keySet()) {
-                Cell cell = row.get(rowKey);
-                if (cell.size() != 0) {
-                    ArrayList<Cell> neighbours = game.findNeighbours(cell.getCoordinate_Q(), cell.getCoordinate_R(), grid);
-                    if (neighbours.size() == 0) {
-                        return true;
-                    }
+        Cell current = game.getCell(fromQ, fromR);
+        game.getCell(toQ, toR).add(game.currentPlayer, current.pop());
+        ArrayList<Cell> neighbours = game.findNeighbours(fromQ, toQ, grid);
+        for(Cell neighbour: neighbours) {
+            ArrayList<Boolean> hasNeigbours = new ArrayList<>();
+            if(neighbour.size() > 0){
+                for(Cell cell: game.findNeighbours(neighbour.getCoordinate_Q(), neighbour.getCoordinate_R(), grid)){
+                    hasNeigbours.add(cell.size() == 0);
+                }
+                if(!hasNeigbours.contains(Boolean.TRUE)){
+                    return true;
                 }
             }
         }

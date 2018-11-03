@@ -31,7 +31,12 @@ public class PlayHandler {
             }else{
                 ArrayList<Cell> neighbours = this.game.findNeighbours(q, r);
                 if(hasNotPlayedTile()) {
-                    playTile(cell, tile);
+                    if(allFriendsNoEnemies(neighbours)){
+                        playTile(cell, tile);
+                    }else {
+                        throw new Hive.IllegalMove("The coordinate you are trying to play too is not adjunct to a friendly piece or " +
+                                "is next to an opponents piece");
+                    }
                 }else if(allFriendsNoEnemies(neighbours)){
                     playTile(cell, tile);
                 }else {

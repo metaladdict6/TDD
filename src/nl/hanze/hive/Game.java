@@ -18,7 +18,7 @@ public class Game implements Hive {
 
     private Cell whiteQueenCell;
 
-    public MoveHandler moveHandler;
+    private MoveHandler moveHandler;
 
     private PlayHandler playHandler;
 
@@ -65,7 +65,7 @@ public class Game implements Hive {
      * This method checks if the current player may move his pieces.
      * @return A boolean thats says false or true.
      */
-    public boolean queenPlayed(){
+    boolean queenPlayed(){
         if (currentPlayer == Player.BLACK) {
             if (blackQueenCell == null) {
                 return false;
@@ -84,7 +84,7 @@ public class Game implements Hive {
      */
     @Override
     public void pass() throws IllegalMove {
-        String message = "You have a valid move";
+        String message = "You have a valid move or can play a tile!";
         if(!hasValidMovesOrCanPlayTile(message)) {
             nextPlayer();
         }else {
@@ -99,36 +99,63 @@ public class Game implements Hive {
      */
     private boolean hasValidMovesOrCanPlayTile(String message){
         Game game = new Game();
+
         game.setGrid(BoardBuilder.copyGrid(this.Grid));
         game.setWhiteNotPlayedTiles(new LinkedList<>(this.whiteNotPlayedTiles));
         game.setBlackNotPlayedTiles(new LinkedList<>(this.blackNotPlayedTiles));
         game.currentPlayer = currentPlayer;
-        for(Integer key: game.getGrid().keySet()) {
-            HashMap<Integer, Cell> row = game.getGrid().get(key);
-            for(Integer rowKey: row.keySet()){
-                Cell currentCell = game.getCell(rowKey, key);
-                Cell destinationCell = game.getCell(rowKey, key);
-                try{
-                    Cell cell = game.moveHandler.genericRulesChecker(currentCell.getCoordinate_Q(),
-                            currentCell.getCoordinate_R(), destinationCell.getCoordinate_Q(), destinationCell.getCoordinate_Q());
-
-                    game.moveHandler.checkTileSpecificRules(currentCell.getCoordinate_Q(),
-                            currentCell.getCoordinate_R(), destinationCell.getCoordinate_Q(), destinationCell.getCoordinate_Q(),
-                            cell);
-
-                    String destinationCoordinates = "q = " + destinationCell.getCoordinate_Q() + " r =" + destinationCell.getCoordinate_R();
-                    String startingCoordinates = "q = " + currentCell.getCoordinate_Q() + " r = " + currentCell.getCoordinate_R();
-                    message = "There is a valid coordinate from " + startingCoordinates + " to " + destinationCoordinates;
-                    return true;
-                }catch (IllegalMove illegalMove){
-                    System.out.println(illegalMove.getMessage());
-                }catch (Exception exception){
-                    System.out.println("Something unexpected happened");
-                    System.out.println(exception.getMessage());
+        LinkedList<Tile> tiles = getCurrntPlayersTile(game);
+        if(tiles.size() == 11) {
+            message = "You haven't played a tile!";
+            return false;
+        }
+        for(Integer fromR: game.getGrid().keySet()) {
+            for(Integer fromQ: game.getGrid().get(fromR).keySet()){
+                for(Tile tile: tiles) {
+                    try {
+                        game.play(tile, fromQ, fromR);
+                        message = " You can play " + tile + " at q = " + fromQ + " r =" + fromR;
+                        return true;
+                    } catch (IllegalMove illegalMove) {
+                        System.out.println(illegalMove.getMessage());
+                    }
                 }
+                for(Integer toR: game.getGrid().keySet()) {
+                    for(Integer toQ: game.getGrid().get(toR).keySet()) {
+                        if (checkIfMovePossible(game, message, fromQ, fromR, toQ, toR)){
+                            return true;
+                        }
+                    }
+                }
+
             }
         }
-        return true;
+        return false;
+    }
+
+    private boolean checkIfMovePossible(Game game, String message, int fromQ, int fromR, int toQ, int toR) {
+        try{
+            Cell cell = game.moveHandler.genericRulesChecker(fromQ, fromR, toQ, toR);
+            game.moveHandler.checkTileSpecificRules(fromQ, fromR, toQ, toR, cell);
+            String destinationCoordinates = "q = " + toQ + " r =" + toR;
+            String startingCoordinates = "q = " + fromQ + " r = " + fromR;
+            message = "There is a valid coordinate from " + startingCoordinates + " to " + destinationCoordinates;
+            return true;
+        }catch (IllegalMove illegalMove){
+            System.out.println(illegalMove.getMessage());
+        }catch (Exception exception){
+            System.out.println("Something unexpected happened");
+            System.out.println(exception.getMessage());
+        }
+        return false;
+    }
+
+    private LinkedList<Tile> getCurrntPlayersTile(Game game) {
+        if(game.currentPlayer == Player.WHITE) {
+            return game.getWhiteNotPlayedTiles();
+        }else {
+            return game.getBlackNotPlayedTiles();
+        }
     }
 
     /**
@@ -185,7 +212,7 @@ public class Game implements Hive {
      * @param r The r coordinate. This indicates the vertical position inside the grid.
      * @return Returns a list of cells that indicates the neighbours of the coordinate r and q.
      */
-    public ArrayList<Cell> findNeighbours(int q, int r){
+    ArrayList<Cell> findNeighbours(int q, int r){
         HashMap<Integer, HashMap<Integer, Cell>> grid = this.getGrid();
         return this.findNeighbours(q, r, grid);
     }
@@ -197,7 +224,7 @@ public class Game implements Hive {
      * @param grid The grid a tile has been moved and to check if there's any rule breaking.
      * @return The neighbours based the q and r variable.
      */
-    public ArrayList<Cell> findNeighbours(int q, int r,  HashMap<Integer, HashMap<Integer, Cell>> grid ) {
+    ArrayList<Cell> findNeighbours(int q, int r, HashMap<Integer, HashMap<Integer, Cell>> grid) {
         ArrayList<Cell> cells = new ArrayList<>();
         cells.add(getCell(grid, r, q - 1));        // LEFT CELL
         cells.add(getCell(grid, r, q + 1));        // RIGHT CELL
@@ -269,7 +296,7 @@ public class Game implements Hive {
         this.whiteQueenCell = whiteQueenCell;
     }
 
-    public void setBlackNotPlayedTiles(LinkedList<Tile> blackNotPlayedTiles) {
+    private void setBlackNotPlayedTiles(LinkedList<Tile> blackNotPlayedTiles) {
         this.blackNotPlayedTiles = blackNotPlayedTiles;
     }
 

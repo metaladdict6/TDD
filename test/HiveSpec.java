@@ -1,3 +1,4 @@
+import nl.hanze.hive.BoardBuilder;
 import nl.hanze.hive.Cell;
 import nl.hanze.hive.Game;
 import nl.hanze.hive.Hive;
@@ -5,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 
 /**
  * Created by rrczi on 8-10-2018.
@@ -54,7 +56,42 @@ public class HiveSpec {
     @Test
     public void playerCanPassTurn() {
         Game game = new Game();
-        Assert.assertTrue(false);
+        LinkedList<Hive.Tile> tiles = new LinkedList<>();
+        BoardBuilder.initTiles(game.getBlackNotPlayedTiles());
+        BoardBuilder.initTiles(game.getWhiteNotPlayedTiles());
+        try {
+            game.getCell(0, 0).add(Hive.Player.BLACK, Hive.Tile.QUEEN_BEE);
+            game.getBlackNotPlayedTiles().removeFirstOccurrence(Hive.Tile.QUEEN_BEE);
+            game.setBlackQueenCell(game.getCell(0, 0));
+            game.getCell(0, 1).add(Hive.Player.WHITE, Hive.Tile.SOLDIER_ANT);
+            game.getCell(-1, 1).add(Hive.Player.WHITE, Hive.Tile.SOLDIER_ANT);
+            game.getWhiteNotPlayedTiles().removeFirstOccurrence(Hive.Tile.SOLDIER_ANT);
+            game.getWhiteNotPlayedTiles().removeFirstOccurrence(Hive.Tile.SOLDIER_ANT);
+            game.getCell(0, 2).add(Hive.Player.WHITE, Hive.Tile.BEETLE);
+            game.getWhiteNotPlayedTiles().removeFirstOccurrence(Hive.Tile.BEETLE);
+            game.getCell(1, 2).add(Hive.Player.BLACK, Hive.Tile.SOLDIER_ANT);
+            game.getBlackNotPlayedTiles().removeFirstOccurrence(Hive.Tile.SOLDIER_ANT);
+            game.getCell(-2, 2).add(Hive.Player.WHITE, Hive.Tile.SOLDIER_ANT);
+            game.getWhiteNotPlayedTiles().removeFirstOccurrence(Hive.Tile.SOLDIER_ANT);
+            game.getCell(-2, 3).add(Hive.Player.BLACK, Hive.Tile.SOLDIER_ANT);
+            game.getBlackNotPlayedTiles().removeFirstOccurrence(Hive.Tile.SOLDIER_ANT);
+            game.getCell(-2, 1).add(Hive.Player.WHITE, Hive.Tile.QUEEN_BEE);
+            game.getWhiteNotPlayedTiles().removeFirstOccurrence(Hive.Tile.QUEEN_BEE);
+            game.setWhiteQueenCell(game.getCell(-2, 1));
+            game.getCell(-3, 1).add(Hive.Player.BLACK, Hive.Tile.SPIDER);
+            game.getBlackNotPlayedTiles().removeFirstOccurrence(Hive.Tile.SPIDER);
+            game.getCell(-1, 0).add(Hive.Player.WHITE, Hive.Tile.SPIDER);
+            game.getBlackNotPlayedTiles().removeFirstOccurrence(Hive.Tile.SPIDER);
+            game.getCell(-1, -1).add(Hive.Player.WHITE, Hive.Tile.BEETLE);
+            game.getWhiteNotPlayedTiles().removeFirstOccurrence(Hive.Tile.BEETLE);
+            game.getCell(-1, -2).add(Hive.Player.BLACK, Hive.Tile.SPIDER);
+            game.getBlackNotPlayedTiles().removeFirstOccurrence(Hive.Tile.SPIDER);
+            game.pass();
+        }catch (Exception exception) {
+            System.out.println(exception.getMessage());
+        }finally {
+            Assert.assertTrue(game.currentPlayer == Hive.Player.BLACK);
+        }
     }
 
     @Test

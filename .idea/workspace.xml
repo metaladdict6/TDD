@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6079205-ce21-4ff6-a8c6-0ae945402a35" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/nl/hanze/hive/PlayHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/nl/hanze/hive/BoardBuilder.java" afterPath="$PROJECT_DIR$/src/nl/hanze/hive/BoardBuilder.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/nl/hanze/hive/Game.java" afterPath="$PROJECT_DIR$/src/nl/hanze/hive/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java" afterPath="$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -145,22 +145,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Game.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="156" column="16" lean-forward="false" selection-start-line="156" selection-start-column="16" selection-end-line="156" selection-end-column="16" />
+            <state relative-caret-position="108">
+              <caret line="44" column="46" lean-forward="false" selection-start-line="44" selection-start-column="46" selection-end-line="44" selection-end-column="46" />
               <folding>
-                <element signature="method#Game#0;class#Game#0" expanded="false" />
-                <element signature="method#play#0;class#Game#0" expanded="false" />
-                <element signature="docComment;method#hasPlayedTile#0;class#Game#0" expanded="false" />
-                <element signature="method#hasPlayedTile#0;class#Game#0" expanded="false" />
-                <element signature="docComment;method#playTile#0;class#Game#0" expanded="false" />
-                <element signature="method#playTile#0;class#Game#0" expanded="false" />
-                <element signature="docComment;method#isPieceAvailable#0;class#Game#0" expanded="false" />
-                <element signature="method#isPieceAvailable#0;class#Game#0" expanded="false" />
-                <element signature="docComment;method#updatePieces#0;class#Game#0" expanded="false" />
-                <element signature="method#updatePieces#0;class#Game#0" expanded="false" />
                 <element signature="method#queenPlayed#0;class#Game#0" expanded="false" />
                 <element signature="docComment;method#isWinner#0;class#Game#0" expanded="false" />
                 <element signature="method#isWinner#0;class#Game#0" expanded="false" />
@@ -175,12 +165,99 @@
                 <element signature="docComment;method#getCell#1;class#Game#0" expanded="false" />
                 <element signature="method#getCell#1;class#Game#0" expanded="false" />
                 <element signature="method#getOpponent#0;class#Game#0" expanded="false" />
-                <element signature="docComment;method#allFriendsNoEnemies#0;class#Game#0" expanded="false" />
-                <element signature="method#allFriendsNoEnemies#0;class#Game#0" expanded="false" />
                 <element signature="method#setBlackNotPlayedTiles#0;class#Game#0" expanded="false" />
                 <element signature="method#setWhiteNotPlayedTiles#0;class#Game#0" expanded="false" />
-                <element signature="e#11149#11150#0" expanded="true" />
-                <element signature="e#11181#11182#0" expanded="true" />
+                <element signature="e#10110#10111#0" expanded="true" />
+                <element signature="e#10152#10153#0" expanded="true" />
+                <element signature="e#10208#10209#0" expanded="true" />
+                <element signature="e#10250#10251#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PlayHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/PlayHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-514">
+              <caret line="23" column="35" lean-forward="false" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="docComment;method#hasNotPlayedTile#0;class#PlayHandler#0" expanded="false" />
+                <element signature="docComment;method#playTile#1;class#PlayHandler#0" expanded="false" />
+                <element signature="docComment;method#isPieceAvailable#0;class#PlayHandler#0" expanded="false" />
+                <element signature="docComment;method#updatePieces#0;class#PlayHandler#0" expanded="false" />
+                <element signature="docComment;method#allFriendsNoEnemies#0;class#PlayHandler#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MoveHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-162">
+              <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="docComment;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#MoveHandler#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#moveTile#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#moveTile#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#updateQueen#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#updateQueen#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#checkTileSpecificRules#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#checkTileSpecificRules#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#genericRulesChecker#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#genericRulesChecker#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#checkIfBreaksTileChain#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#checkIfBreaksTileChain#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#moveBeetle#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#moveBeetle#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#moveSoldierAnt#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#moveSoldierAnt#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#moveGrasshopper#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#moveQueen#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#moveQueen#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#moveSpider#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#moveSpider#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#followsMoveRules#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#followsMoveRules#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#calculateDistanceRoundedDown#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#calculateDistanceRoundedDown#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#calculateDistance#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#calculateDistance#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#soldierAntCanMove#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#soldierAntCanMove#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#requiredSpiderSteps#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#requiredSpiderSteps#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#requiredGrasshopperSteps#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#requiredGrasshopperSteps#0;class#MoveHandler#0" expanded="false" />
+                <element signature="docComment;method#grassHopperTravelingInStraightLine#0;class#MoveHandler#0" expanded="false" />
+                <element signature="method#grassHopperTravelingInStraightLine#0;class#MoveHandler#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BoardBuilder.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/BoardBuilder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="7" column="98" lean-forward="false" selection-start-line="7" selection-start-column="98" selection-end-line="7" selection-end-column="98" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="docComment;method#InitiateGrid#0;class#BoardBuilder#0" expanded="false" />
+                <element signature="method#InitiateGrid#0;class#BoardBuilder#0" expanded="false" />
+                <element signature="docComment;method#buildGridRow#0;class#BoardBuilder#0" expanded="false" />
+                <element signature="method#buildGridRow#0;class#BoardBuilder#0" expanded="false" />
+                <element signature="e#1979#1994#0" expanded="true" />
+                <element signature="docComment;method#copyGrid#0;class#BoardBuilder#0" expanded="false" />
+                <element signature="method#copyGrid#0;class#BoardBuilder#0" expanded="false" />
+                <element signature="docComment;method#initTiles#0;class#BoardBuilder#0" expanded="false" />
+                <element signature="method#initTiles#0;class#BoardBuilder#0" expanded="false" />
+                <element signature="docComment;method#addTiles#0;class#BoardBuilder#0" expanded="false" />
+                <element signature="method#addTiles#0;class#BoardBuilder#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -571,8 +648,9 @@
         <option value="$PROJECT_DIR$/test/PlacingTileSpec.java" />
         <option value="$PROJECT_DIR$/src/nl/hanze/hive/Cell.java" />
         <option value="$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java" />
-        <option value="$PROJECT_DIR$/src/nl/hanze/hive/BoardBuilder.java" />
+        <option value="$PROJECT_DIR$/src/nl/hanze/hive/PlayHandler.java" />
         <option value="$PROJECT_DIR$/src/nl/hanze/hive/Game.java" />
+        <option value="$PROJECT_DIR$/src/nl/hanze/hive/BoardBuilder.java" />
       </list>
     </option>
   </component>
@@ -674,8 +752,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -722,7 +798,9 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1233,7 +1311,8 @@
       <workItem from="1541060376607" duration="6554000" />
       <workItem from="1541070593041" duration="3704000" />
       <workItem from="1541082202374" duration="8326000" />
-      <workItem from="1541099142902" duration="10977000" />
+      <workItem from="1541099142902" duration="11163000" />
+      <workItem from="1541238278275" duration="3387000" />
     </task>
     <task id="LOCAL-00001" summary="More infra">
       <created>1539875834088</created>
@@ -1354,7 +1433,14 @@
       <option name="project" value="LOCAL" />
       <updated>1541108897026</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="started with the pass method">
+      <created>1541110386477</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1541110386477</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1390,7 +1476,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65087000" />
+    <option name="totallyTimeSpent" value="68660000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
@@ -1398,7 +1484,6 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946146" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946146" sideWeight="0.5018888" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1408,7 +1493,6 @@
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1996762" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946146" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1423,11 +1507,13 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946146" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991913" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946146" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1456,11 +1542,12 @@
     <MESSAGE value="Added gamebuilder to build the initial board and tiles each player has." />
     <MESSAGE value="A lot of javadoc&#10;Added a unit test to placingTileSpec&#10;Added a significant amount of javadoc to the moveHandler&#10;Added a bit of javadoc to game&#10;Renamed the GameBuilder to BoardBuilder&#10;" />
     <MESSAGE value="Javadoc and started with pass" />
-    <option name="LAST_COMMIT_MESSAGE" value="Javadoc and started with pass" />
+    <MESSAGE value="started with the pass method" />
+    <option name="LAST_COMMIT_MESSAGE" value="started with the pass method" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="110" />
+      <option name="time" value="111" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1469,8 +1556,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test/GameTest.java" />
-    <entry file="file://$PROJECT_DIR$/opdrachten/hive/IHive.java" />
     <entry file="file://$PROJECT_DIR$/opdrachten/hive/IPlayer.java" />
     <entry file="file://$PROJECT_DIR$/opdrachten/hive/Hive.java" />
     <entry file="file://$PROJECT_DIR$/opdrachten/hive/IPiece.java" />
@@ -1485,13 +1570,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="21" lean-forward="false" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/Player.java" />
     <entry file="file://$PROJECT_DIR$/test/SpiderSpec.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -1517,16 +1596,6 @@
         <state relative-caret-position="68">
           <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding>
-            <element signature="method#Game#0;class#Game#0" expanded="false" />
-            <element signature="method#play#0;class#Game#0" expanded="false" />
-            <element signature="docComment;method#hasPlayedTile#0;class#Game#0" expanded="false" />
-            <element signature="method#hasPlayedTile#0;class#Game#0" expanded="false" />
-            <element signature="docComment;method#playTile#0;class#Game#0" expanded="false" />
-            <element signature="method#playTile#0;class#Game#0" expanded="false" />
-            <element signature="docComment;method#isPieceAvailable#0;class#Game#0" expanded="false" />
-            <element signature="method#isPieceAvailable#0;class#Game#0" expanded="false" />
-            <element signature="docComment;method#updatePieces#0;class#Game#0" expanded="false" />
-            <element signature="method#updatePieces#0;class#Game#0" expanded="false" />
             <element signature="method#queenPlayed#0;class#Game#0" expanded="false" />
             <element signature="docComment;method#isWinner#0;class#Game#0" expanded="false" />
             <element signature="method#isWinner#0;class#Game#0" expanded="false" />
@@ -1541,12 +1610,12 @@
             <element signature="docComment;method#getCell#1;class#Game#0" expanded="false" />
             <element signature="method#getCell#1;class#Game#0" expanded="false" />
             <element signature="method#getOpponent#0;class#Game#0" expanded="false" />
-            <element signature="docComment;method#allFriendsNoEnemies#0;class#Game#0" expanded="false" />
-            <element signature="method#allFriendsNoEnemies#0;class#Game#0" expanded="false" />
             <element signature="method#setBlackNotPlayedTiles#0;class#Game#0" expanded="false" />
             <element signature="method#setWhiteNotPlayedTiles#0;class#Game#0" expanded="false" />
-            <element signature="e#11149#11150#0" expanded="true" />
-            <element signature="e#11181#11182#0" expanded="true" />
+            <element signature="e#10110#10111#0" expanded="true" />
+            <element signature="e#10152#10153#0" expanded="true" />
+            <element signature="e#10208#10209#0" expanded="true" />
+            <element signature="e#10250#10251#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1691,25 +1760,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/QueenMoveException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="42" lean-forward="true" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
-          <folding>
-            <element signature="e#239#240#0" expanded="false" />
-            <element signature="e#269#270#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="21" lean-forward="false" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/Player.java" />
     <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/Hive.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="645">
@@ -1718,14 +1769,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/GameFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="24" lean-forward="false" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/GameFactory.java" />
     <entry file="file://$PROJECT_DIR$/test/BeetleSpec.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
@@ -1768,37 +1812,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/BoardBuilder.java">
+    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/QueenMoveException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="6" column="32" lean-forward="true" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+        <state relative-caret-position="54">
+          <caret line="3" column="42" lean-forward="true" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/java/util/LinkedList.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-226">
+          <caret line="219" column="26" lean-forward="false" selection-start-line="219" selection-start-column="20" selection-end-line="219" selection-end-column="26" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;method#InitiateGrid#0;class#BoardBuilder#0" expanded="false" />
-            <element signature="method#InitiateGrid#0;class#BoardBuilder#0" expanded="false" />
-            <element signature="docComment;method#buildGridRow#0;class#BoardBuilder#0" expanded="false" />
-            <element signature="method#buildGridRow#0;class#BoardBuilder#0" expanded="false" />
-            <element signature="e#1880#1895#0" expanded="true" />
-            <element signature="docComment;method#copyGrid#0;class#BoardBuilder#0" expanded="false" />
-            <element signature="method#copyGrid#0;class#BoardBuilder#0" expanded="false" />
-            <element signature="docComment;method#initTiles#0;class#BoardBuilder#0" expanded="false" />
-            <element signature="method#initTiles#0;class#BoardBuilder#0" expanded="false" />
-            <element signature="docComment;method#addTiles#0;class#BoardBuilder#0" expanded="false" />
-            <element signature="method#addTiles#0;class#BoardBuilder#0" expanded="false" />
+            <element signature="e#5421#5422#0" expanded="true" />
+            <element signature="e#5472#5473#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="96" column="20" lean-forward="true" selection-start-line="96" selection-start-column="20" selection-end-line="96" selection-end-column="20" />
+        <state relative-caret-position="-162">
+          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;class#MoveHandler#0" expanded="false" />
             <element signature="docComment;method#MoveHandler#0;class#MoveHandler#0" expanded="false" />
             <element signature="docComment;method#moveTile#0;class#MoveHandler#0" expanded="false" />
             <element signature="method#moveTile#0;class#MoveHandler#0" expanded="false" />
+            <element signature="docComment;method#updateQueen#0;class#MoveHandler#0" expanded="false" />
             <element signature="method#updateQueen#0;class#MoveHandler#0" expanded="false" />
             <element signature="docComment;method#checkTileSpecificRules#0;class#MoveHandler#0" expanded="false" />
             <element signature="method#checkTileSpecificRules#0;class#MoveHandler#0" expanded="false" />
@@ -1835,19 +1878,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="156" column="16" lean-forward="false" selection-start-line="156" selection-start-column="16" selection-end-line="156" selection-end-column="16" />
+        <state relative-caret-position="108">
+          <caret line="44" column="46" lean-forward="false" selection-start-line="44" selection-start-column="46" selection-end-line="44" selection-end-column="46" />
           <folding>
-            <element signature="method#Game#0;class#Game#0" expanded="false" />
-            <element signature="method#play#0;class#Game#0" expanded="false" />
-            <element signature="docComment;method#hasPlayedTile#0;class#Game#0" expanded="false" />
-            <element signature="method#hasPlayedTile#0;class#Game#0" expanded="false" />
-            <element signature="docComment;method#playTile#0;class#Game#0" expanded="false" />
-            <element signature="method#playTile#0;class#Game#0" expanded="false" />
-            <element signature="docComment;method#isPieceAvailable#0;class#Game#0" expanded="false" />
-            <element signature="method#isPieceAvailable#0;class#Game#0" expanded="false" />
-            <element signature="docComment;method#updatePieces#0;class#Game#0" expanded="false" />
-            <element signature="method#updatePieces#0;class#Game#0" expanded="false" />
             <element signature="method#queenPlayed#0;class#Game#0" expanded="false" />
             <element signature="docComment;method#isWinner#0;class#Game#0" expanded="false" />
             <element signature="method#isWinner#0;class#Game#0" expanded="false" />
@@ -1862,12 +1895,48 @@
             <element signature="docComment;method#getCell#1;class#Game#0" expanded="false" />
             <element signature="method#getCell#1;class#Game#0" expanded="false" />
             <element signature="method#getOpponent#0;class#Game#0" expanded="false" />
-            <element signature="docComment;method#allFriendsNoEnemies#0;class#Game#0" expanded="false" />
-            <element signature="method#allFriendsNoEnemies#0;class#Game#0" expanded="false" />
             <element signature="method#setBlackNotPlayedTiles#0;class#Game#0" expanded="false" />
             <element signature="method#setWhiteNotPlayedTiles#0;class#Game#0" expanded="false" />
-            <element signature="e#11149#11150#0" expanded="true" />
-            <element signature="e#11181#11182#0" expanded="true" />
+            <element signature="e#10110#10111#0" expanded="true" />
+            <element signature="e#10152#10153#0" expanded="true" />
+            <element signature="e#10208#10209#0" expanded="true" />
+            <element signature="e#10250#10251#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/PlayHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-514">
+          <caret line="23" column="35" lean-forward="false" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;method#hasNotPlayedTile#0;class#PlayHandler#0" expanded="false" />
+            <element signature="docComment;method#playTile#1;class#PlayHandler#0" expanded="false" />
+            <element signature="docComment;method#isPieceAvailable#0;class#PlayHandler#0" expanded="false" />
+            <element signature="docComment;method#updatePieces#0;class#PlayHandler#0" expanded="false" />
+            <element signature="docComment;method#allFriendsNoEnemies#0;class#PlayHandler#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/BoardBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="98" lean-forward="false" selection-start-line="7" selection-start-column="98" selection-end-line="7" selection-end-column="98" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;method#InitiateGrid#0;class#BoardBuilder#0" expanded="false" />
+            <element signature="method#InitiateGrid#0;class#BoardBuilder#0" expanded="false" />
+            <element signature="docComment;method#buildGridRow#0;class#BoardBuilder#0" expanded="false" />
+            <element signature="method#buildGridRow#0;class#BoardBuilder#0" expanded="false" />
+            <element signature="e#1979#1994#0" expanded="true" />
+            <element signature="docComment;method#copyGrid#0;class#BoardBuilder#0" expanded="false" />
+            <element signature="method#copyGrid#0;class#BoardBuilder#0" expanded="false" />
+            <element signature="docComment;method#initTiles#0;class#BoardBuilder#0" expanded="false" />
+            <element signature="method#initTiles#0;class#BoardBuilder#0" expanded="false" />
+            <element signature="docComment;method#addTiles#0;class#BoardBuilder#0" expanded="false" />
+            <element signature="method#addTiles#0;class#BoardBuilder#0" expanded="false" />
           </folding>
         </state>
       </provider>

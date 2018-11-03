@@ -5,6 +5,7 @@ import java.util.LinkedList;
 
 /**
  * Created by robert on 1-11-18.
+ * This class builds a board, initializes the tiles for a player and copies the board if required.
  */
 public class BoardBuilder {
 

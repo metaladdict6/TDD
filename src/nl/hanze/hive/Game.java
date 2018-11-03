@@ -18,10 +18,13 @@ public class Game implements Hive {
 
     private Cell whiteQueenCell;
 
-    private MoveHandler moveHandler;
+    public MoveHandler moveHandler;
+
+    private PlayHandler playHandler;
 
     public Game() {
         this.moveHandler = new MoveHandler(this);
+        this.playHandler = new PlayHandler(this, moveHandler);
         this.Grid = BoardBuilder.InitiateGrid();
         this.currentPlayer = Player.WHITE;
         this.blackNotPlayedTiles = new LinkedList<>();
@@ -39,77 +42,11 @@ public class Game implements Hive {
      */
     @Override
     public void play(Tile tile, int q, int r) throws IllegalMove {
-        if (isPieceAvailable(tile)) {
-            HashMap<Integer, HashMap<Integer, Cell>> grid = getGrid();
-            Cell cell = getCell(grid, r, q);
-            if(cell.size() != 0) {
-                throw new IllegalMove("The coordinates you are trying to play too is occupied");
-            }else{
-                ArrayList<Cell> neighbours = this.findNeighbours(q, r);
-                if(!hasPlayedTile()) {
-                    playTile(cell, tile);
-                }else if(allFriendsNoEnemies(neighbours)){
-                    playTile(cell, tile);
-                }else {
-                    throw new IllegalMove("The coordinate you are trying to play too is not adjunct to a friendly piece or " +
-                            "is next to an opponents piece");
-                }
-            }
-            nextPlayer();
-        }else {
-            throw new IllegalMove("This piece isn't available");
-        }
+        this.playHandler.playTile(tile, q, r);
+        nextPlayer();
+
     }
 
-    /**
-     * This method checks if the current player has played any tiles.
-     * @return If the current player has played a tile.
-     */
-    private boolean hasPlayedTile() {
-        if(currentPlayer == Player.WHITE) {
-            return whiteNotPlayedTiles.size() == 11;
-        }else {
-            return blackNotPlayedTiles.size() == 11;
-        }
-    }
-
-    /**
-     * This method plays the tile onto the board.
-     * @param cell The cell the tile is played on.
-     * @param tile The tile that is being played.
-     */
-    private void playTile(Cell cell, Tile tile){
-        cell.add(currentPlayer, tile);
-        if(tile == Tile.QUEEN_BEE) {
-            this.moveHandler.updateQueen(cell);
-        }
-        updatePieces(tile);
-    }
-
-    /**
-     * This method checks if the player isn't trying to play tile he doesn't have.
-     * @param tile The tile the player wants to play.
-     * @return
-     */
-    private boolean isPieceAvailable(Tile tile) {
-        if (this.currentPlayer == Player.WHITE) {
-            return whiteNotPlayedTiles.contains(tile);
-        }else {
-            return blackNotPlayedTiles.contains(tile);
-        }
-    }
-
-    /**
-     * This method removes one of the played tiles.
-     * @param tile The tile that needs to be removed from one of the players lists.
-     */
-    private void updatePieces(Tile tile) {
-        if (this.currentPlayer == Player.WHITE) {
-            this.whiteNotPlayedTiles.removeFirstOccurrence(tile);
-        }else {
-            this.blackNotPlayedTiles.removeFirstOccurrence(tile);
-        }
-    }
 
 
     /**
@@ -149,15 +86,51 @@ public class Game implements Hive {
      */
     @Override
     public void pass() throws IllegalMove {
-       Game game = new Game();
-       game.setGrid(this.Grid);
-       for(Integer key: game.getGrid().keySet()) {
-           HashMap<Integer, Cell> row = game.getGrid().get(key);
-           for(Integer rowKey: row.keySet()){
+        String message = "You have a valid move";
+        if(!hasValidMovesOrCanPlayTile(message)) {
+            nextPlayer();
+        }else {
+            System.out.println(message);
+        }
+    }
 
-           }
-       }
-       nextPlayer();
+    /**
+     * This method checks if the player can actually
+     * @param message The message that will be edited if the method finds a move or play.
+     * @return If the current player can actually play a move or not.
+     */
+    private boolean hasValidMovesOrCanPlayTile(String message){
+        Game game = new Game();
+        game.setGrid(BoardBuilder.copyGrid(this.Grid));
+        game.setWhiteNotPlayedTiles(new LinkedList<>(this.whiteNotPlayedTiles));
+        game.setBlackNotPlayedTiles(new LinkedList<>(this.blackNotPlayedTiles));
+        game.currentPlayer = currentPlayer;
+        for(Integer key: game.getGrid().keySet()) {
+            HashMap<Integer, Cell> row = game.getGrid().get(key);
+            for(Integer rowKey: row.keySet()){
+                Cell currentCell = game.getCell(rowKey, key);
+                Cell destinationCell = game.getCell(rowKey, key);
+                try{
+                    Cell cell = game.moveHandler.genericRulesChecker(currentCell.getCoordinate_Q(),
+                            currentCell.getCoordinate_R(), destinationCell.getCoordinate_Q(), destinationCell.getCoordinate_Q());
+
+                    game.moveHandler.checkTileSpecificRules(currentCell.getCoordinate_Q(),
+                            currentCell.getCoordinate_R(), destinationCell.getCoordinate_Q(), destinationCell.getCoordinate_Q(),
+                            cell);
+
+                    String destinationCoordinates = "q = " + destinationCell.getCoordinate_Q() + " r =" + destinationCell.getCoordinate_R();
+                    String startingCoordinates = "q = " + currentCell.getCoordinate_Q() + " r = " + currentCell.getCoordinate_R();
+                    message = "There is a valid coordinate from " + startingCoordinates + " to " + destinationCoordinates;
+                    return true;
+                }catch (IllegalMove illegalMove){
+                    System.out.println(illegalMove.getMessage());
+                }catch (Exception exception){
+                    System.out.println("Something unexpected happened");
+                    System.out.println(exception.getMessage());
+                }
+            }
+        }
+        return true;
     }
 
     /**
@@ -254,7 +227,7 @@ public class Game implements Hive {
          * @param q The q coordinate. This indicates the horizontal position inside the grid.
          * @return
          */
-    private Cell getCell(HashMap<Integer, HashMap<Integer, Cell>> grid, int r, int q){
+        Cell getCell(HashMap<Integer, HashMap<Integer, Cell>> grid, int r, int q){
         if (grid.containsKey(r)){
             HashMap<Integer, Cell> row = grid.get(r);
             if (row.containsKey(q)) {
@@ -277,7 +250,7 @@ public class Game implements Hive {
      * This method returns the opponent of the  current player.
      * @return The oppossing Player
      */
-    private Player getOpponent(){
+    Player getOpponent(){
         if (currentPlayer == Player.BLACK){
             return Player.WHITE;
         }else {
@@ -285,25 +258,6 @@ public class Game implements Hive {
         }
     }
 
-    /**
-     * This method checks if all the adjecten cells contain at least one friendly cell and no opposing pieces
-     * @param neighbours A list of neighbours of the current coordinate the player wants to place an cell.
-     * @return An indication if it's legal to place a piece on the current coordinate.
-     */
-    private boolean allFriendsNoEnemies(ArrayList<Cell> neighbours) {
-        Boolean safe = false;
-        for(Cell cell : neighbours){
-            Player cellOwner = cell.cellOwner();
-            if (cellOwner != null) {
-                if (cellOwner == getOpponent()){
-                    return false;
-                }else if (cellOwner == currentPlayer) {
-                    safe = true;
-                }
-            }
-        }
-        return safe;
-    }
 
     public HashMap<Integer, HashMap<Integer, Cell>> getGrid() {
         return Grid;
@@ -323,6 +277,14 @@ public class Game implements Hive {
 
     public void setWhiteNotPlayedTiles(LinkedList<Tile> whiteNotPlayedTiles) {
         this.whiteNotPlayedTiles = whiteNotPlayedTiles;
+    }
+
+    public LinkedList<Tile> getBlackNotPlayedTiles() {
+        return blackNotPlayedTiles;
+    }
+
+    public LinkedList<Tile> getWhiteNotPlayedTiles() {
+        return whiteNotPlayedTiles;
     }
 
     public void setGrid(HashMap<Integer, HashMap<Integer, Cell>> grid) {

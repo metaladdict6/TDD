@@ -365,10 +365,7 @@ class MoveHandler {
             for (Cell neighbour: neighbours) {
                 if (neighbour.equals(destination)) {
                     return steps;
-                } else if(neighbour.cellOwner() != null) {
-                    options.put(calculateDistance(currentCell.getCoordinateQ(), currentCell.getCoordinateR(),
-                            neighbour.getCoordinateQ(), currentCell.getCoordinateR()), neighbour);
-                } else if(neighbour.cellOwner() == null) {
+                }  else if(neighbour.cellOwner() == null) {
                     options.put(calculateDistance( neighbour.getCoordinateQ(), currentCell.getCoordinateR(),
                             destination.getCoordinateQ(), destination.getCoordinateR()), neighbour);
                 }

@@ -24,28 +24,49 @@ public class PlayHandler {
 
     public void playTile(Hive.Tile tile, int q, int r) throws Hive.IllegalMove {
         if (isPieceAvailable(tile)) {
-            HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
-            Cell cell = game.getCell(grid, r, q);
-            if (cell.size() != 0) {
-                throw new Hive.IllegalMove("The coordinates you are trying to play too is occupied");
-            } else {
-                ArrayList<Cell> neighbours = this.game.findNeighbours(q, r);
-                if (hasNotPlayedTile()) {
-                    if (allFriendsNoEnemies(neighbours)){
+            if(canPlaceAnyTile()) {
+                HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
+                Cell cell = game.getCell(grid, r, q);
+                if (cell.size() != 0) {
+                    throw new Hive.IllegalMove("The coordinates you are trying to play too is occupied");
+                } else {
+                    ArrayList<Cell> neighbours = this.game.findNeighbours(q, r);
+                    if (hasNotPlayedTile()) {
+                        if (allFriendsNoEnemies(neighbours)){
+                            playTile(cell, tile);
+                        } else {
+                            throw new Hive.IllegalMove("The coordinate you are trying to play too is not adjunct to a friendly piece or " +
+                                    "is next to an opponents piece");
+                        }
+                    } else if(allFriendsNoEnemies(neighbours)) {
                         playTile(cell, tile);
                     } else {
                         throw new Hive.IllegalMove("The coordinate you are trying to play too is not adjunct to a friendly piece or " +
                                 "is next to an opponents piece");
                     }
-                } else if(allFriendsNoEnemies(neighbours)) {
-                    playTile(cell, tile);
-                } else {
-                    throw new Hive.IllegalMove("The coordinate you are trying to play too is not adjunct to a friendly piece or " +
-                            "is next to an opponents piece");
                 }
+            } else {
+                throw new Hive.IllegalMove("You have to play your Queen");
             }
+
         } else {
             throw new Hive.IllegalMove("This piece isn't available");
+        }
+    }
+
+    private boolean canPlaceAnyTile() {
+        if(game.currentPlayer == Hive.Player.WHITE) {
+            if (game.getWhiteNotPlayedTiles().size() == 8) {
+                return game.queenPlayed();
+            }else {
+                return true;
+            }
+        }else {
+            if (game.getBlackNotPlayedTiles().size() == 8) {
+                return game.queenPlayed();
+            }else {
+                return true;
+            }
         }
     }
 

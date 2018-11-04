@@ -9,8 +9,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
- * Created by rrczi on 8-10-2018.
  * This class tests if the board properly handles different situation's that can occur in the game.
+ * @author Robert Ziengs, Leon Wetzel
  */
 public class HiveSpec {
 
@@ -57,8 +57,8 @@ public class HiveSpec {
     public void playerCanPassTurn() {
         Game game = new Game();
         LinkedList<Hive.Tile> tiles = new LinkedList<>();
-        BoardBuilder.initTiles(game.getBlackNotPlayedTiles());
-        BoardBuilder.initTiles(game.getWhiteNotPlayedTiles());
+        BoardBuilder.initialiseTiles(game.getBlackNotPlayedTiles());
+        BoardBuilder.initialiseTiles(game.getWhiteNotPlayedTiles());
         try {
             game.getCell(0, 0).add(Hive.Player.BLACK, Hive.Tile.QUEEN_BEE);
             game.getBlackNotPlayedTiles().removeFirstOccurrence(Hive.Tile.QUEEN_BEE);

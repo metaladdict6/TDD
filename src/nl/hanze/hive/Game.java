@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+/**
+ * This class represents a game instance.
+ * A game is played between two players.
+ *
+ * @author Robert Ziengs, Leon Wetzel
+ */
 public class Game implements Hive {
 
     private HashMap<Integer, HashMap<Integer, Cell>> Grid;
@@ -25,12 +31,12 @@ public class Game implements Hive {
     public Game() {
         this.moveHandler = new MoveHandler(this);
         this.playHandler = new PlayHandler(this, moveHandler);
-        this.Grid = BoardBuilder.InitiateGrid();
+        this.Grid = BoardBuilder.initiateGrid();
         this.currentPlayer = Player.WHITE;
         this.blackNotPlayedTiles = new LinkedList<>();
         this.whiteNotPlayedTiles = new LinkedList<>();
-        BoardBuilder.initTiles(this.blackNotPlayedTiles);
-        BoardBuilder.initTiles(this.whiteNotPlayedTiles);
+        BoardBuilder.initialiseTiles(this.blackNotPlayedTiles);
+        BoardBuilder.initialiseTiles(this.whiteNotPlayedTiles);
     }
 
     /**
@@ -44,7 +50,6 @@ public class Game implements Hive {
     public void play(Tile tile, int q, int r) throws IllegalMove {
         this.playHandler.playTile(tile, q, r);
         nextPlayer();
-
     }
 
     /**
@@ -62,20 +67,15 @@ public class Game implements Hive {
     }
 
     /**
-     * This method checks if the current player may move his pieces.
-     * @return A boolean thats says false or true.
+     * This method checks if the current player may moved his pieces.
+     * @return true or false.
      */
-    boolean queenPlayed(){
+    boolean queenPlayed() {
         if (currentPlayer == Player.BLACK) {
-            if (blackQueenCell == null) {
-                return false;
-            }
-        }else {
-            if (whiteQueenCell == null) {
-                return false;
-            }
+            return blackQueenCell != null;
+        } else {
+            return whiteQueenCell != null;
         }
-        return true;
     }
 
     /**
@@ -85,9 +85,9 @@ public class Game implements Hive {
     @Override
     public void pass() throws IllegalMove {
         String message = "You have a valid move or can play a tile!";
-        if(!hasValidMovesOrCanPlayTile(message)) {
+        if (!hasValidMovesOrCanPlayTile(message)) {
             nextPlayer();
-        }else {
+        } else {
             System.out.println(message);
         }
     }
@@ -101,20 +101,20 @@ public class Game implements Hive {
         Game game = new Game();
         Cell blackQUeen = this.blackQueenCell;
         Cell whiteQueen = this.whiteQueenCell;
-        game.setWhiteQueenCell(game.getGrid().get(whiteQueen.getCoordinate_R()).get(whiteQueen.getCoordinate_Q()));
-        game.setBlackQueenCell(game.getGrid().get(blackQUeen.getCoordinate_R()).get(blackQUeen.getCoordinate_Q()));
+        game.setWhiteQueenCell(game.getGrid().get(whiteQueen.getCoordinateR()).get(whiteQueen.getCoordinateQ()));
+        game.setBlackQueenCell(game.getGrid().get(blackQUeen.getCoordinateR()).get(blackQUeen.getCoordinateQ()));
         game.setGrid(BoardBuilder.copyGrid(this.Grid));
         game.setWhiteNotPlayedTiles(new LinkedList<>(this.whiteNotPlayedTiles));
         game.setBlackNotPlayedTiles(new LinkedList<>(this.blackNotPlayedTiles));
         game.currentPlayer = currentPlayer;
-        LinkedList<Tile> tiles = getCurrntPlayersTile(game);
-        if(tiles.size() == 11) {
+        LinkedList<Tile> tiles = getCurrentPlayersTile(game);
+        if (tiles.size() == 11) {
             message = "You haven't played a tile!";
             return false;
         }
-        for(Integer fromR: game.getGrid().keySet()) {
-            for(Integer fromQ: game.getGrid().get(fromR).keySet()){
-                for(Tile tile: tiles) {
+        for (Integer fromR: game.getGrid().keySet()) {
+            for (Integer fromQ: game.getGrid().get(fromR).keySet()) {
+                for (Tile tile: tiles) {
                     try {
                         game.play(tile, fromQ, fromR);
                         message = " You can play " + tile + " at q = " + fromQ + " r =" + fromR;
@@ -123,21 +123,20 @@ public class Game implements Hive {
                     } catch (IllegalMove illegalMove) {
                     }
                 }
-                for(Integer toR: game.getGrid().keySet()) {
-                    for(Integer toQ: game.getGrid().get(toR).keySet()) {
+                for (Integer toR: game.getGrid().keySet()) {
+                    for (Integer toQ: game.getGrid().get(toR).keySet()) {
                         if (checkIfMovePossible(game, message, fromQ, fromR, toQ, toR)){
                             return true;
                         }
                     }
                 }
-
             }
         }
         return false;
     }
 
     private boolean checkIfMovePossible(Game game, String message, int fromQ, int fromR, int toQ, int toR) {
-        try{
+        try {
             Cell cell = game.moveHandler.genericRulesChecker(fromQ, fromR, toQ, toR);
             game.moveHandler.checkTileSpecificRules(fromQ, fromR, toQ, toR, cell);
             String destinationCoordinates = "q = " + toQ + " r =" + toR;
@@ -145,19 +144,19 @@ public class Game implements Hive {
             message = "There is a valid coordinate from " + startingCoordinates + " to " + destinationCoordinates;
             System.out.println(message);
             return true;
-        }catch (IllegalMove illegalMove){
+        } catch (IllegalMove illegalMove){
             System.out.println(illegalMove.getMessage());
-        }catch (Exception exception){
+        } catch (Exception exception){
             System.out.println("Something unexpected happened");
             System.out.println(exception.getMessage());
         }
         return false;
     }
 
-    private LinkedList<Tile> getCurrntPlayersTile(Game game) {
-        if(game.currentPlayer == Player.WHITE) {
+    private LinkedList<Tile> getCurrentPlayersTile(Game game) {
+        if (game.currentPlayer == Player.WHITE) {
             return game.getWhiteNotPlayedTiles();
-        }else {
+        } else {
             return game.getBlackNotPlayedTiles();
         }
     }
@@ -169,17 +168,17 @@ public class Game implements Hive {
      */
     @Override
     public boolean isWinner(Hive.Player player) {
-        Cell queenCell = null;
-        if(player == Player.WHITE) {
+        Cell queenCell;
+        if (player == Player.WHITE) {
             queenCell = blackQueenCell;
-        }else {
+        } else {
             queenCell = whiteQueenCell;
         }
         if (queenCell == null) {
             return false;
         }
-        ArrayList<Cell> neighbours = findNeighbours(queenCell.getCoordinate_Q(), queenCell.getCoordinate_R());
-        for(Cell neighbour: neighbours) {
+        ArrayList<Cell> neighbours = findNeighbours(queenCell.getCoordinateQ(), queenCell.getCoordinateR());
+        for (Cell neighbour: neighbours) {
             Player cellOwner = neighbour.cellOwner();
             if (player != cellOwner) {
                 return false;
@@ -190,7 +189,6 @@ public class Game implements Hive {
 
     /**
      * Check whether the game is a draw.
-     *
      * @return Boolean
      */
     @Override
@@ -204,7 +202,7 @@ public class Game implements Hive {
     private void nextPlayer() {
         if (currentPlayer == Player.WHITE) {
             currentPlayer = Player.BLACK;
-        }else {
+        } else {
             currentPlayer = Player.WHITE;
         }
     }
@@ -216,7 +214,7 @@ public class Game implements Hive {
      * @param r The r coordinate. This indicates the vertical position inside the grid.
      * @return Returns a list of cells that indicates the neighbours of the coordinate r and q.
      */
-    ArrayList<Cell> findNeighbours(int q, int r){
+    ArrayList<Cell> findNeighbours(int q, int r) {
         HashMap<Integer, HashMap<Integer, Cell>> grid = this.getGrid();
         return this.findNeighbours(q, r, grid);
     }
@@ -256,18 +254,18 @@ public class Game implements Hive {
          * @param q The q coordinate. This indicates the horizontal position inside the grid.
          * @return
          */
-        Cell getCell(HashMap<Integer, HashMap<Integer, Cell>> grid, int r, int q){
-        if (grid.containsKey(r)){
+        Cell getCell(HashMap<Integer, HashMap<Integer, Cell>> grid, int r, int q) {
+        if (grid.containsKey(r)) {
             HashMap<Integer, Cell> row = grid.get(r);
             if (row.containsKey(q)) {
                 return row.get(q);
-            }else {
+            } else {
                 Cell cell = new Cell(r, q);
                 row.put(q, cell);
                 return cell;
             }
-        }else {
-            HashMap<Integer, Cell> row = new HashMap<Integer, Cell>();
+        } else {
+            HashMap<Integer, Cell> row = new HashMap<>();
             grid.put(r, row);
             Cell cell = new Cell(r, q);
             row.put(q, cell);
@@ -276,26 +274,38 @@ public class Game implements Hive {
     }
 
     /**
-     * This method returns the opponent of the  current player.
+     * This method returns the opponent of the current player.
      * @return The oppossing Player
      */
-    Player getOpponent(){
-        if (currentPlayer == Player.BLACK){
+    Player getOpponent() {
+        if (currentPlayer == Player.BLACK) {
             return Player.WHITE;
-        }else {
+        } else {
             return Player.BLACK;
         }
     }
 
 
+    /**
+     * Returns the grid.
+     * @return gaming grid
+     */
     public HashMap<Integer, HashMap<Integer, Cell>> getGrid() {
         return Grid;
     }
 
+    /**
+     * Sets the cell for the black queen.
+     * @param blackQueenCell
+     */
     public void setBlackQueenCell(Cell blackQueenCell) {
         this.blackQueenCell = blackQueenCell;
     }
 
+    /**
+     * Sets the cell for the white queen.
+     * @param whiteQueenCell
+     */
     public void setWhiteQueenCell(Cell whiteQueenCell) {
         this.whiteQueenCell = whiteQueenCell;
     }

@@ -4,12 +4,11 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
- * Created by robert on 1-11-18.
  * This class builds a board, initializes the tiles for a player and copies the board if required.
+ *
+ * @author Robert Ziengs, Leon Wetzel
  */
 public class BoardBuilder {
-
-
     /**
      * This method builds the grid for the game.
      * The grid consists of two HashMaps.
@@ -20,7 +19,7 @@ public class BoardBuilder {
      * This needs to be popped to remove the current top piece in the cell.
      * @return An empty grid
      */
-    public static HashMap <Integer, HashMap<Integer, Cell>> InitiateGrid() {
+    public static HashMap <Integer, HashMap<Integer, Cell>> initiateGrid() {
         HashMap <Integer, HashMap<Integer, Cell>> grid = new HashMap<>();
         Integer r = -3;
         grid.put(r, buildGridRow(r, 0, 3));
@@ -63,14 +62,14 @@ public class BoardBuilder {
      */
     public static HashMap<Integer, HashMap<Integer, Cell>> copyGrid(HashMap<Integer, HashMap<Integer, Cell>> grid) {
         HashMap<Integer, HashMap<Integer, Cell>> gridCopy = new HashMap<>();
-        for(Integer key: grid.keySet()){
+        for(Integer key: grid.keySet()) {
             HashMap<Integer, Cell> rowCopy = new HashMap<>();
             gridCopy.put(key, rowCopy);
             HashMap<Integer, Cell> row = grid.get(key);
             for(Integer rowKey: row.keySet()) {
                 try {
                     rowCopy.put(rowKey, row.get(rowKey).clone());
-                }catch (CloneNotSupportedException exception) {
+                } catch (CloneNotSupportedException exception) {
                     System.out.println(exception.getMessage());
                 }
             }
@@ -82,7 +81,7 @@ public class BoardBuilder {
      * This method inserts all the required tiles a player should have.
      * @param tiles The list of tiles a player has.
      */
-    public static void initTiles(LinkedList<Hive.Tile> tiles) {
+    public static void initialiseTiles(LinkedList<Hive.Tile> tiles) {
         tiles.add(Hive.Tile.QUEEN_BEE);
         addTiles(tiles, 2, Hive.Tile.SPIDER);
         addTiles(tiles, 2, Hive.Tile.BEETLE);
@@ -96,7 +95,7 @@ public class BoardBuilder {
      * @param amount The amount of tiles that needs to be inserted.
      * @param tile The tile that needs to be inserted
      */
-    private static void addTiles(LinkedList<Hive.Tile> tiles, int amount, Hive.Tile tile){
+    private static void addTiles(LinkedList<Hive.Tile> tiles, int amount, Hive.Tile tile) {
         for(int i = 0; i < amount; i++){
             tiles.add(tile);
         }

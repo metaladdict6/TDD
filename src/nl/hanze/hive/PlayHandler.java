@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Created by robert on 31-10-18.
  * This class handles any and all concerning the playing of tiles.
  * The decision was made to keep the tiles in the game itself because it's part of the state of game.
  * This class could be expanded as to accept the game as a variable as well, but that isn't the current scope of
  * the project.
+ *
+ * @author Robert Ziengs, Leon Wetzel
  */
 public class PlayHandler {
-
 
     private Game game;
 
@@ -26,25 +26,25 @@ public class PlayHandler {
         if (isPieceAvailable(tile)) {
             HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
             Cell cell = game.getCell(grid, r, q);
-            if(cell.size() != 0) {
+            if (cell.size() != 0) {
                 throw new Hive.IllegalMove("The coordinates you are trying to play too is occupied");
-            }else{
+            } else {
                 ArrayList<Cell> neighbours = this.game.findNeighbours(q, r);
-                if(hasNotPlayedTile()) {
-                    if(allFriendsNoEnemies(neighbours)){
+                if (hasNotPlayedTile()) {
+                    if (allFriendsNoEnemies(neighbours)){
                         playTile(cell, tile);
-                    }else {
+                    } else {
                         throw new Hive.IllegalMove("The coordinate you are trying to play too is not adjunct to a friendly piece or " +
                                 "is next to an opponents piece");
                     }
-                }else if(allFriendsNoEnemies(neighbours)){
+                } else if(allFriendsNoEnemies(neighbours)) {
                     playTile(cell, tile);
-                }else {
+                } else {
                     throw new Hive.IllegalMove("The coordinate you are trying to play too is not adjunct to a friendly piece or " +
                             "is next to an opponents piece");
                 }
             }
-        }else {
+        } else {
             throw new Hive.IllegalMove("This piece isn't available");
         }
     }
@@ -54,9 +54,9 @@ public class PlayHandler {
      * @return If the current player has played a tile.
      */
     private boolean hasNotPlayedTile() {
-        if(game.currentPlayer == Hive.Player.WHITE) {
+        if (game.currentPlayer == Hive.Player.WHITE) {
             return game.getWhiteNotPlayedTiles().size() == 11;
-        }else {
+        } else {
             return game.getBlackNotPlayedTiles().size() == 11;
         }
     }
@@ -66,9 +66,9 @@ public class PlayHandler {
      * @param cell The cell the tile is played on.
      * @param tile The tile that is being played.
      */
-    private void playTile(Cell cell, Hive.Tile tile){
+    private void playTile(Cell cell, Hive.Tile tile) {
         cell.add(game.currentPlayer, tile);
-        if(tile == Hive.Tile.QUEEN_BEE) {
+        if (tile == Hive.Tile.QUEEN_BEE) {
             this.moveHandler.updateQueen(cell);
         }
         updatePieces(tile);
@@ -82,7 +82,7 @@ public class PlayHandler {
     private boolean isPieceAvailable(Hive.Tile tile) {
         if (game.currentPlayer == Hive.Player.WHITE) {
             return game.getWhiteNotPlayedTiles().contains(tile);
-        }else {
+        } else {
             return game.getBlackNotPlayedTiles().contains(tile);
         }
     }
@@ -94,7 +94,7 @@ public class PlayHandler {
     private void updatePieces(Hive.Tile tile) {
         if (game.currentPlayer == Hive.Player.WHITE) {
             game.getWhiteNotPlayedTiles().removeFirstOccurrence(tile);
-        }else {
+        } else {
             game.getBlackNotPlayedTiles().removeFirstOccurrence(tile);
         }
     }
@@ -105,18 +105,18 @@ public class PlayHandler {
      * @return An indication if it's legal to place a piece on the current coordinate.
      */
     private boolean allFriendsNoEnemies(ArrayList<Cell> neighbours) {
-        Boolean safe = false;
+        boolean isSafe = false;
         for(Cell cell : neighbours){
             Hive.Player cellOwner = cell.cellOwner();
             if (cellOwner != null) {
-                if (cellOwner == game.getOpponent()){
+                if (cellOwner == game.getOpponent()) {
                     return false;
-                }else if (cellOwner == game.currentPlayer) {
-                    safe = true;
+                } else if (cellOwner == game.currentPlayer) {
+                    isSafe = true;
                 }
             }
         }
-        return safe;
+        return isSafe;
     }
 
 }

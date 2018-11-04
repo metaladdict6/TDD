@@ -7,8 +7,9 @@ import org.junit.Test;
 import java.util.HashMap;
 
 /**
- * Created by rrczi on 8-10-2018.
  * This class tests all the actions a Queen specifically can do to trigger a illegal move.
+ *
+ * @author Robert Ziengs, Leon Wetzel
  */
 public class QueenSpec {
 

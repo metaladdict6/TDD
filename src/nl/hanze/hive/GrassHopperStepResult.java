@@ -1,13 +1,20 @@
 package nl.hanze.hive;
 
+/**
+ * @author Robert Ziengs, Leon Wetzel
+ */
 public class GrassHopperStepResult {
 
+    private int steps;
+
+    private boolean goesOverPiece;
+
     public int getSteps() {
-        return Steps;
+        return steps;
     }
 
     public void setSteps(int steps) {
-        Steps = steps;
+        this.steps = steps;
     }
 
     public boolean isGoesOverPiece() {
@@ -18,12 +25,8 @@ public class GrassHopperStepResult {
         this.goesOverPiece = goesOverPiece;
     }
 
-    private int Steps;
-
-    private boolean goesOverPiece;
-
     public GrassHopperStepResult(int steps, boolean goesOverPiece) {
-        Steps = steps;
+        this.steps = steps;
         this.goesOverPiece = goesOverPiece;
     }
 }

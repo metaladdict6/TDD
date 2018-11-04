@@ -8,8 +8,9 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
- * Created by rrczi on 11-10-2018.
  * This class tests if illegal placements can occure in the game.
+ *
+ * @author Robert Ziengs, Leon Wetzel
  */
 public class PlacingTileSpec {
 
@@ -43,7 +44,7 @@ public class PlacingTileSpec {
     public void placeTooManyPieces() throws Hive.IllegalMove{
         Game game = new Game();
         LinkedList<Hive.Tile> tiles = new LinkedList<>();
-        BoardBuilder.initTiles(tiles);
+        BoardBuilder.initialiseTiles(tiles);
         tiles.removeFirstOccurrence(Hive.Tile.BEETLE);
         tiles.removeFirstOccurrence(Hive.Tile.BEETLE);
         // The game only has twoo beetle, so this should throw an exeception.

@@ -1,7 +1,7 @@
 package nl.hanze.hive;
 
 /**
- * Created by Robert Ziengs on 19-10-2018.
+ * @author Robert Ziengs, Leon Wetzel
  */
 public class QueenMoveException extends Hive.IllegalMove {
 

@@ -5,12 +5,13 @@ import com.sun.istack.internal.NotNull;
 import java.util.*;
 
 /**
- * Created by robert on 31-10-18.
  * This class will handle all the moves in the game.
  * It will check if moves are legal.
  * It will also update the location of the Queen in the game state if the Queen is moved.
  * This class could be expanded as to accept the game as a variable as well, but that isn't the current scope of
  * the project.
+ *
+ * @author Robert Ziengs, Leon Wetzel
  */
 class MoveHandler {
 
@@ -55,7 +56,7 @@ class MoveHandler {
     public void updateQueen(Cell cell) {
         if (game.currentPlayer == Hive.Player.WHITE) {
             game.setWhiteQueenCell(cell);
-        }else {
+        } else {
             game.setBlackQueenCell(cell);
         }
     }
@@ -97,19 +98,19 @@ class MoveHandler {
      * @throws Hive.IllegalMove
      */
     Cell genericRulesChecker(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
-        Cell fromCell = game.getCell(fromQ, fromR);
-        if (!game.queenPlayed()){
+        Cell originalCell = game.getCell(fromQ, fromR);
+        if (!game.queenPlayed()) {
             throw new Hive.IllegalMove("You have to place your Queen before moving your pieces");
-        }else if(!followsMoveRules(fromQ, fromR, toQ, toR)){
+        } else if(!followsMoveRules(fromQ, fromR, toQ, toR)){
             throw new Hive.IllegalMove("You have to move your piece next to another piece.");
-        }else if(fromCell.size() == 0) {
+        } else if(originalCell.size() == 0) {
             throw new Hive.IllegalMove("Nothing to move");
-        }else if (fromCell.cellOwner() != game.currentPlayer){
+        } else if (originalCell.cellOwner() != game.currentPlayer){
             throw new Hive.IllegalMove("You cannot move the piece of another player!");
         } else if(breaksTileChain(fromQ, fromR, toQ, toR)) {
             throw new Hive.IllegalMove("You cannot break the tile chain!");
-        }else {
-            return fromCell;
+        } else {
+            return originalCell;
         }
     }
 
@@ -126,16 +127,16 @@ class MoveHandler {
         Cell current = grid.get(fromR).get(fromQ);
         grid.get(fromR).get(fromQ).add(game.currentPlayer, current.pop());
         ArrayList<Cell> neighbours = game.findNeighbours(fromQ, fromR, grid);
-        for(Cell neighbour: neighbours) {
+        for (Cell neighbour: neighbours) {
             ArrayList<Boolean> hasNeigbours = new ArrayList<>();
-            if(neighbour.size() > 0){
-                for(Cell cell: game.findNeighbours(neighbour.getCoordinate_Q(), neighbour.getCoordinate_R(), grid)){
-                    if(!(cell.getCoordinate_R() == neighbour.getCoordinate_R() &&
-                            neighbour.getCoordinate_Q() == cell.getCoordinate_Q())) {
+            if (neighbour.size() > 0){
+                for (Cell cell: game.findNeighbours(neighbour.getCoordinateQ(), neighbour.getCoordinateR(), grid)) {
+                    if (!(cell.getCoordinateR() == neighbour.getCoordinateR() &&
+                            neighbour.getCoordinateQ() == cell.getCoordinateQ())) {
                         hasNeigbours.add(cell.size() != 0);
                     }
                 }
-                if(!hasNeigbours.contains(Boolean.TRUE)){
+                if (!hasNeigbours.contains(Boolean.TRUE)){
                     return true;
                 }
             }
@@ -176,28 +177,37 @@ class MoveHandler {
         Cell cell = game.getCell(toQ, toR);
         if (fromQ == toQ && fromR == toR) {
             throw new SoldierAntMoveException("You may not move to the same space");
-        }else if(cell.cellOwner() != null) {
+        } else if(cell.cellOwner() != null) {
             throw new SoldierAntMoveException("You cannot move to an occupied space");
-        }else if(!soldierAntCanMove(fromQ, fromR, toQ, toR)) {
+        } else if(!soldierAntCanMove(fromQ, fromR, toQ, toR)) {
             throw new SoldierAntMoveException("No path to destination!");
         }
         return cell;
     }
 
+    /**
+     * Moves a grasshopper from one location to another.
+     * @param fromQ
+     * @param fromR
+     * @param toQ
+     * @param toR
+     * @return
+     * @throws Hive.IllegalMove
+     */
     private Cell moveGrasshopper(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
         Cell currentCell = game.getCell(fromQ, fromR);
-        Cell desintation = game.getCell(toQ, toR);
+        Cell destination = game.getCell(toQ, toR);
         GrassHopperStepResult result = requiredGrasshopperSteps(fromQ, fromR, toQ, toR);
-        if (currentCell.equals(desintation)) {
+        if (currentCell.equals(destination)) {
             throw new GrassHopperMoveException("The grasshopper can't move to the same cell he began");
-        }else if(desintation.cellOwner() != null) {
-            throw  new GrassHopperMoveException("The grasshopper can't move to an occupied space.");
-        }else if(!result.isGoesOverPiece()) {
-            throw  new GrassHopperMoveException("The grasshopper has to jump over at least one piece");
-        }else if(result.getSteps() >= 2) {
-            throw  new GrassHopperMoveException("The grasshopper has to jump over at least one piece");
+        } else if(destination.cellOwner() != null) {
+            throw new GrassHopperMoveException("The grasshopper can't move to an occupied space.");
+        } else if(!result.isGoesOverPiece()) {
+            throw new GrassHopperMoveException("The grasshopper has to jump over at least one piece");
+        } else if(result.getSteps() >= 2) {
+            throw new GrassHopperMoveException("The grasshopper has to jump over at least one piece");
         }
-        return desintation;
+        return destination;
     }
 
     /**
@@ -220,7 +230,6 @@ class MoveHandler {
         return cell;
     }
 
-
     /**
      * This method moves the Spider and throws an exception if the move does not follow the rules.
      * @param fromQ The origin Q
@@ -235,9 +244,9 @@ class MoveHandler {
         Cell cell = game.getCell(toQ, toR);
         if(fromQ == toQ && fromR == toR) {
             throw new SpiderMoveException("You cannot move to the same space.");
-        }else if(travelDistance < 3) {
+        } else if(travelDistance < 3) {
             throw new SpiderMoveException("You cannot move less then three cells");
-        }else if(travelDistance > 3) {
+        } else if(travelDistance > 3) {
             throw new SpiderMoveException("You cannot move more then three cells");
         }
         return cell;
@@ -253,15 +262,15 @@ class MoveHandler {
      */
     private boolean followsMoveRules(int fromQ, int fromR, int toQ, int toR) {
         ArrayList<Cell> neighbours = game.findNeighbours(toQ, toR);
-        int neighoursAmount = 0;
-        for(Cell cell: neighbours) {
-            if(cell.getCoordinate_R() != fromR || cell.getCoordinate_Q() != fromQ){
+        int amountOfNeighbours = 0;
+        for (Cell cell: neighbours) {
+            if (cell.getCoordinateR() != fromR || cell.getCoordinateQ() != fromQ){
                 if (cell.cellOwner() != null) {
-                    neighoursAmount++;
+                    amountOfNeighbours++;
                 }
             }
         }
-        return neighoursAmount > 0;
+        return amountOfNeighbours > 0;
     }
 
     /**
@@ -311,16 +320,16 @@ class MoveHandler {
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
         Cell currentCell = game.getCell(fromQ, fromR);
         Cell desintation = game.getCell(toQ, toR);
-        HashSet<Cell> visisted = new HashSet<>();
+        // HashSet<Cell> visited = new HashSet<>();
         while (!currentCell.equals(desintation)) {
             HashMap<Double, Cell> options = new HashMap<>();
-            ArrayList<Cell> neighbours = game.findNeighbours(currentCell.getCoordinate_Q(), currentCell.getCoordinate_R());
+            ArrayList<Cell> neighbours = game.findNeighbours(currentCell.getCoordinateQ(), currentCell.getCoordinateR());
             for (Cell neighbour : neighbours) {
                 if (neighbour.equals(desintation)) {
                     return true;
-                } else if (neighbour.cellOwner() == null && !visisted.contains(neighbour)) {
-                    options.put(calculateDistance(neighbour.getCoordinate_Q(), neighbour.getCoordinate_R(),
-                            desintation.getCoordinate_Q(), desintation.getCoordinate_R()), neighbour);
+                } else if (neighbour.cellOwner() == null) { // && !visited.contains(neighbour)) {
+                    options.put(calculateDistance(neighbour.getCoordinateQ(), neighbour.getCoordinateR(),
+                            desintation.getCoordinateQ(), desintation.getCoordinateR()), neighbour);
                 }
             }
             Set<Double> keys = options.keySet();
@@ -344,30 +353,29 @@ class MoveHandler {
     private int requiredSpiderSteps(int fromQ, int fromR, int toQ, int toR) {
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
         Cell currentCell = game.getCell(fromQ, fromR);
-        Cell desintation = game.getCell(toQ, toR);
+        Cell destination = game.getCell(toQ, toR);
         int steps = 0;
-        while (!currentCell.equals(desintation)) {
+        while (!currentCell.equals(destination)) {
             steps++;
-            if(steps > 3) {
+            if (steps > 3) {
                 return steps;
             }
             HashMap<Double, Cell> options = new HashMap<>();
-            ArrayList<Cell> neighbours = game.findNeighbours(currentCell.getCoordinate_Q(), currentCell.getCoordinate_R());
+            ArrayList<Cell> neighbours = game.findNeighbours(currentCell.getCoordinateQ(), currentCell.getCoordinateR());
             for (Cell neighbour: neighbours) {
-                if (neighbour.equals(desintation)) {
+                if (neighbour.equals(destination)) {
                     return steps;
-                }else if(neighbour.cellOwner() != null && false) {
-                    options.put(calculateDistance(currentCell.getCoordinate_Q(), currentCell.getCoordinate_R(),
-                            neighbour.getCoordinate_Q(), currentCell.getCoordinate_R()), neighbour);
-                }else if(neighbour.cellOwner() == null) {
-                    options.put(calculateDistance( neighbour.getCoordinate_Q(), currentCell.getCoordinate_R(),
-                            desintation.getCoordinate_Q(), desintation.getCoordinate_R()), neighbour);
+                } else if(neighbour.cellOwner() != null) {
+                    options.put(calculateDistance(currentCell.getCoordinateQ(), currentCell.getCoordinateR(),
+                            neighbour.getCoordinateQ(), currentCell.getCoordinateR()), neighbour);
+                } else if(neighbour.cellOwner() == null) {
+                    options.put(calculateDistance( neighbour.getCoordinateQ(), currentCell.getCoordinateR(),
+                            destination.getCoordinateQ(), destination.getCoordinateR()), neighbour);
                 }
             }
             double key = Collections.min(options.keySet());
             currentCell = options.get(key);
         }
-
         return steps;
     }
 
@@ -390,24 +398,24 @@ class MoveHandler {
         boolean crossedPaths = false;
         while (!currentCell.equals(desintation)) {
             HashMap<Double, Cell> options = new HashMap<>();
-            ArrayList<Cell> neighbours = game.findNeighbours(currentCell.getCoordinate_Q(), currentCell.getCoordinate_R());
+            ArrayList<Cell> neighbours = game.findNeighbours(currentCell.getCoordinateQ(), currentCell.getCoordinateR());
             for (Cell neighbour: neighbours) {
                 if (neighbour.equals(desintation)) {
                     steps++;
                     return new GrassHopperStepResult(steps, crossedPaths);
-                }else if(neighbour.cellOwner() != null) {
-                    options.put(calculateDistance(currentCell.getCoordinate_Q(), currentCell.getCoordinate_R(),
-                            neighbour.getCoordinate_Q(), currentCell.getCoordinate_R()), neighbour);
+                } else if(neighbour.cellOwner() != null) {
+                    options.put(calculateDistance(currentCell.getCoordinateQ(), currentCell.getCoordinateR(),
+                            neighbour.getCoordinateQ(), currentCell.getCoordinateR()), neighbour);
                 }
             }
             double key = Collections.min(options.keySet());
             Cell closestCell = options.get(key);
-            if(closestCell.cellOwner() == null){
+            if (closestCell.cellOwner() == null) {
                 throw new GrassHopperMoveException("You cannot move over unoccupied spaces");
-            }else if(!grassHopperTravelingInStraightLine(currentCell.getCoordinate_Q(), currentCell.getCoordinate_Q(),
-                    closestCell.getCoordinate_Q(), closestCell.getCoordinate_R())) {
+            } else if(!grassHopperTravelingInStraightLine(currentCell.getCoordinateQ(), currentCell.getCoordinateQ(),
+                    closestCell.getCoordinateQ(), closestCell.getCoordinateR())) {
                 throw new GrassHopperMoveException("You have to move in a straight line!");
-            }else {
+            } else {
                 steps++;
                 currentCell = closestCell;
             }
@@ -427,14 +435,11 @@ class MoveHandler {
     private boolean grassHopperTravelingInStraightLine(int fromQ, int fromR, int toQ, int toR) {
         if (fromQ == toQ) {
             return true;
-        }else if(fromR == toR) {
+        } else if(fromR == toR) {
             return true;
-        }else if((fromQ - 1) == toQ && (fromR + 1) == toR) {
+        } else if((fromQ - 1) == toQ && (fromR + 1) == toR) {
             return true;
-        }else if((fromQ + 1) == toQ && (fromR - 1) == toR) {
-            return true;
-        }
-        return false;
+        } else return (fromQ + 1) == toQ && (fromR - 1) == toR;
     }
 }
 

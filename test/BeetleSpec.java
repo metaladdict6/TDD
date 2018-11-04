@@ -6,8 +6,9 @@ import org.junit.Test;
 import java.util.HashMap;
 
 /**
- * Created by rrczi on 8-10-2018.
  * This class tests if the game properly handles illegal moves of the Beetle.
+ *
+ * @author Robert Ziengs, Leon Wetzel
  */
 public class BeetleSpec {
 

@@ -5,8 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/TDD.iml" filepath="$PROJECT_DIR$/.idea/modules/TDD.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/TDD_main.iml" filepath="$PROJECT_DIR$/.idea/modules/TDD_main.iml" group="TDD" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/TDD_test.iml" filepath="$PROJECT_DIR$/.idea/modules/TDD_test.iml" group="TDD" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/programming projects-TDD_main.iml" filepath="$PROJECT_DIR$/.idea/modules/programming projects-TDD_main.iml" group="TDD" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/programming projects-TDD_test.iml" filepath="$PROJECT_DIR$/.idea/modules/programming projects-TDD_test.iml" group="TDD" />
     </modules>
   </component>
 </project>

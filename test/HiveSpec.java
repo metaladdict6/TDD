@@ -31,7 +31,7 @@ public class HiveSpec {
         }
     }
 
-    @Test(expected = GameMoveToSpaceWithoutNeighboursException.class)
+    @Test(expected = GameExceptions.GameMoveToSpaceWithoutNeighboursException.class)
     public void moveToSpaceWithoutNeighbours() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -60,7 +60,7 @@ public class HiveSpec {
         }
     }
 
-    @Test(expected =  GameToDeepMoveException.class)
+    @Test(expected =  GameExceptions.GameToDeepMoveException.class)
     public void moveToTwoLevelsInOneMove() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -154,7 +154,7 @@ public class HiveSpec {
         Assert.assertTrue(game.isDraw());
     }
 
-    @Test(expected = GameMoveBeforeQueenPlacement.class)
+    @Test(expected = GameExceptions.GameMoveBeforeQueenPlacement.class)
     public void moveBeforeQueenPlacement() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();

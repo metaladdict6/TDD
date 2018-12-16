@@ -203,8 +203,8 @@ class MoveHandler {
         } else if(destination.cellOwner() != null) {
             throw new GrassHopperMoveToOccupiedSquare("The grasshopper can't move to an occupied space.");
         } else if(!result.isGoesOverPiece()) {
-            throw new GrassHopperMoveOverUnOccupiedException("The grasshopper has to jump over at least one piece");
-        } else if(result.getSteps() >= 2) {
+            throw new GrassHopperMoveOverUnOccupiedException("The grasshopper has to jump over other pieces");
+        } else if(!(result.getSteps() >= 2)) {
             throw new GrassHopperMoveOnSquareException("The grasshopper has to jump over at least one piece");
         }
         return destination;
@@ -399,26 +399,32 @@ class MoveHandler {
             for (Cell neighbour: neighbours) {
                 if (neighbour.equals(desintation)) {
                     steps++;
-                    return new GrassHopperStepResult(steps, crossedPaths);
-                } else if(neighbour.cellOwner() != null) {
-                    options.put(calculateDistance(currentCell.getCoordinateQ(), currentCell.getCoordinateR(),
-                            neighbour.getCoordinateQ(), currentCell.getCoordinateR()), neighbour);
+                    if (steps == 1) {
+                        throw new GrassHopperMoveOnSquareException("You have move more then one square");
+                    }
+                    return new GrassHopperStepResult(steps, true);
+                } else  {
+                    options.put(calculateDistance(neighbour.getCoordinateQ(), neighbour.getCoordinateR(),
+                            desintation.getCoordinateQ(), desintation.getCoordinateR()), neighbour);
                 }
             }
             double key = Collections.min(options.keySet());
             Cell closestCell = options.get(key);
+            System.out.println("Checking closet cell");
+            System.out.println("Q: " + closestCell.getCoordinateQ());
+            System.out.println("R:" + closestCell.getCoordinateR());
             if (closestCell.cellOwner() == null) {
                 throw new GrassHopperMoveOverUnOccupiedException("You cannot move over unoccupied spaces");
-            } else if(!grassHopperTravelingInStraightLine(currentCell.getCoordinateQ(), currentCell.getCoordinateQ(),
+            } else if(!grassHopperTravelingInStraightLine(currentCell.getCoordinateQ(), currentCell.getCoordinateR(),
                     closestCell.getCoordinateQ(), closestCell.getCoordinateR())) {
-                throw new GrassHopperMoveException("You have to move in a straight line!");
+                throw new GrassHopperNotMovingInLineException("You have to move in a straight line!");
             } else {
                 steps++;
                 currentCell = closestCell;
             }
 
         }
-        return new GrassHopperStepResult(steps, false);
+        return new GrassHopperStepResult(steps, true);
     }
 
     /**

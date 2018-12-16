@@ -243,11 +243,13 @@ class MoveHandler {
         int travelDistance = requiredSpiderSteps(fromQ, fromR, toQ, toR);
         Cell cell = game.getCell(toQ, toR);
         if(fromQ == toQ && fromR == toR) {
-            throw new SpiderMoveException("You cannot move to the same space.");
+            throw new SpiderMoveToSameSpaceException("You cannot move to the same space.");
         } else if(travelDistance < 3) {
-            throw new SpiderMoveException("You cannot move less then three cells");
+            throw new SpiderMoveNotFarEnoughException("You cannot move less then three cells");
         } else if(travelDistance > 3) {
-            throw new SpiderMoveException("You cannot move more then three cells");
+            throw new SpiderMoveTooFarAwayException("You cannot move more then three cells");
+        } else if( cell.getTopTile() != null) {
+            throw new SpiderMoveToOccupiedSpaceException("You cannot move a spider to an occupied space");
         }
         return cell;
     }
@@ -366,7 +368,7 @@ class MoveHandler {
                 if (neighbour.equals(destination)) {
                     return steps;
                 }  else if(neighbour.cellOwner() == null) {
-                    options.put(calculateDistance( neighbour.getCoordinateQ(), currentCell.getCoordinateR(),
+                    options.put(calculateDistance( neighbour.getCoordinateQ(), neighbour.getCoordinateR(),
                             destination.getCoordinateQ(), destination.getCoordinateR()), neighbour);
                 }
             }

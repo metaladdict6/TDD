@@ -1,7 +1,4 @@
-import nl.hanze.hive.Cell;
-import nl.hanze.hive.Game;
-import nl.hanze.hive.Hive;
-import nl.hanze.hive.SpiderMoveException;
+import nl.hanze.hive.*;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -36,7 +33,24 @@ public class SpiderSpec {
         }
     }
 
-    @Test(expected = SpiderMoveException.class)
+    @Test(expected = SpiderMoveToOccupiedSpaceException.class)
+    public void moveToOccupiedSpace() throws Exception {
+        Game game = new Game();
+        HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
+        grid.get(0).get(-3).add(Game.Player.WHITE, Game.Tile.SPIDER);
+        grid.get(0).get(-2).add(Game.Player.WHITE, Game.Tile.SOLDIER_ANT);
+        grid.get(-1).get(-1).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        grid.get(-1).get(0).add(Game.Player.WHITE, Game.Tile.BEETLE);
+
+        grid.get(-2).get(0).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
+        game.setWhiteQueenCell(grid.get(-2).get(0));
+        grid.get(0).get(-3).add(Game.Player.WHITE, Game.Tile.SPIDER);
+        grid.get(-3).get(0).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        game.move(-3, 0, 0, -3);
+
+    }
+
+    @Test(expected = SpiderMoveToSameSpaceException.class)
     public void moveToSameSpace() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -46,18 +60,28 @@ public class SpiderSpec {
         game.move(1, -2, 1, -2);
     }
 
-    @Test(expected = SpiderMoveException.class)
-    public void moveOverOtherPiece() throws Exception {
+    @Test(expected = SpiderMoveTooFarAwayException.class)
+    public void moveFourSpaces() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
         grid.get(0).get(-3).add(Game.Player.WHITE, Game.Tile.SPIDER);
         grid.get(-1).get(-2).add(Game.Player.WHITE, Game.Tile.BEETLE);
         grid.get(-2).get(-1).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
         game.setWhiteQueenCell(grid.get(-2).get(-1));
-        grid.get(0).get(-3).add(Game.Player.WHITE, Game.Tile.SPIDER);
         game.move(-3, 0, 0, -3);
     }
 
-
-
+    @Test(expected = SpiderMoveNotFarEnoughException.class)
+    public void moveTwoSpacesOrLess() throws Exception {
+        Game game = new Game();
+        HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
+        grid.get(0).get(-3).add(Game.Player.WHITE, Game.Tile.SPIDER);
+        grid.get(0).get(-2).add(Game.Player.WHITE, Game.Tile.SOLDIER_ANT);
+        grid.get(-1).get(-1).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        grid.get(-1).get(0).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        grid.get(-2).get(0).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
+        game.setWhiteQueenCell(grid.get(-2).get(0));
+        grid.get(0).get(-3).add(Game.Player.WHITE, Game.Tile.SPIDER);
+        game.move(-3, 0, -1, -2);
+    }
 }

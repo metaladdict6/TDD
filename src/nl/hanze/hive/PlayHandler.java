@@ -32,17 +32,17 @@ public class PlayHandler {
                 } else {
                     ArrayList<Cell> neighbours = this.game.findNeighbours(q, r);
                     if (hasNotPlayedTile()) {
-                        if (allFriendsNoEnemies(neighbours)){
+                        if (noEnemies(neighbours)){
                             playTile(cell, tile);
                         } else {
-                            throw new Hive.IllegalMove("The coordinate you are trying to play too is not adjunct to a friendly piece or " +
-                                    "is next to an opponents piece");
+                            throw new PlaceWithoutNeighboursException("The coordinate you are trying to play too is not "
+                                    + "adjunct to a friendly piece or is next to an opponents piece");
                         }
-                    } else if(allFriendsNoEnemies(neighbours)) {
+                    } else if(allFriends(neighbours) && noEnemies(neighbours)) {
                         playTile(cell, tile);
                     } else {
-                        throw new Hive.IllegalMove("The coordinate you are trying to play too is not adjunct to a friendly piece or " +
-                                "is next to an opponents piece");
+                        throw new PlaceWithoutNeighboursException("The coordinate you are trying to play too is not " +
+                                "adjunct to a friendly piece or is next to an opponents piece");
                     }
                 }
             } else {
@@ -50,7 +50,7 @@ public class PlayHandler {
             }
 
         } else {
-            throw new Hive.IllegalMove("This piece isn't available");
+            throw new PlaceTooManyPiecesException("This piece isn't available");
         }
     }
 
@@ -61,7 +61,7 @@ public class PlayHandler {
             }else {
                 return true;
             }
-        }else {
+        } else {
             if (game.getBlackNotPlayedTiles().size() == 8) {
                 return game.queenPlayed();
             }else {
@@ -125,19 +125,35 @@ public class PlayHandler {
      * @param neighbours A list of neighbours of the current coordinate the player wants to place an cell.
      * @return An indication if it's legal to place a piece on the current coordinate.
      */
-    private boolean allFriendsNoEnemies(ArrayList<Cell> neighbours) {
+    private boolean allFriends(ArrayList<Cell> neighbours) throws Hive.IllegalMove {
         boolean isSafe = false;
-        for(Cell cell : neighbours){
+        for(Cell cell : neighbours) {
             Hive.Player cellOwner = cell.cellOwner();
-            if (cellOwner != null) {
-                if (cellOwner == game.getOpponent()) {
-                    return false;
-                } else if (cellOwner == game.currentPlayer) {
+            if (cell.getTopTile() != null) {
+                if (cell.cellOwner() == game.currentPlayer) {
                     isSafe = true;
                 }
             }
         }
         return isSafe;
+    }
+
+    /**
+     * This method checks if there any enemies adjectend to the chosen cell.
+     * @param neighbours the neighbours of the chosen field.
+     * @return
+     * @throws Hive.IllegalMove
+     */
+    private boolean noEnemies(ArrayList<Cell> neighbours) throws Hive.IllegalMove {
+        for(Cell cell : neighbours) {
+            Hive.Player cellOwner = cell.cellOwner();
+            if (cellOwner != null) {
+                if (cellOwner == game.getOpponent()) {
+                    throw new PlaceNextToOpponentException("You cannot place a piece next to your opponents pieces");
+                }
+            }
+        }
+        return true;
     }
 
 }

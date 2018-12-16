@@ -1,4 +1,5 @@
 import nl.hanze.hive.*;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -11,6 +12,34 @@ import java.util.LinkedList;
  */
 public class PlacingTileSpec {
 
+
+    @Test
+    public void playPieces() {
+        Game game = new Game();
+        try {
+            game.play(Hive.Tile.BEETLE, 0, 0);
+            game.play(Hive.Tile.SOLDIER_ANT, -3, -3);
+            game.play(Hive.Tile.QUEEN_BEE, -1,0);
+        } catch (Hive.IllegalMove illegalMove) {
+            illegalMove.printStackTrace();
+        } finally {
+            Assert.assertEquals(Hive.Tile.QUEEN_BEE, game.getCell(-1, 0).getTopTile());
+        }
+    }
+
+    @Test(expected =  PlaceQueenBeforeContinuingException.class)
+    public void needToPlaceQueenException() throws Exception {
+        Game game = new Game();
+        game.play(Hive.Tile.BEETLE, 0, 0); // WHITE 1
+        game.play(Hive.Tile.SOLDIER_ANT, -3, -3); // BLACK
+        game.play(Hive.Tile.SOLDIER_ANT, -1,0); // WHITE 2
+        game.play(Hive.Tile.BEETLE, -2, -3); // BLACK
+        game.play(Hive.Tile.GRASSHOPPER, -2, 0); // WHITE 3
+        game.play(Hive.Tile.BEETLE, -1, -3); // BLACK
+        game.play(Hive.Tile.BEETLE, -1, 0); // WHITE
+    }
+
+
     @Test(expected =  PlaceOnExistingPieceException.class)
     public void placePieceOnExistingPiece() throws Exception {
         Game game = new Game();
@@ -20,13 +49,13 @@ public class PlacingTileSpec {
         game.play(Hive.Tile.BEETLE, 0, -3);
     }
 
-    @Test(expected =  PlaceOnExistingPieceException.class)
+    @Test(expected =  PlaceWithoutNeighboursException.class)
     public void placeWithoutNeighbours() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
-        grid.get(-2).get(-1).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
-        grid.get(-3).get(0).add(Game.Player.WHITE, Game.Tile.SPIDER);
-        game.play(Hive.Tile.BEETLE, 0, 0);
+        game.play(Hive.Tile.QUEEN_BEE, 0, 0);
+        game.play(Hive.Tile.QUEEN_BEE, -3,-3);
+        game.play(Hive.Tile.BEETLE, 3, 3);
     }
 
     @Test(expected =  PlaceNextToOpponentException.class)

@@ -14,6 +14,34 @@ import java.util.HashMap;
  */
 public class SoldierAntSpec {
 
+    @Test
+    public void simpleSoldierAntMove() {
+
+    }
+
+    @Test void moveSoliderAntThroughMaze() {
+        Game game = new Game();
+        HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
+        grid.get(-1).get(1).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        grid.get(-1).get(0).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        grid.get(0).get(1).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
+        grid.get(0).get(-1).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        grid.get(1).get(-1).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        grid.get(1).get(1).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        grid.get(2).get(0).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        grid.get(2).get(-1).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        grid.get(0).get(0).add(Game.Player.WHITE, Game.Tile.SOLDIER_ANT);
+        game.setWhiteQueenCell(grid.get(0).get(-2));
+        grid.get(0).get(2).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        try {
+            game.move(0, 0, 3, 0);
+        } catch (Hive.IllegalMove illegalMove) {
+            illegalMove.printStackTrace();
+        } finally {
+
+        }
+    }
+
     @Test(expected = SoldierAntMoveException.class)
     public void moveToOccupiedSpace() throws Exception {
         Game game = new Game();
@@ -37,7 +65,6 @@ public class SoldierAntSpec {
         grid.get(1).get(1).add(Game.Player.WHITE, Game.Tile.BEETLE);
         grid.get(2).get(0).add(Game.Player.WHITE, Game.Tile.BEETLE);
         grid.get(2).get(-1).add(Game.Player.WHITE, Game.Tile.BEETLE);
-
         grid.get(0).get(0).add(Game.Player.WHITE, Game.Tile.SOLDIER_ANT);
         game.setWhiteQueenCell(grid.get(0).get(-2));
         grid.get(0).get(2).add(Game.Player.WHITE, Game.Tile.BEETLE);

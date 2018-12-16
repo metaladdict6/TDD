@@ -1,7 +1,7 @@
 package nl.hanze.hive;
 
 /**
- * Created by Robert Ziengs on 16-12-2018.
+ * @author Robert Ziengs, Leon Wetzel
  */
 public class GrassHopperMoveOverUnOccupiedException extends Hive.IllegalMove {
 

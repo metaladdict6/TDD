@@ -24,6 +24,8 @@ public class Game implements Hive {
 
     private Cell whiteQueenCell;
 
+
+
     private MoveHandler moveHandler;
 
     private PlayHandler playHandler;
@@ -328,5 +330,13 @@ public class Game implements Hive {
 
     public void setGrid(HashMap<Integer, HashMap<Integer, Cell>> grid) {
         this.Grid = grid;
+    }
+
+    public Cell getBlackQueenCell() {
+        return blackQueenCell;
+    }
+
+    public Cell getWhiteQueenCell() {
+        return whiteQueenCell;
     }
 }

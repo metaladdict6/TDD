@@ -221,11 +221,11 @@ class MoveHandler {
      */
     private Cell moveQueen(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
         if (calculateDistanceRoundedDown(fromQ, fromR, toQ, toR) > 1) {
-            throw new QueenMoveException("You cannot move more then one tile!");
+            throw new QueenMoveTooFarException("You cannot move more then one tile!");
         }
         Cell cell = game.getCell(toQ, toR);
         if (cell.size() > 0) {
-            throw new QueenMoveException("You cannot move to an occupied space.");
+            throw new QueenMoveToOccupiedSpaceException("You cannot move to an occupied space.");
         }
         return cell;
     }
@@ -410,9 +410,6 @@ class MoveHandler {
             }
             double key = Collections.min(options.keySet());
             Cell closestCell = options.get(key);
-            System.out.println("Checking closet cell");
-            System.out.println("Q: " + closestCell.getCoordinateQ());
-            System.out.println("R:" + closestCell.getCoordinateR());
             if (closestCell.cellOwner() == null) {
                 throw new GrassHopperMoveOverUnOccupiedException("You cannot move over unoccupied spaces");
             } else if(!grassHopperTravelingInStraightLine(currentCell.getCoordinateQ(), currentCell.getCoordinateR(),

@@ -28,7 +28,7 @@ public class GrasshopperSpec {
         }
     }
 
-    @Test(expected = GrassHopperMoveOnSquareException.class)
+    @Test(expected = GrassHopperMoveException.GrassHopperMoveOnSquareException.class)
     public void moveOneSquare() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -38,7 +38,7 @@ public class GrasshopperSpec {
         game.move(-3, 0, -2, -1);
     }
 
-    @Test(expected = GrassHopperMoveToOccupiedSquare.class)
+    @Test(expected = GrassHopperMoveException.GrassHopperMoveToOccupiedSquare.class)
     public void moveToOccupiedSquare() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -49,7 +49,7 @@ public class GrasshopperSpec {
         game.move(-3, 0, -1, 0);
     }
 
-    @Test(expected = GrassHopperMoveOverUnOccupiedException.class)
+    @Test(expected = GrassHopperMoveException.GrassHopperMoveOverUnOccupiedException.class)
     public void jumpOverUnOccupiedSpaces() throws Exception{
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -62,7 +62,7 @@ public class GrasshopperSpec {
         game.move(-3, 0, 0, 0);
     }
 
-    @Test(expected = GrassHopperMoveToSamePlaceException.class)
+    @Test(expected = GrassHopperMoveException.GrassHopperMoveToSamePlaceException.class)
     public void moveToSameSpace() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();

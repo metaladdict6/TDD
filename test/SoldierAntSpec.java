@@ -33,7 +33,7 @@ public class SoldierAntSpec {
         }
     }
 
-    @Test(expected = SoldierAntMoveToOccupiedSpace.class)
+    @Test(expected = SoldierAntMoveException.SoldierAntMoveToOccupiedSpace.class)
     public void moveToOccupiedSpace() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -44,7 +44,7 @@ public class SoldierAntSpec {
         game.move(-3, 0, -2, 0);
     }
 
-    @Test(expected = SoldierAntNoPathToDesinationException.class)
+    @Test(expected = SoldierAntMoveException.SoldierAntNoPathToDesinationException.class)
     public void cannotMoveThroughMaze() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -62,7 +62,7 @@ public class SoldierAntSpec {
         game.move(0, 0, 3, 0);
     }
 
-    @Test(expected = SoldierAntMoveToSameSpaceException.class)
+    @Test(expected = SoldierAntMoveException.SoldierAntMoveToSameSpaceException.class)
     public void moveToSameSpace() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();

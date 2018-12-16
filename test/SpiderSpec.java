@@ -33,7 +33,7 @@ public class SpiderSpec {
         }
     }
 
-    @Test(expected = SpiderMoveToOccupiedSpaceException.class)
+    @Test(expected = SpiderMoveException.SpiderMoveToOccupiedSpaceException.class)
     public void moveToOccupiedSpace() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -50,7 +50,7 @@ public class SpiderSpec {
 
     }
 
-    @Test(expected = SpiderMoveToSameSpaceException.class)
+    @Test(expected = SpiderMoveException.SpiderMoveToSameSpaceException.class)
     public void moveToSameSpace() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -60,7 +60,7 @@ public class SpiderSpec {
         game.move(1, -2, 1, -2);
     }
 
-    @Test(expected = SpiderMoveTooFarAwayException.class)
+    @Test(expected = SpiderMoveException.SpiderMoveTooFarAwayException.class)
     public void moveFourSpaces() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -71,7 +71,7 @@ public class SpiderSpec {
         game.move(-3, 0, 0, -3);
     }
 
-    @Test(expected = SpiderMoveNotFarEnoughException.class)
+    @Test(expected = SpiderMoveException.SpiderMoveNotFarEnoughException.class)
     public void moveTwoSpacesOrLess() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();

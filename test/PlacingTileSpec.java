@@ -27,7 +27,7 @@ public class PlacingTileSpec {
         }
     }
 
-    @Test(expected =  PlaceQueenBeforeContinuingException.class)
+    @Test(expected =  PlaceException.PlaceQueenBeforeContinuingException.class)
     public void needToPlaceQueenException() throws Exception {
         Game game = new Game();
         game.play(Hive.Tile.BEETLE, 0, 0); // WHITE 1
@@ -40,7 +40,7 @@ public class PlacingTileSpec {
     }
 
 
-    @Test(expected =  PlaceOnExistingPieceException.class)
+    @Test(expected =  PlaceException.PlaceOnExistingPieceException.class)
     public void placePieceOnExistingPiece() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -49,7 +49,7 @@ public class PlacingTileSpec {
         game.play(Hive.Tile.BEETLE, 0, -3);
     }
 
-    @Test(expected =  PlaceWithoutNeighboursException.class)
+    @Test(expected =  PlaceException.PlaceWithoutNeighboursException.class)
     public void placeWithoutNeighbours() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -58,7 +58,7 @@ public class PlacingTileSpec {
         game.play(Hive.Tile.BEETLE, 3, 3);
     }
 
-    @Test(expected =  PlaceNextToOpponentException.class)
+    @Test(expected =  PlaceException.PlaceNextToOpponentException.class)
     public void placeNextToOpponent() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -66,7 +66,7 @@ public class PlacingTileSpec {
         game.play(Game.Tile.SOLDIER_ANT, -1, -3);
     }
 
-    @Test(expected =  PlaceTooManyPiecesException.class)
+    @Test(expected =  PlaceException.PlaceTooManyPiecesException.class)
     public void placeTooManyPieces() throws Hive.IllegalMove{
         Game game = new Game();
         LinkedList<Hive.Tile> tiles = new LinkedList<>();

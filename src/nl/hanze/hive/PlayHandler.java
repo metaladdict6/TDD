@@ -28,29 +28,29 @@ public class PlayHandler {
                 HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
                 Cell cell = game.getCell(grid, r, q);
                 if (cell.size() != 0) {
-                    throw new PlaceOnExistingPieceException("The coordinates you are trying to play too is occupied");
+                    throw new PlaceException.PlaceOnExistingPieceException("The coordinates you are trying to play too is occupied");
                 } else {
                     ArrayList<Cell> neighbours = this.game.findNeighbours(q, r);
                     if (hasNotPlayedTile()) {
                         if (noEnemies(neighbours)){
                             playTile(cell, tile);
                         } else {
-                            throw new PlaceWithoutNeighboursException("The coordinate you are trying to play too is not "
+                            throw new PlaceException.PlaceWithoutNeighboursException("The coordinate you are trying to play too is not "
                                     + "adjunct to a friendly piece or is next to an opponents piece");
                         }
                     } else if(allFriends(neighbours) && noEnemies(neighbours)) {
                         playTile(cell, tile);
                     } else {
-                        throw new PlaceWithoutNeighboursException("The coordinate you are trying to play too is not " +
+                        throw new PlaceException.PlaceWithoutNeighboursException("The coordinate you are trying to play too is not " +
                                 "adjunct to a friendly piece or is next to an opponents piece");
                     }
                 }
             } else {
-                throw new PlaceQueenBeforeContinuingException("You have to play your Queen");
+                throw new PlaceException.PlaceQueenBeforeContinuingException("You have to play your Queen");
             }
 
         } else {
-            throw new PlaceTooManyPiecesException("This piece isn't available");
+            throw new PlaceException.PlaceTooManyPiecesException("This piece isn't available");
         }
     }
 
@@ -149,7 +149,7 @@ public class PlayHandler {
             Hive.Player cellOwner = cell.cellOwner();
             if (cellOwner != null) {
                 if (cellOwner == game.getOpponent()) {
-                    throw new PlaceNextToOpponentException("You cannot place a piece next to your opponents pieces");
+                    throw new PlaceException.PlaceNextToOpponentException("You cannot place a piece next to your opponents pieces");
                 }
             }
         }

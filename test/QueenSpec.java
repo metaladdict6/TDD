@@ -45,7 +45,7 @@ public class QueenSpec {
         }
     }
 
-    @Test(expected = QueenMoveTooFarException.class)
+    @Test(expected = QueenMoveException.QueenMoveTooFarException.class)
     public void moveTwoSquares() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -55,7 +55,7 @@ public class QueenSpec {
         game.move(-3, 0, 0, -1);
     }
 
-    @Test(expected = QueenMoveTooFarException.class)
+    @Test(expected = QueenMoveException.QueenMoveTooFarException.class)
     public void moveDiagonally() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -66,7 +66,7 @@ public class QueenSpec {
     }
 
 
-    @Test(expected = QueenMoveToOccupiedSpaceException.class)
+    @Test(expected = QueenMoveException.QueenMoveToOccupiedSpaceException.class)
     public void moveToOccupiedSpace() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();

@@ -176,11 +176,11 @@ class MoveHandler {
     private Cell moveSoldierAnt(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
         Cell cell = game.getCell(toQ, toR);
         if (fromQ == toQ && fromR == toR) {
-            throw new SoldierAntMoveToSameSpaceException("You may not move to the same space");
+            throw new SoldierAntMoveException.SoldierAntMoveToSameSpaceException("You may not move to the same space");
         } else if(cell.cellOwner() != null) {
-            throw new SoldierAntMoveToOccupiedSpace("You cannot move to an occupied space");
+            throw new SoldierAntMoveException.SoldierAntMoveToOccupiedSpace("You cannot move to an occupied space");
         } else if(!soldierAntCanMove(fromQ, fromR, toQ, toR)) {
-            throw new SoldierAntNoPathToDesinationException("No path to destination!");
+            throw new SoldierAntMoveException.SoldierAntNoPathToDesinationException("No path to destination!");
         }
         return cell;
     }
@@ -199,13 +199,13 @@ class MoveHandler {
         Cell destination = game.getCell(toQ, toR);
         GrassHopperStepResult result = requiredGrasshopperSteps(fromQ, fromR, toQ, toR);
         if (currentCell.equals(destination)) {
-            throw new GrassHopperMoveToSamePlaceException("The grasshopper can't move to the same cell he began");
+            throw new GrassHopperMoveException.GrassHopperMoveToSamePlaceException("The grasshopper can't move to the same cell he began");
         } else if(destination.cellOwner() != null) {
-            throw new GrassHopperMoveToOccupiedSquare("The grasshopper can't move to an occupied space.");
+            throw new GrassHopperMoveException.GrassHopperMoveToOccupiedSquare("The grasshopper can't move to an occupied space.");
         } else if(!result.isGoesOverPiece()) {
-            throw new GrassHopperMoveOverUnOccupiedException("The grasshopper has to jump over other pieces");
+            throw new GrassHopperMoveException.GrassHopperMoveOverUnOccupiedException("The grasshopper has to jump over other pieces");
         } else if(!(result.getSteps() >= 2)) {
-            throw new GrassHopperMoveOnSquareException("The grasshopper has to jump over at least one piece");
+            throw new GrassHopperMoveException.GrassHopperMoveOnSquareException("The grasshopper has to jump over at least one piece");
         }
         return destination;
     }
@@ -221,11 +221,11 @@ class MoveHandler {
      */
     private Cell moveQueen(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
         if (calculateDistanceRoundedDown(fromQ, fromR, toQ, toR) > 1) {
-            throw new QueenMoveTooFarException("You cannot move more then one tile!");
+            throw new QueenMoveException.QueenMoveTooFarException("You cannot move more then one tile!");
         }
         Cell cell = game.getCell(toQ, toR);
         if (cell.size() > 0) {
-            throw new QueenMoveToOccupiedSpaceException("You cannot move to an occupied space.");
+            throw new QueenMoveException.QueenMoveToOccupiedSpaceException("You cannot move to an occupied space.");
         }
         return cell;
     }
@@ -243,13 +243,13 @@ class MoveHandler {
         int travelDistance = requiredSpiderSteps(fromQ, fromR, toQ, toR);
         Cell cell = game.getCell(toQ, toR);
         if(fromQ == toQ && fromR == toR) {
-            throw new SpiderMoveToSameSpaceException("You cannot move to the same space.");
+            throw new SpiderMoveException.SpiderMoveToSameSpaceException("You cannot move to the same space.");
         } else if(travelDistance < 3) {
-            throw new SpiderMoveNotFarEnoughException("You cannot move less then three cells");
+            throw new SpiderMoveException.SpiderMoveNotFarEnoughException("You cannot move less then three cells");
         } else if(travelDistance > 3) {
-            throw new SpiderMoveTooFarAwayException("You cannot move more then three cells");
+            throw new SpiderMoveException.SpiderMoveTooFarAwayException("You cannot move more then three cells");
         } else if( cell.getTopTile() != null) {
-            throw new SpiderMoveToOccupiedSpaceException("You cannot move a spider to an occupied space");
+            throw new SpiderMoveException.SpiderMoveToOccupiedSpaceException("You cannot move a spider to an occupied space");
         }
         return cell;
     }
@@ -402,7 +402,7 @@ class MoveHandler {
                 if (neighbour.equals(desintation)) {
                     steps++;
                     if (steps == 1) {
-                        throw new GrassHopperMoveOnSquareException("You have move more then one square");
+                        throw new GrassHopperMoveException.GrassHopperMoveOnSquareException("You have move more then one square");
                     }
                     return new GrassHopperStepResult(steps, true);
                 } else  {
@@ -413,10 +413,10 @@ class MoveHandler {
             double key = Collections.min(options.keySet());
             Cell closestCell = options.get(key);
             if (closestCell.cellOwner() == null) {
-                throw new GrassHopperMoveOverUnOccupiedException("You cannot move over unoccupied spaces");
+                throw new GrassHopperMoveException.GrassHopperMoveOverUnOccupiedException("You cannot move over unoccupied spaces");
             } else if(!grassHopperTravelingInStraightLine(currentCell.getCoordinateQ(), currentCell.getCoordinateR(),
                     closestCell.getCoordinateQ(), closestCell.getCoordinateR())) {
-                throw new GrassHopperNotMovingInLineException("You have to move in a straight line!");
+                throw new GrassHopperMoveException.GrassHopperNotMovingInLineException("You have to move in a straight line!");
             } else {
                 steps++;
                 currentCell = closestCell;

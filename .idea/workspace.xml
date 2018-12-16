@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6079205-ce21-4ff6-a8c6-0ae945402a35" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/TDD.iml" afterPath="$PROJECT_DIR$/.idea/modules/TDD.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/TDD_main.iml" afterPath="$PROJECT_DIR$/.idea/modules/TDD_main.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/TDD_test.iml" afterPath="$PROJECT_DIR$/.idea/modules/TDD_test.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperMoveOnSquareException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperMoveOverUnOccupiedException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperMoveToOccupiedSquare.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperMoveToSamePlaceException.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -179,7 +178,52 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <splitter split-orientation="horizontal" split-proportion="0.51354164">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="SpiderSpec.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/test/SpiderSpec.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="278">
+                  <caret line="27" column="36" lean-forward="true" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <marker date="1541369845313" expanded="true" signature="199:206" ph="/**...*/" />
+                    <marker date="1541369845313" expanded="true" signature="2343:2351" ph="{...}" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="GrasshopperSpec.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test/GrasshopperSpec.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="193">
+                  <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="MoveHandler.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="572">
+                  <caret line="410" column="40" lean-forward="false" selection-start-line="410" selection-start-column="40" selection-end-line="410" selection-end-column="40" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -624,14 +668,18 @@
         <option value="$PROJECT_DIR$/src/nl/hanze/hive/SpiderMoveException.java" />
         <option value="$PROJECT_DIR$/src/nl/hanze/hive/SoldierAntMoveException.java" />
         <option value="$PROJECT_DIR$/test/BeetleSpec.java" />
-        <option value="$PROJECT_DIR$/test/GrasshopperSpec.java" />
-        <option value="$PROJECT_DIR$/test/HiveSpec.java" />
         <option value="$PROJECT_DIR$/test/PlacingTileSpec.java" />
         <option value="$PROJECT_DIR$/test/QueenSpec.java" />
         <option value="$PROJECT_DIR$/test/SoldierAntSpec.java" />
         <option value="$PROJECT_DIR$/src/nl/hanze/hive/BoardBuilder.java" />
         <option value="$PROJECT_DIR$/test/SpiderSpec.java" />
         <option value="$PROJECT_DIR$/src/nl/hanze/hive/PlayHandler.java" />
+        <option value="$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperMoveToSamePlaceException.java" />
+        <option value="$PROJECT_DIR$/test/HiveSpec.java" />
+        <option value="$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperMoveOnSquareException.java" />
+        <option value="$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperMoveToOccupiedSquare.java" />
+        <option value="$PROJECT_DIR$/test/GrasshopperSpec.java" />
+        <option value="$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperMoveOverUnOccupiedException.java" />
         <option value="$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java" />
       </list>
     </option>
@@ -734,6 +782,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -756,11 +805,42 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TDD" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_driven_development" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TDD" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_driven_development" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hive" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -800,16 +880,16 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.All in TDD">
-    <configuration default="false" name="All in TDD" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.GrasshopperSpec">
+    <configuration default="false" name="GrasshopperSpec" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="TDD" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" />
+      <option name="MAIN_CLASS_NAME" value="GrasshopperSpec" />
       <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
@@ -822,18 +902,39 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="HiveSpec.breakTileChain" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="GrasshopperSpec.moveToSameSpace" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="TDD" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="GrasshopperSpec" />
+      <option name="METHOD_NAME" value="moveToSameSpace" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="HiveSpec.nextPlayerIsSelected" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="TDD" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="HiveSpec" />
-      <option name="METHOD_NAME" value="breakTileChain" />
+      <option name="METHOD_NAME" value="nextPlayerIsSelected" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
       <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
       <option name="TEST_SEARCH_SCOPE">
@@ -843,18 +944,18 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="HiveSpec.playerCanPassTurn" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="GrasshopperSpec.moveOneSquare" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="TDD" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="HiveSpec" />
-      <option name="METHOD_NAME" value="playerCanPassTurn" />
+      <option name="MAIN_CLASS_NAME" value="GrasshopperSpec" />
+      <option name="METHOD_NAME" value="moveOneSquare" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
       <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
       <option name="TEST_SEARCH_SCOPE">
@@ -864,35 +965,14 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="SoldierAntSpec.cannotMoveThroughMaze" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="GrasshopperSpec.moveToOccupiedSquare" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="TDD" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="SoldierAntSpec" />
-      <option name="METHOD_NAME" value="cannotMoveThroughMaze" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="SpiderSpec.makesLegalMove" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="TDD" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="SpiderSpec" />
-      <option name="METHOD_NAME" value="makesLegalMove" />
+      <option name="MAIN_CLASS_NAME" value="GrasshopperSpec" />
+      <option name="METHOD_NAME" value="moveToOccupiedSquare" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
       <option name="PARAMETERS" />
@@ -1474,19 +1554,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.All in TDD" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.HiveSpec.breakTileChain" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.HiveSpec.playerCanPassTurn" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.SoldierAntSpec.cannotMoveThroughMaze" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.SpiderSpec.makesLegalMove" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.GrasshopperSpec" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.GrasshopperSpec.moveToSameSpace" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.HiveSpec.nextPlayerIsSelected" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.GrasshopperSpec.moveOneSquare" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.GrasshopperSpec.moveToOccupiedSquare" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.All in TDD" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.SpiderSpec.makesLegalMove" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.SoldierAntSpec.cannotMoveThroughMaze" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.HiveSpec.playerCanPassTurn" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.HiveSpec.breakTileChain" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.GrasshopperSpec" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.GrasshopperSpec.moveToOccupiedSquare" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.GrasshopperSpec.moveOneSquare" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.HiveSpec.nextPlayerIsSelected" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.GrasshopperSpec.moveToSameSpace" />
       </list>
     </recent_temporary>
   </component>
@@ -1528,6 +1608,7 @@
       <workItem from="1541334790324" duration="8598000" />
       <workItem from="1541369527704" duration="2242000" />
       <workItem from="1541373523241" duration="24000" />
+      <workItem from="1544959604360" duration="2188000" />
     </task>
     <task id="LOCAL-00001" summary="More infra">
       <created>1539875834088</created>
@@ -1683,76 +1764,84 @@
       <option name="project" value="LOCAL" />
       <updated>1541371130118</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="New grasshopper exception&#10;Made a seperate exception for every mistake a grasshopper can make&#10;Pretty much everything broke afterwards">
+      <created>1544961776341</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1544961776341</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_in_TDD - 2018.11.04 at 23h 17m 43s.xml">
-      <configuration name="All in TDD" configurationId="JUnit" />
+    <history-entry file="GrasshopperSpec - 2018.12.16 at 12h 49m 33s.xml">
+      <configuration name="GrasshopperSpec" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_TDD - 2018.11.04 at 23h 24m 15s.xml">
-      <configuration name="All in TDD" configurationId="JUnit" />
+    <history-entry file="GrasshopperSpec - 2018.12.16 at 12h 54m 58s.xml">
+      <configuration name="GrasshopperSpec" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_TDD - 2018.11.04 at 23h 25m 13s.xml">
-      <configuration name="All in TDD" configurationId="JUnit" />
+    <history-entry file="GrasshopperSpec - 2018.12.16 at 12h 55m 15s.xml">
+      <configuration name="GrasshopperSpec" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_TDD - 2018.11.04 at 23h 32m 03s.xml">
-      <configuration name="All in TDD" configurationId="JUnit" />
+    <history-entry file="GrasshopperSpec - 2018.12.16 at 12h 59m 24s.xml">
+      <configuration name="GrasshopperSpec" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_TDD - 2018.11.04 at 23h 36m 39s.xml">
-      <configuration name="All in TDD" configurationId="JUnit" />
+    <history-entry file="GrasshopperSpec_moveOneSquare - 2018.12.16 at 12h 54m 54s.xml">
+      <configuration name="GrasshopperSpec.moveOneSquare" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="HiveSpec_playerCanPassTurn - 2018.11.03 at 14h 34m 59s.xml">
-      <configuration name="HiveSpec.playerCanPassTurn" configurationId="JUnit" />
+    <history-entry file="GrasshopperSpec_moveToOccupiedSquare - 2018.12.16 at 12h 56m 57s.xml">
+      <configuration name="GrasshopperSpec.moveToOccupiedSquare" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SpiderSpec_makesLegalMove - 2018.11.04 at 23h 18m 02s.xml">
-      <configuration name="SpiderSpec.makesLegalMove" configurationId="JUnit" />
+    <history-entry file="GrasshopperSpec_moveToOccupiedSquare - 2018.12.16 at 12h 58m 22s.xml">
+      <configuration name="GrasshopperSpec.moveToOccupiedSquare" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SpiderSpec_makesLegalMove - 2018.11.04 at 23h 32m 15s.xml">
-      <configuration name="SpiderSpec.makesLegalMove" configurationId="JUnit" />
+    <history-entry file="GrasshopperSpec_moveToOccupiedSquare - 2018.12.16 at 12h 58m 28s.xml">
+      <configuration name="GrasshopperSpec.moveToOccupiedSquare" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SpiderSpec_makesLegalMove - 2018.11.04 at 23h 33m 49s.xml">
-      <configuration name="SpiderSpec.makesLegalMove" configurationId="JUnit" />
+    <history-entry file="GrasshopperSpec_moveToSameSpace - 2018.12.16 at 12h 41m 09s.xml">
+      <configuration name="GrasshopperSpec.moveToSameSpace" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SpiderSpec_makesLegalMove - 2018.11.04 at 23h 36m 31s.xml">
-      <configuration name="SpiderSpec.makesLegalMove" configurationId="JUnit" />
+    <history-entry file="HiveSpec_nextPlayerIsSelected - 2018.12.16 at 12h 44m 33s.xml">
+      <configuration name="HiveSpec.nextPlayerIsSelected" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89973000" />
+    <option name="totallyTimeSpent" value="92161000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39957717" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1786,7 +1875,8 @@
     <MESSAGE value="Javadoc" />
     <MESSAGE value="Found a new way to check the tile chain but it's still breaking every other unit test for some reason" />
     <MESSAGE value="Final correction's&#10;Realized you could get away with never playing the Queen&#10;Spider legal move wasn't working because it was adding the occupied &#10;neighbours as well." />
-    <option name="LAST_COMMIT_MESSAGE" value="Final correction's&#10;Realized you could get away with never playing the Queen&#10;Spider legal move wasn't working because it was adding the occupied &#10;neighbours as well." />
+    <MESSAGE value="New grasshopper exception&#10;Made a seperate exception for every mistake a grasshopper can make&#10;Pretty much everything broke afterwards" />
+    <option name="LAST_COMMIT_MESSAGE" value="New grasshopper exception&#10;Made a seperate exception for every mistake a grasshopper can make&#10;Pretty much everything broke afterwards" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1798,18 +1888,31 @@
           <option name="timeStamp" value="113" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/test/SpiderSpec.java</url>
-          <line>34</line>
-          <properties />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java</url>
           <line>373</line>
           <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java</url>
+          <line>203</line>
+          <properties />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java</url>
+          <line>200</line>
+          <properties />
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java</url>
+          <line>199</line>
+          <properties />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="2" />
+      <option name="time" value="7" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1818,27 +1921,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5236">
-          <caret line="316" column="48" lean-forward="false" selection-start-line="316" selection-start-column="48" selection-end-line="316" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/QueenSpec.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="3" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/SoldierAntSpec.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="12" column="29" lean-forward="true" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/SpiderSpec.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -1921,13 +2003,6 @@
     <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/Player.java" />
     <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/GameFactory.java" />
     <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/java/util/LinkedList.class" />
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="15" column="37" lean-forward="false" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gradlew">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1935,31 +2010,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/SpiderMoveException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="59" lean-forward="false" selection-start-line="5" selection-start-column="59" selection-end-line="5" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/QueenMoveException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="45" lean-forward="true" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/BeetleSpec.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/GrasshopperSpec.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="11" column="3" lean-forward="false" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
         </state>
       </provider>
     </entry>
@@ -2008,13 +2062,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperMoveException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="37" lean-forward="false" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperStepResult.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -2036,13 +2083,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="64" column="25" lean-forward="false" selection-start-line="64" selection-start-column="20" selection-end-line="64" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/PlayHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1009">
@@ -2050,10 +2090,117 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test/BeetleSpec.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperMoveException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="37" lean-forward="false" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperMoveToSamePlaceException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="48" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="48" />
+          <folding>
+            <element signature="e#215#216#0" expanded="true" />
+            <element signature="e#245#246#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/SpiderMoveException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="59" lean-forward="false" selection-start-line="5" selection-start-column="59" selection-end-line="5" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperMoveOnSquareException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="43" lean-forward="false" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="43" />
+          <folding>
+            <element signature="e#209#210#0" expanded="true" />
+            <element signature="e#239#240#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperMoveToOccupiedSquare.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding>
+            <element signature="e#207#208#0" expanded="true" />
+            <element signature="e#237#238#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="64" column="23" lean-forward="false" selection-start-line="64" selection-start-column="20" selection-end-line="64" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/HiveSpec.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="28" column="19" lean-forward="false" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
+          <folding>
+            <element signature="method#moveToTwoLevelsInOneMove#0;class#HiveSpec#0" expanded="false" />
+            <element signature="method#playerIsWinner#0;class#HiveSpec#0" expanded="false" />
+            <element signature="method#playerCanPassTurn#0;class#HiveSpec#0" expanded="false" />
+            <element signature="method#gameIsDraw#0;class#HiveSpec#0" expanded="false" />
+            <element signature="method#moveBeforeQueenPlacement#0;class#HiveSpec#0" expanded="false" />
+            <element signature="method#breakTileChain#0;class#HiveSpec#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperMoveOverUnOccupiedException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding>
+            <element signature="e#220#221#0" expanded="true" />
+            <element signature="e#250#251#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/GrasshopperSpec.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="367" column="18" lean-forward="false" selection-start-line="367" selection-start-column="18" selection-end-line="367" selection-end-column="18" />
+        <state relative-caret-position="572">
+          <caret line="410" column="40" lean-forward="false" selection-start-line="410" selection-start-column="40" selection-end-line="410" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -2062,20 +2209,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/SpiderSpec.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="30" column="22" lean-forward="true" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
+        <state relative-caret-position="278">
+          <caret line="27" column="36" lean-forward="true" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
             <marker date="1541369845313" expanded="true" signature="199:206" ph="/**...*/" />
             <marker date="1541369845313" expanded="true" signature="2343:2351" ph="{...}" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/HiveSpec.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-36">
-          <caret line="97" column="9" lean-forward="true" selection-start-line="97" selection-start-column="9" selection-end-line="97" selection-end-column="9" />
         </state>
       </provider>
     </entry>

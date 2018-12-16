@@ -100,15 +100,15 @@ class MoveHandler {
     Cell genericRulesChecker(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
         Cell originalCell = game.getCell(fromQ, fromR);
         if (!game.queenPlayed()) {
-            throw new Hive.IllegalMove("You have to place your Queen before moving your pieces");
+            throw new GameMoveBeforeQueenPlacement("You have to place your Queen before moving your pieces");
         } else if(!followsMoveRules(fromQ, fromR, toQ, toR)){
-            throw new Hive.IllegalMove("You have to move your piece next to another piece.");
+            throw new GameMoveToSpaceWithoutNeighboursException("You have to move your piece next to another piece.");
         } else if(originalCell.size() == 0) {
             throw new Hive.IllegalMove("Nothing to move");
         } else if (originalCell.cellOwner() != game.currentPlayer){
             throw new Hive.IllegalMove("You cannot move the piece of another player!");
         } else if(breaksTileChain(fromQ, fromR, toQ, toR)) {
-            throw new Hive.IllegalMove("You cannot break the tile chain!");
+            throw new GameBreakTileChainException("You cannot break the tile chain!");
         } else {
             return originalCell;
         }

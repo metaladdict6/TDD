@@ -1,7 +1,4 @@
-import nl.hanze.hive.BoardBuilder;
-import nl.hanze.hive.Cell;
-import nl.hanze.hive.Game;
-import nl.hanze.hive.Hive;
+import nl.hanze.hive.*;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -34,7 +31,7 @@ public class HiveSpec {
         }
     }
 
-    @Test(expected = Hive.IllegalMove.class)
+    @Test(expected = GameMoveToSpaceWithoutNeighboursException.class)
     public void moveToSpaceWithoutNeighbours() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -46,13 +43,31 @@ public class HiveSpec {
         game.move(0, 0, 0, 1);
     }
 
-    @Test(expected =  Hive.IllegalMove.class)
+    @Test
+    public void moveBetweenLevels() {
+        Game game = new Game();
+        HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
+        grid.get(-2).get(-1).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
+        game.setWhiteQueenCell(grid.get(-2).get(-1));
+        grid.get(-3).get(0).add(Game.Player.WHITE, Game.Tile.SPIDER);
+        grid.get(-3).get(0).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        try {
+            game.move(-3, 0, -2, 0);
+        } catch (Hive.IllegalMove illegalMove) {
+            System.out.println(illegalMove.getMessage());
+        } finally {
+
+        }
+    }
+
+    @Test(expected =  GameToDeepMoveException.class)
     public void moveToTwoLevelsInOneMove() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
         grid.get(-2).get(-1).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
         game.setWhiteQueenCell(grid.get(-2).get(-1));
         grid.get(-3).get(0).add(Game.Player.WHITE, Game.Tile.SPIDER);
+        grid.get(-3).get(0).add(Game.Player.WHITE, Game.Tile.BEETLE);
         grid.get(-3).get(0).add(Game.Player.WHITE, Game.Tile.BEETLE);
         game.move(-3, 0, -2, 0);
     }
@@ -139,7 +154,7 @@ public class HiveSpec {
         Assert.assertTrue(game.isDraw());
     }
 
-    @Test(expected = Hive.IllegalMove.class)
+    @Test(expected = GameMoveBeforeQueenPlacement.class)
     public void moveBeforeQueenPlacement() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -148,7 +163,7 @@ public class HiveSpec {
         game.move(-1, 0, 0, -1);
     }
 
-    @Test(expected = Hive.IllegalMove.class)
+    @Test(expected = GameBreakTileChainException.class)
     public void breakTileChain() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();

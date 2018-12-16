@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6079205-ce21-4ff6-a8c6-0ae945402a35" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/nl/hanze/hive/GameBreakTileChainException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/nl/hanze/hive/GameMoveBeforeQueenPlacement.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/nl/hanze/hive/GameMoveToSpaceWithoutNeighbours.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/nl/hanze/hive/GameToDeepMoveException.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/nl/hanze/hive/PlayHandler.java" afterPath="$PROJECT_DIR$/src/nl/hanze/hive/PlayHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/PlacingTileSpec.java" afterPath="$PROJECT_DIR$/test/PlacingTileSpec.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -177,38 +179,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PlayHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/PlayHandler.java">
+      <file leaf-file-name="GameMoveToSpaceWithoutNeighbours.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/GameMoveToSpaceWithoutNeighbours.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+            <state relative-caret-position="51">
+              <caret line="3" column="26" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding>
-                <element signature="docComment;method#hasNotPlayedTile#0;class#PlayHandler#0" expanded="false" />
-                <element signature="docComment;method#playTile#1;class#PlayHandler#0" expanded="false" />
-                <element signature="method#playTile#1;class#PlayHandler#0" expanded="false" />
-                <element signature="docComment;method#isPieceAvailable#0;class#PlayHandler#0" expanded="false" />
-                <element signature="method#isPieceAvailable#0;class#PlayHandler#0" expanded="false" />
-                <element signature="docComment;method#updatePieces#0;class#PlayHandler#0" expanded="false" />
-                <element signature="method#updatePieces#0;class#PlayHandler#0" expanded="false" />
-                <element signature="docComment;method#allFriends#0;class#PlayHandler#0" expanded="false" />
+                <element signature="e#204#205#0" expanded="true" />
+                <element signature="e#234#235#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlacingTileSpec.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/PlacingTileSpec.java">
+      <file leaf-file-name="GameToDeepMoveException.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/GameToDeepMoveException.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="60" column="41" lean-forward="false" selection-start-line="60" selection-start-column="41" selection-end-line="60" selection-end-column="41" />
+            <state relative-caret-position="153">
+              <caret line="9" column="5" lean-forward="true" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#playPieces#0;class#PlacingTileSpec#0" expanded="false" />
-                <element signature="method#needToPlaceQueenException#0;class#PlacingTileSpec#0" expanded="false" />
-                <element signature="method#placePieceOnExistingPiece#0;class#PlacingTileSpec#0" expanded="false" />
-                <element signature="method#placeWithoutNeighbours#0;class#PlacingTileSpec#0" expanded="false" />
-                <element signature="method#placeNextToOpponent#0;class#PlacingTileSpec#0" expanded="false" />
-                <element signature="method#placeTooManyPieces#0;class#PlacingTileSpec#0" expanded="false" />
+                <element signature="e#186#187#0" expanded="true" />
+                <element signature="e#216#217#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -642,8 +633,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/opdrachten/week_1/specs/AmountTest.java" />
-        <option value="$PROJECT_DIR$/opdrachten/week_1/dir/Amount.java" />
         <option value="$PROJECT_DIR$/src/Hive.java" />
         <option value="$PROJECT_DIR$/src/nl/hanze/hive/Player.java" />
         <option value="$PROJECT_DIR$/test/GameTest.java" />
@@ -691,6 +680,10 @@
         <option value="$PROJECT_DIR$/src/nl/hanze/hive/PlaceQueenBeforeContinuingException.java" />
         <option value="$PROJECT_DIR$/src/nl/hanze/hive/PlayHandler.java" />
         <option value="$PROJECT_DIR$/test/PlacingTileSpec.java" />
+        <option value="$PROJECT_DIR$/src/nl/hanze/hive/GameBreakTileChainException.java" />
+        <option value="$PROJECT_DIR$/src/nl/hanze/hive/GameMoveBeforeQueenPlacement.java" />
+        <option value="$PROJECT_DIR$/src/nl/hanze/hive/GameMoveToSpaceWithoutNeighbours.java" />
+        <option value="$PROJECT_DIR$/src/nl/hanze/hive/GameToDeepMoveException.java" />
       </list>
     </option>
   </component>
@@ -1619,7 +1612,7 @@
       <workItem from="1541334790324" duration="8598000" />
       <workItem from="1541369527704" duration="2242000" />
       <workItem from="1541373523241" duration="24000" />
-      <workItem from="1544959604360" duration="19206000" />
+      <workItem from="1544959604360" duration="19638000" />
     </task>
     <task id="LOCAL-00001" summary="More infra">
       <created>1539875834088</created>
@@ -1824,7 +1817,14 @@
       <option name="project" value="LOCAL" />
       <updated>1544984980718</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="More placing stuff">
+      <created>1544989513945</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1544989513945</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1860,7 +1860,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="109179000" />
+    <option name="totallyTimeSpent" value="109611000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1906,7 +1906,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Created a moveHandler &#10;I created this because I thought the game class was becoming way too big." />
     <MESSAGE value="Progression&#10;Queen move exception is being thrown when we expect it. &#10;Accidently broke move without neighbours, but fixed that in this version. &#10;Now working on repairing &quot;move breaks tile chain&quot;." />
     <MESSAGE value="BreakTileChain unit test doesn't work... yet.&#10;For some reason the method's, now in comments, break all the current unit tests with a nullpoint exception.&#10;Have to get back to it later." />
     <MESSAGE value="Changed SoldierAntSpec so that the board state is valid and doesn't trigger the generic rules exception&#10;Changed SoliderAntMoveException so that it takes the super from IllegalMoveException&#10;Optimalised the tile specifice checks to retun the cell the player wants to go to. Also changed moveTile method so that it only gets the cells affected by the move and then popping the moved tile directly into the new cell it's being placed into.&#10;" />
@@ -1931,7 +1930,8 @@
     <MESSAGE value="Update the solider ant&#10;Update the solider that every situation has seperate exception" />
     <MESSAGE value="Updated the spider" />
     <MESSAGE value="Fixing the placing unit tests now" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixing the placing unit tests now" />
+    <MESSAGE value="More placing stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="More placing stuff" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1944,16 +1944,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/opdrachten/HiveSpec/PlaceSpec.java" />
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="12" lean-forward="false" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/java/util/Stack.class" />
-    <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/java/lang/Object.class" />
     <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/java/lang/Math.class" />
     <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/Player.java" />
     <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/GameFactory.java" />
@@ -2356,21 +2346,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/HiveSpec.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="49" column="40" lean-forward="false" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="40" />
-          <folding>
-            <element signature="method#nextPlayerIsSelected#0;class#HiveSpec#0" expanded="false" />
-            <element signature="method#moveToTwoLevelsInOneMove#0;class#HiveSpec#0" expanded="false" />
-            <element signature="method#playerIsWinner#0;class#HiveSpec#0" expanded="false" />
-            <element signature="method#playerCanPassTurn#0;class#HiveSpec#0" expanded="false" />
-            <element signature="method#gameIsDraw#0;class#HiveSpec#0" expanded="false" />
-            <element signature="method#moveBeforeQueenPlacement#0;class#HiveSpec#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/QueenSpec.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -2398,9 +2373,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test/PlacingTileSpec.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#playPieces#0;class#PlacingTileSpec#0" expanded="false" />
+            <element signature="method#needToPlaceQueenException#0;class#PlacingTileSpec#0" expanded="false" />
+            <element signature="method#placePieceOnExistingPiece#0;class#PlacingTileSpec#0" expanded="false" />
+            <element signature="method#placeWithoutNeighbours#0;class#PlacingTileSpec#0" expanded="false" />
+            <element signature="method#placeNextToOpponent#0;class#PlacingTileSpec#0" expanded="false" />
+            <element signature="method#placeTooManyPieces#0;class#PlacingTileSpec#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/PlayHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
+        <state relative-caret-position="408">
           <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding>
             <element signature="docComment;method#hasNotPlayedTile#0;class#PlayHandler#0" expanded="false" />
@@ -2415,18 +2406,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/PlacingTileSpec.java">
+    <entry file="file://$PROJECT_DIR$/test/HiveSpec.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="60" column="41" lean-forward="false" selection-start-line="60" selection-start-column="41" selection-end-line="60" selection-end-column="41" />
+        <state relative-caret-position="56">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#playPieces#0;class#PlacingTileSpec#0" expanded="false" />
-            <element signature="method#needToPlaceQueenException#0;class#PlacingTileSpec#0" expanded="false" />
-            <element signature="method#placePieceOnExistingPiece#0;class#PlacingTileSpec#0" expanded="false" />
-            <element signature="method#placeWithoutNeighbours#0;class#PlacingTileSpec#0" expanded="false" />
-            <element signature="method#placeNextToOpponent#0;class#PlacingTileSpec#0" expanded="false" />
-            <element signature="method#placeTooManyPieces#0;class#PlacingTileSpec#0" expanded="false" />
+            <element signature="method#moveToSpaceWithoutNeighbours#0;class#HiveSpec#0" expanded="false" />
+            <element signature="method#moveToTwoLevelsInOneMove#0;class#HiveSpec#0" expanded="false" />
+            <element signature="method#playerIsWinner#0;class#HiveSpec#0" expanded="false" />
+            <element signature="method#playerCanPassTurn#0;class#HiveSpec#0" expanded="false" />
+            <element signature="method#gameIsDraw#0;class#HiveSpec#0" expanded="false" />
+            <element signature="method#moveBeforeQueenPlacement#0;class#HiveSpec#0" expanded="false" />
+            <element signature="method#breakTileChain#0;class#HiveSpec#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/GameBreakTileChainException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="21" lean-forward="false" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+          <folding>
+            <element signature="e#194#195#0" expanded="true" />
+            <element signature="e#224#225#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/GameMoveBeforeQueenPlacement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding>
+            <element signature="e#195#196#0" expanded="true" />
+            <element signature="e#225#226#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/GameMoveToSpaceWithoutNeighbours.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="26" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding>
+            <element signature="e#204#205#0" expanded="true" />
+            <element signature="e#234#235#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/GameToDeepMoveException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="5" lean-forward="true" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+          <folding>
+            <element signature="e#186#187#0" expanded="true" />
+            <element signature="e#216#217#0" expanded="true" />
           </folding>
         </state>
       </provider>

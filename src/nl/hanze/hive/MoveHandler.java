@@ -176,11 +176,11 @@ class MoveHandler {
     private Cell moveSoldierAnt(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
         Cell cell = game.getCell(toQ, toR);
         if (fromQ == toQ && fromR == toR) {
-            throw new SoldierAntMoveException("You may not move to the same space");
+            throw new SoldierAntMoveToSameSpaceException("You may not move to the same space");
         } else if(cell.cellOwner() != null) {
-            throw new SoldierAntMoveException("You cannot move to an occupied space");
+            throw new SoldierAntMoveToOccupiedSpace("You cannot move to an occupied space");
         } else if(!soldierAntCanMove(fromQ, fromR, toQ, toR)) {
-            throw new SoldierAntMoveException("No path to destination!");
+            throw new SoldierAntNoPathToDesinationException("No path to destination!");
         }
         return cell;
     }

@@ -1,7 +1,4 @@
-import nl.hanze.hive.Cell;
-import nl.hanze.hive.Game;
-import nl.hanze.hive.Hive;
-import nl.hanze.hive.SoldierAntMoveException;
+import nl.hanze.hive.*;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -15,15 +12,9 @@ import java.util.HashMap;
 public class SoldierAntSpec {
 
     @Test
-    public void simpleSoldierAntMove() {
-
-    }
-
-    @Test void moveSoliderAntThroughMaze() {
+    public void soldierAntLegalMove() {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
-        grid.get(-1).get(1).add(Game.Player.WHITE, Game.Tile.BEETLE);
-        grid.get(-1).get(0).add(Game.Player.WHITE, Game.Tile.BEETLE);
         grid.get(0).get(1).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
         grid.get(0).get(-1).add(Game.Player.WHITE, Game.Tile.BEETLE);
         grid.get(1).get(-1).add(Game.Player.WHITE, Game.Tile.BEETLE);
@@ -38,11 +29,11 @@ public class SoldierAntSpec {
         } catch (Hive.IllegalMove illegalMove) {
             illegalMove.printStackTrace();
         } finally {
-
+            Assert.assertEquals(Game.Tile.SOLDIER_ANT, grid.get(0).get(3).getTopTile());
         }
     }
 
-    @Test(expected = SoldierAntMoveException.class)
+    @Test(expected = SoldierAntMoveToOccupiedSpace.class)
     public void moveToOccupiedSpace() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -53,7 +44,7 @@ public class SoldierAntSpec {
         game.move(-3, 0, -2, 0);
     }
 
-    @Test(expected = SoldierAntMoveException.class)
+    @Test(expected = SoldierAntNoPathToDesinationException.class)
     public void cannotMoveThroughMaze() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -71,7 +62,7 @@ public class SoldierAntSpec {
         game.move(0, 0, 3, 0);
     }
 
-    @Test(expected = SoldierAntMoveException.class)
+    @Test(expected = SoldierAntMoveToSameSpaceException.class)
     public void moveToSameSpace() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();

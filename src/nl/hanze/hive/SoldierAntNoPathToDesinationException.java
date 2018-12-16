@@ -1,7 +1,11 @@
 package nl.hanze.hive;
 
 /**
- * Created by Robert Ziengs on 16-12-2018.
+ * @author Robert Ziengs, Leon Wetzel
  */
-public class SoldierAntNoPathToDesinationException {
+public class SoldierAntNoPathToDesinationException extends Hive.IllegalMove {
+
+    public SoldierAntNoPathToDesinationException(String message) {
+        super(message);
+    }
 }

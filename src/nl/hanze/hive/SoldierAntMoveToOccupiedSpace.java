@@ -1,7 +1,11 @@
 package nl.hanze.hive;
 
 /**
- * Created by Robert Ziengs on 16-12-2018.
+ * @author Robert Ziengs, Leon Wetzel
  */
-public class SoldierAntMoveToOccupiedSpace {
+public class SoldierAntMoveToOccupiedSpace extends Hive.IllegalMove {
+
+    public SoldierAntMoveToOccupiedSpace(String message) {
+        super(message);
+    }
 }

@@ -1,7 +1,11 @@
 package nl.hanze.hive;
 
 /**
- * Created by Robert Ziengs on 16-12-2018.
+ * @author Robert Ziengs, Leon Wetzel
  */
-public class SoldierAntMoveToSameSpaceException {
+public class SoldierAntMoveToSameSpaceException extends Hive.IllegalMove {
+
+    public SoldierAntMoveToSameSpaceException(String message) {
+        super(message);
+    }
 }

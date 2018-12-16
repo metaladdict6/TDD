@@ -199,13 +199,13 @@ class MoveHandler {
         Cell destination = game.getCell(toQ, toR);
         GrassHopperStepResult result = requiredGrasshopperSteps(fromQ, fromR, toQ, toR);
         if (currentCell.equals(destination)) {
-            throw new GrassHopperMoveException("The grasshopper can't move to the same cell he began");
+            throw new GrassHopperMoveToSamePlaceException("The grasshopper can't move to the same cell he began");
         } else if(destination.cellOwner() != null) {
-            throw new GrassHopperMoveException("The grasshopper can't move to an occupied space.");
+            throw new GrassHopperMoveToOccupiedSquare("The grasshopper can't move to an occupied space.");
         } else if(!result.isGoesOverPiece()) {
-            throw new GrassHopperMoveException("The grasshopper has to jump over at least one piece");
+            throw new GrassHopperMoveOverUnOccupiedException("The grasshopper has to jump over at least one piece");
         } else if(result.getSteps() >= 2) {
-            throw new GrassHopperMoveException("The grasshopper has to jump over at least one piece");
+            throw new GrassHopperMoveOnSquareException("The grasshopper has to jump over at least one piece");
         }
         return destination;
     }
@@ -408,7 +408,7 @@ class MoveHandler {
             double key = Collections.min(options.keySet());
             Cell closestCell = options.get(key);
             if (closestCell.cellOwner() == null) {
-                throw new GrassHopperMoveException("You cannot move over unoccupied spaces");
+                throw new GrassHopperMoveOverUnOccupiedException("You cannot move over unoccupied spaces");
             } else if(!grassHopperTravelingInStraightLine(currentCell.getCoordinateQ(), currentCell.getCoordinateQ(),
                     closestCell.getCoordinateQ(), closestCell.getCoordinateR())) {
                 throw new GrassHopperMoveException("You have to move in a straight line!");

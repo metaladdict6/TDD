@@ -14,6 +14,26 @@ import java.util.LinkedList;
  */
 public class HiveSpec {
 
+    @Test
+    public void nextPlayerIsSelected() {
+        Game game = new Game();
+        HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
+        grid.get(0).get(-3).add(Game.Player.WHITE, Game.Tile.SPIDER);
+        grid.get(0).get(-2).add(Game.Player.WHITE, Game.Tile.SOLDIER_ANT);
+        grid.get(-1).get(-1).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        grid.get(-1).get(0).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        grid.get(-2).get(0).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
+        game.setWhiteQueenCell(grid.get(-2).get(0));
+        grid.get(0).get(-3).add(Game.Player.WHITE, Game.Tile.SPIDER);
+        try{
+            game.move(-3, 0, 0, -3);
+        }catch (Exception exception) {
+            System.out.print(exception.getMessage());
+        }finally {
+            Assert.assertEquals(game.currentPlayer, Hive.Player.BLACK);
+        }
+    }
+
     @Test(expected = Hive.IllegalMove.class)
     public void moveToSpaceWithoutNeighbours() throws Exception {
         Game game = new Game();
@@ -25,7 +45,6 @@ public class HiveSpec {
         game.setWhiteQueenCell(grid.get(0).get(-2));
         game.move(0, 0, 0, 1);
     }
-
 
     @Test(expected =  Hive.IllegalMove.class)
     public void moveToTwoLevelsInOneMove() throws Exception {

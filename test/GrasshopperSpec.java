@@ -1,7 +1,4 @@
-import nl.hanze.hive.Cell;
-import nl.hanze.hive.Game;
-import nl.hanze.hive.GrassHopperMoveException;
-import nl.hanze.hive.Hive;
+import nl.hanze.hive.*;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -13,7 +10,7 @@ import java.util.HashMap;
  */
 public class GrasshopperSpec {
 
-    @Test(expected = GrassHopperMoveException.class)
+    @Test(expected = GrassHopperMoveOnSquareException.class)
     public void moveOneSquare() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -23,7 +20,7 @@ public class GrasshopperSpec {
         game.move(-3, 0, -2, -1);
     }
 
-    @Test(expected = GrassHopperMoveException.class)
+    @Test(expected = GrassHopperMoveToOccupiedSquare.class)
     public void moveToOccupiedSquare() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -34,7 +31,7 @@ public class GrasshopperSpec {
         game.move(-3, 0, -1, 0);
     }
 
-    @Test(expected = GrassHopperMoveException.class)
+    @Test(expected = GrassHopperMoveOverUnOccupiedException.class)
     public void jumpOverUnOccupiedSpaces() throws Exception{
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -46,7 +43,7 @@ public class GrasshopperSpec {
         game.move(-3, 0, 1, 0);
     }
 
-    @Test(expected = GrassHopperMoveException.class)
+    @Test(expected = GrassHopperMoveToSamePlaceException.class)
     public void moveToSameSpace() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();

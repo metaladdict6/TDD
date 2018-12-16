@@ -1,7 +1,4 @@
-import nl.hanze.hive.BoardBuilder;
-import nl.hanze.hive.Cell;
-import nl.hanze.hive.Game;
-import nl.hanze.hive.Hive;
+import nl.hanze.hive.*;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -14,7 +11,7 @@ import java.util.LinkedList;
  */
 public class PlacingTileSpec {
 
-    @Test(expected =  Hive.IllegalMove.class)
+    @Test(expected =  PlaceOnExistingPieceException.class)
     public void placePieceOnExistingPiece() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -23,7 +20,7 @@ public class PlacingTileSpec {
         game.play(Hive.Tile.BEETLE, 0, -3);
     }
 
-    @Test(expected =  Hive.IllegalMove.class)
+    @Test(expected =  PlaceOnExistingPieceException.class)
     public void placeWithoutNeighbours() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -32,7 +29,7 @@ public class PlacingTileSpec {
         game.play(Hive.Tile.BEETLE, 0, 0);
     }
 
-    @Test(expected =  Hive.IllegalMove.class)
+    @Test(expected =  PlaceNextToOpponentException.class)
     public void placeNextToOpponent() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
@@ -40,7 +37,7 @@ public class PlacingTileSpec {
         game.play(Game.Tile.SOLDIER_ANT, -1, -3);
     }
 
-    @Test(expected =  Hive.IllegalMove.class)
+    @Test(expected =  PlaceTooManyPiecesException.class)
     public void placeTooManyPieces() throws Hive.IllegalMove{
         Game game = new Game();
         LinkedList<Hive.Tile> tiles = new LinkedList<>();

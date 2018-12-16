@@ -28,7 +28,7 @@ public class PlayHandler {
                 HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
                 Cell cell = game.getCell(grid, r, q);
                 if (cell.size() != 0) {
-                    throw new Hive.IllegalMove("The coordinates you are trying to play too is occupied");
+                    throw new PlaceOnExistingPieceException("The coordinates you are trying to play too is occupied");
                 } else {
                     ArrayList<Cell> neighbours = this.game.findNeighbours(q, r);
                     if (hasNotPlayedTile()) {
@@ -46,7 +46,7 @@ public class PlayHandler {
                     }
                 }
             } else {
-                throw new Hive.IllegalMove("You have to play your Queen");
+                throw new PlaceQueenBeforeContinuingException("You have to play your Queen");
             }
 
         } else {

@@ -39,7 +39,6 @@ public class PlacingTileSpec {
         game.play(Hive.Tile.BEETLE, -1, 0); // WHITE
     }
 
-
     @Test(expected =  PlaceException.PlaceOnExistingPieceException.class)
     public void placePieceOnExistingPiece() throws Exception {
         Game game = new Game();

@@ -24,8 +24,6 @@ public class Game implements Hive {
 
     private Cell whiteQueenCell;
 
-
-
     private MoveHandler moveHandler;
 
     private PlayHandler playHandler;

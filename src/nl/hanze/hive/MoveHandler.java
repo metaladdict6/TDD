@@ -183,7 +183,7 @@ class MoveHandler {
      */
     private Cell moveBeetle(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
         Cell cell = game.getCell(toQ, toR);
-        if(calculateDistanceRoundedDown(fromQ, fromR, toQ, toR) > 1) {
+        if(!isNeighbour(fromQ, fromR, toQ, toR)) {
             throw new BeetleMoveException("You cannot move the beetle more then one cell!");
         }else if(fromQ == toQ && fromR == toR){
             throw new BeetleMoveException("You cannot move to the same space!");
@@ -247,7 +247,7 @@ class MoveHandler {
      * @throws Hive.IllegalMove The throw Exception if the move is invalid.
      */
     private Cell moveQueen(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
-        if (calculateDistanceRoundedDown(fromQ, fromR, toQ, toR) > 1) {
+        if (!isNeighbour(fromQ, fromR, toQ, toR)) {
             throw new QueenMoveException.QueenMoveTooFarException("You cannot move more then one tile!");
         }
         Cell cell = game.getCell(toQ, toR);
@@ -315,6 +315,14 @@ class MoveHandler {
         return calculateDistance(fromQ, fromR, toQ, toR).intValue();
     }
 
+    /**
+     * This method checks if the dept of the move isn't too deep
+     * @param fromQ The horizontal starting position
+     * @param fromR The vertical starting position.
+     * @param toQ The horizontal destination position.
+     * @param toR The vertical destination position.
+     * @return
+     */
     private int calculateDepthOfStep(int fromQ, int fromR, int toQ, int toR) {
         HashMap<Integer, HashMap<Integer, Cell>> grid = this.game.getGrid();
         Cell current = this.game.getCell(fromQ, fromR);
@@ -419,6 +427,22 @@ class MoveHandler {
             currentCell = options.get(key);
         }
         return steps;
+    }
+
+    private boolean spiderIsConnectedToChain() {
+        return false;
+    }
+
+    private boolean isNeighbour(int fromQ, int fromR, int toQ, int toR){
+        HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
+        Cell destination = game.getCell(toQ, toR);
+        ArrayList<Cell> neighbours = game.findNeighbours(fromQ, fromR);
+        for (Cell neighbour: neighbours) {
+            if (neighbour.equals(destination)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

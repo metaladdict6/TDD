@@ -87,6 +87,20 @@ public class HiveSpec {
     }
 
     @Test
+    public void playerIsNotWinner() {
+        Game game = new Game();
+        HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
+        grid.get(0).get(2).add(Game.Player.BLACK, Game.Tile.QUEEN_BEE);
+        game.setBlackQueenCell(grid.get(0).get(2));
+        grid.get(0).get(1).add(Game.Player.WHITE, Game.Tile.BEETLE); // LEFT
+        grid.get(0).get(3).add(Game.Player.WHITE, Game.Tile.BEETLE); // RIGHT
+        grid.get(1).get(1).add(Game.Player.WHITE, Game.Tile.BEETLE); // LEFT DOWN
+        grid.get(1).get(2).add(Game.Player.WHITE, Game.Tile.BEETLE); // RIGHT DOWN
+        grid.get(-1).get(3).add(Game.Player.WHITE, Game.Tile.BEETLE); // RIGHT UP
+        Assert.assertFalse(game.isWinner(Hive.Player.WHITE));
+    }
+
+    @Test
     public void playerCanPassTurn() {
         Game game = new Game();
         LinkedList<Hive.Tile> tiles = new LinkedList<>();
@@ -152,6 +166,31 @@ public class HiveSpec {
         grid.get(-1).get(-1).add(Game.Player.BLACK, Game.Tile.BEETLE);
         Assert.assertTrue(game.isDraw());
     }
+
+    @Test
+    public void gameIsNotDraw() {
+        Game game = new Game();
+        HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
+        // Setting up the white win scenario
+        grid.get(0).get(1).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        grid.get(0).get(2).add(Game.Player.BLACK, Game.Tile.QUEEN_BEE);
+        game.setBlackQueenCell(grid.get(0).get(2));
+        grid.get(0).get(3).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        grid.get(1).get(2).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        grid.get(-1).get(2).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        grid.get(-1).get(3).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        // Setting up the black win scenario
+        grid.get(0).get(0).add(Game.Player.BLACK, Game.Tile.BEETLE);
+        grid.get(0).get(-1).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
+        game.setWhiteQueenCell( grid.get(0).get(-1));
+        grid.get(0).get(-2).add(Game.Player.BLACK, Game.Tile.BEETLE);
+        grid.get(1).get(-1).add(Game.Player.BLACK, Game.Tile.BEETLE);
+        grid.get(1).get(-2).add(Game.Player.BLACK, Game.Tile.BEETLE);
+        grid.get(-1).get(0).add(Game.Player.BLACK, Game.Tile.BEETLE);
+        grid.get(-1).get(-1).add(Game.Player.BLACK, Game.Tile.BEETLE);
+        Assert.assertFalse(game.isDraw());
+    }
+
 
     @Test(expected = GameExceptions.GameMoveBeforeQueenPlacement.class)
     public void moveBeforeQueenPlacement() throws Exception {

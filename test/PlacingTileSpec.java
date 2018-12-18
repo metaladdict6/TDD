@@ -36,7 +36,12 @@ public class PlacingTileSpec {
         game.play(Hive.Tile.BEETLE, -2, -3); // BLACK
         game.play(Hive.Tile.GRASSHOPPER, -2, 0); // WHITE 3
         game.play(Hive.Tile.BEETLE, -1, -3); // BLACK
-        game.play(Hive.Tile.BEETLE, -1, 0); // WHITE
+        game.play(Hive.Tile.BEETLE, -1, 0); // WHITE 4
+    }
+
+    @Test
+    public void queenIsSetWhenPlaced() {
+
     }
 
     @Test(expected =  PlaceException.PlaceOnExistingPieceException.class)

@@ -101,7 +101,7 @@ class MoveHandler {
         Cell originalCell = game.getCell(fromQ, fromR);
         if (!game.queenPlayed()) {
             throw new GameExceptions.GameMoveBeforeQueenPlacement("You have to place your Queen before moving your pieces");
-        } else if(!followsMoveRules(fromQ, fromR, toQ, toR)){
+        } else if(!hasOneNeighbour(fromQ, fromR, toQ, toR)){
             throw new GameExceptions.GameMoveToSpaceWithoutNeighboursException("You have to move your piece next to another piece.");
         } else if(originalCell.size() == 0) {
             throw new Hive.IllegalMove("Nothing to move");
@@ -109,7 +109,7 @@ class MoveHandler {
             throw new Hive.IllegalMove("You cannot move the piece of another player!");
         } else if(breaksTileChain(fromQ, fromR, toQ, toR)) {
             throw new GameBreakTileChainException("You cannot break the tile chain!");
-        } else if(calculateDepthOfStep(fromQ,  fromR,  toQ, toR) > 1) {
+        } else if(calculateDepthOfStep(fromQ,  fromR,  toQ, toR) > 2) {
             throw new GameExceptions.GameToBigHeighDifferenceException("You can only step one level up or down");
         } else {
             return originalCell;
@@ -289,11 +289,13 @@ class MoveHandler {
      * @param toR The destination R
      * @return
      */
-    private boolean followsMoveRules(int fromQ, int fromR, int toQ, int toR) {
+    private boolean hasOneNeighbour(int fromQ, int fromR, int toQ, int toR) {
         ArrayList<Cell> neighbours = game.findNeighbours(toQ, toR);
+        Cell currentCell = game.getCell(fromQ, fromR);
+        boolean twoLevels = currentCell.size() > 1;
         int amountOfNeighbours = 0;
         for (Cell cell: neighbours) {
-            if (cell.getCoordinateR() != fromR || cell.getCoordinateQ() != fromQ){
+            if (!cell.equals(currentCell) || twoLevels){
                 if (cell.cellOwner() != null) {
                     amountOfNeighbours++;
                 }
@@ -333,7 +335,8 @@ class MoveHandler {
             return 0;
         }
         else if (currentSize > desinationSize) {
-            return  current.size() - destination.size();
+
+            return  currentSize - desinationSize;
         }else {
             return currentSize - desinationSize;
         }
@@ -407,6 +410,7 @@ class MoveHandler {
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
         Cell currentCell = game.getCell(fromQ, fromR);
         Cell destination = game.getCell(toQ, toR);
+        HashSet<Cell> visited = new HashSet<>();
         int steps = 0;
         while (!currentCell.equals(destination)) {
             steps++;
@@ -419,8 +423,11 @@ class MoveHandler {
                 if (neighbour.equals(destination)) {
                     return steps;
                 }  else if(neighbour.cellOwner() == null) {
-                    options.put(calculateDistance( neighbour.getCoordinateQ(), neighbour.getCoordinateR(),
-                            destination.getCoordinateQ(), destination.getCoordinateR()), neighbour);
+                    if (!visited.contains(neighbour)) {
+                        options.put(calculateDistance(neighbour.getCoordinateQ(), neighbour.getCoordinateR(),
+                                destination.getCoordinateQ(), destination.getCoordinateR()), neighbour);
+                        visited.add(neighbour);
+                    }
                 }
             }
             double key = Collections.min(options.keySet());

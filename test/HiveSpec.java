@@ -30,6 +30,24 @@ public class HiveSpec {
         }
     }
 
+    @Test
+    public void moveToSpaceWithNeigbour() {
+        Game game = new Game();
+        HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
+        grid.get(0).get(0).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
+        game.setBlackQueenCell(grid.get(0).get(0));
+        grid.get(0).get(-1).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        grid.get(0).get(-2).add(Game.Player.BLACK, Game.Tile.QUEEN_BEE);
+        game.setWhiteQueenCell(grid.get(0).get(-2));
+        try {
+            game.move(0, 0, -1, 1);
+        } catch (Hive.IllegalMove illegalMove) {
+            illegalMove.printStackTrace();
+        } finally {
+            Assert.assertEquals(Hive.Tile.QUEEN_BEE, game.getCell(-1, 1).getTopTile());
+        }
+    }
+
     @Test(expected = GameExceptions.GameMoveToSpaceWithoutNeighboursException.class)
     public void moveToSpaceWithoutNeighbours() throws Exception {
         Game game = new Game();
@@ -46,16 +64,16 @@ public class HiveSpec {
     public void moveBetweenLevels() {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
-        grid.get(-2).get(-1).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
-        game.setWhiteQueenCell(grid.get(-2).get(-1));
-        grid.get(-3).get(0).add(Game.Player.WHITE, Game.Tile.SPIDER);
-        grid.get(-3).get(0).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        grid.get(0).get(2).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
+        game.setWhiteQueenCell(grid.get(0).get(2));
+        grid.get(0).get(1).add(Game.Player.WHITE, Game.Tile.SPIDER);
+        grid.get(0).get(1).add(Game.Player.WHITE, Game.Tile.BEETLE);
         try {
-            game.move(-3, 0, -2, 0);
+            game.move(1, 0, 0, 0);
         } catch (Hive.IllegalMove illegalMove) {
             System.out.println(illegalMove.getMessage());
         } finally {
-
+            Assert.assertEquals(Hive.Tile.BEETLE, game.getCell(0, 0).getTopTile());
         }
     }
 
@@ -196,8 +214,8 @@ public class HiveSpec {
     public void moveBeforeQueenPlacement() throws Exception {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
-        grid.get(0).get(-3).add(Game.Player.BLACK, Game.Tile.BEETLE);
-        grid.get(0).get(-1).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        game.play(Game.Tile.BEETLE, -3, 0);
+        game.play(Game.Tile.BEETLE, -1, 0);
         game.move(-1, 0, 0, -1);
     }
 

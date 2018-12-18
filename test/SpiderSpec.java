@@ -32,7 +32,6 @@ public class SpiderSpec {
         }
     }
 
-
     @Test(expected = SpiderMoveException.SpiderMoveToOccupiedSpaceException.class)
     public void moveToOccupiedSpace() throws Exception {
         Game game = new Game();

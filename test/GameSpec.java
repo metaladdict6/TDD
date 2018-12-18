@@ -9,7 +9,7 @@ import java.util.LinkedList;
  * This class tests if the board properly handles different situation's that can occur in the game.
  * @author Robert Ziengs, Leon Wetzel
  */
-public class HiveSpec {
+public class GameSpec {
 
     @Test
     public void nextPlayerIsSelected() {

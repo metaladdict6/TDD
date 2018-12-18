@@ -374,18 +374,34 @@ class MoveHandler {
      */
     private boolean soldierAntCanMove(int fromQ, int fromR, int toQ, int toR) {
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
+        HashSet<Cell> visited = new HashSet<>();
         Cell currentCell = game.getCell(fromQ, fromR);
         Cell desintation = game.getCell(toQ, toR);
-        // HashSet<Cell> visited = new HashSet<>();
+        visited.add(currentCell);
         while (!currentCell.equals(desintation)) {
             HashMap<Double, Cell> options = new HashMap<>();
             ArrayList<Cell> neighbours = game.findNeighbours(currentCell.getCoordinateQ(), currentCell.getCoordinateR());
             for (Cell neighbour : neighbours) {
                 if (neighbour.equals(desintation)) {
                     return true;
-                } else if (neighbour.cellOwner() == null) { // && !visited.contains(neighbour)) {
-                    options.put(calculateDistance(neighbour.getCoordinateQ(), neighbour.getCoordinateR(),
-                            desintation.getCoordinateQ(), desintation.getCoordinateR()), neighbour);
+                } else if (neighbour.cellOwner() == null) {
+                    if (!visited.contains(neighbour)){
+                        ArrayList<Cell> neighboursOfNeighbours = game.findNeighbours(neighbour.getCoordinateQ(),
+                                neighbour.getCoordinateR());
+                        boolean hasOneNeighbour = false;
+                        int neighboursCount = 0;
+                        for (Cell neighbourOption: neighboursOfNeighbours) {
+                            if (neighbourOption.size() != 0 ) {
+                                hasOneNeighbour = true;
+                                neighboursCount++;
+                            }
+                        }
+                        if (hasOneNeighbour) {
+                            options.put(calculateDistance(neighbour.getCoordinateQ(), neighbour.getCoordinateR(),
+                                    desintation.getCoordinateQ(), desintation.getCoordinateR()), neighbour);
+                        }
+                    }
+
                 }
             }
             Set<Double> keys = options.keySet();
@@ -394,9 +410,11 @@ class MoveHandler {
             }
             double key = Collections.min(keys);
             currentCell = options.get(key);
+            visited.add(currentCell);
         }
         return false;
     }
+
 
     /**
      * This method counts the amount of steps spider needs to make along the board to reach it's destination.

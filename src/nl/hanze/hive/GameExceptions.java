@@ -27,9 +27,9 @@ public class GameExceptions {
     /**
      * @author Robert Ziengs, Leon Wetzel
      */
-    public static class GameToDeepMoveException extends Hive.IllegalMove {
+    public static class GameToBigHeighDifferenceException extends Hive.IllegalMove {
 
-        public GameToDeepMoveException(String message) {
+        public GameToBigHeighDifferenceException(String message) {
             super(message);
         }
     }

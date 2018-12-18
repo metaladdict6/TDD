@@ -109,6 +109,8 @@ class MoveHandler {
             throw new Hive.IllegalMove("You cannot move the piece of another player!");
         } else if(breaksTileChain(fromQ, fromR, toQ, toR)) {
             throw new GameBreakTileChainException("You cannot break the tile chain!");
+        } else if(calculateDepthOfStep(fromQ,  fromR,  toQ, toR) > 1) {
+            throw new GameExceptions.GameToBigHeighDifferenceException("You can only step one level up or down");
         } else {
             return originalCell;
         }
@@ -311,6 +313,22 @@ class MoveHandler {
      */
     private int calculateDistanceRoundedDown(int fromQ, int fromR, int toQ, int toR) {
         return calculateDistance(fromQ, fromR, toQ, toR).intValue();
+    }
+
+    private int calculateDepthOfStep(int fromQ, int fromR, int toQ, int toR) {
+        HashMap<Integer, HashMap<Integer, Cell>> grid = this.game.getGrid();
+        Cell current = this.game.getCell(fromQ, fromR);
+        Cell destination = this.game.getCell(toQ, toR);
+        int currentSize = current.size();
+        int desinationSize = destination.size();
+        if (currentSize == desinationSize) {
+            return 0;
+        }
+        else if (currentSize > desinationSize) {
+            return  current.size() - destination.size();
+        }else {
+            return currentSize - desinationSize;
+        }
     }
 
     /**

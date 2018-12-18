@@ -23,7 +23,6 @@ public class SpiderSpec {
         grid.get(-1).get(0).add(Game.Player.WHITE, Game.Tile.BEETLE);
         grid.get(-2).get(0).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
         game.setWhiteQueenCell(grid.get(-2).get(0));
-        grid.get(0).get(-3).add(Game.Player.WHITE, Game.Tile.SPIDER);
         try{
             game.move(-3, 0, 0, -3);
         }catch (Exception exception) {
@@ -81,7 +80,6 @@ public class SpiderSpec {
         grid.get(-1).get(0).add(Game.Player.WHITE, Game.Tile.BEETLE);
         grid.get(-2).get(0).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
         game.setWhiteQueenCell(grid.get(-2).get(0));
-        grid.get(0).get(-3).add(Game.Player.WHITE, Game.Tile.SPIDER);
         game.move(-3, 0, -1, -2);
     }
 }

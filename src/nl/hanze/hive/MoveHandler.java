@@ -124,23 +124,48 @@ class MoveHandler {
      */
     private boolean breaksTileChain(int fromQ, int fromR, int toQ, int toR) {
         HashMap<Integer, HashMap<Integer, Cell>> grid = BoardBuilder.copyGrid(game.getGrid());
-        Cell current = grid.get(fromR).get(fromQ);
-        grid.get(fromR).get(fromQ).add(game.currentPlayer, current.pop());
-        ArrayList<Cell> neighbours = game.findNeighbours(fromQ, fromR, grid);
-        for (Cell neighbour: neighbours) {
-            ArrayList<Boolean> hasNeigbours = new ArrayList<>();
-            if (neighbour.size() > 0){
-                for (Cell cell: game.findNeighbours(neighbour.getCoordinateQ(), neighbour.getCoordinateR(), grid)) {
-                    if (!(cell.getCoordinateR() == neighbour.getCoordinateR() &&
-                            neighbour.getCoordinateQ() == cell.getCoordinateQ())) {
-                        hasNeigbours.add(cell.size() != 0);
-                    }
-                }
-                if (!hasNeigbours.contains(Boolean.TRUE)){
-                    return true;
-                }
-            }
-        }
+//        HashSet<Cell> cellsWithNeighbours = new HashSet<>();
+//        for (HashMap<Integer, Cell> row: grid.values()) {
+//            for(Integer key: row.keySet()) {
+//                Cell cell = row.get(key);
+//                if (cell.size() != 0) {
+//                    for (Cell neighbour: game.findNeighbours(cell.getCoordinateQ(), cell.getCoordinateR(), grid)) {
+//                        if (neighbour.size() > 0) {
+//                            cellsWithNeighbours.add(cell);
+//                            break;
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        Cell current = grid.get(fromR).get(fromQ);
+//        cellsWithNeighbours.remove(current);
+//        Cell destination = grid.get(toR).get(toQ);
+//        destination.add(game.currentPlayer, current.pop());
+//        cellsWithNeighbours.add(destination);
+//        ArrayList<Cell> cells = new ArrayList<>();
+//        for (HashMap<Integer, Cell> row: grid.values()) {
+//            for(Cell cell: row.values()) {
+//                if (cell.size() != 0) {
+//                    cells.add(cell);
+//                }
+//            }
+//        }
+//        for (Cell cell: cells) {
+//            if (cellsWithNeighbours.contains(cell)) {
+//                boolean hasNeighbour = false;
+//                for (Cell neighbour: game.findNeighbours(cell.getCoordinateQ(), cell.getCoordinateR(), grid)) {
+//                    if (neighbour.size() > 0) {
+//                        hasNeighbour = true;
+//                    }
+//                }
+//                if (!hasNeighbour) {
+//                    current.add(game.currentPlayer, destination.pop());
+//                    return true;
+//                }
+//            }
+//        }
+//        current.add(game.currentPlayer, destination.pop());
         return false;
     }
 

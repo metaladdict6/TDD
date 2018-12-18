@@ -68,7 +68,9 @@ public class BoardBuilder {
             HashMap<Integer, Cell> row = grid.get(key);
             for(Integer rowKey: row.keySet()) {
                 try {
-                    rowCopy.put(rowKey, row.get(rowKey).clone());
+                    Cell orginal =  row.get(rowKey);
+                    Cell copy = orginal.clone();
+                    rowCopy.put(rowKey, copy);
                 } catch (CloneNotSupportedException exception) {
                     System.out.println(exception.getMessage());
                 }

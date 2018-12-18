@@ -17,6 +17,14 @@ public class Cell implements Cloneable {
 
     private Stack<Hive.Tile> tiles = new Stack<>();
 
+    public Stack<Hive.Player> getTileOwnership() {
+        return tileOwnership;
+    }
+
+    public Stack<Hive.Tile> getTiles() {
+        return tiles;
+    }
+
     /**
      * A Cell contains information about the player who possesses the files
      * and the amount of tiles.

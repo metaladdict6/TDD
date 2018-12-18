@@ -6,10 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a6079205-ce21-4ff6-a8c6-0ae945402a35" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/nl/hanze/hive/GameExceptions.java" afterPath="$PROJECT_DIR$/src/nl/hanze/hive/GameExceptions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java" afterPath="$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/HiveSpec.java" afterPath="$PROJECT_DIR$/test/HiveSpec.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/SpiderSpec.java" afterPath="$PROJECT_DIR$/test/SpiderSpec.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -259,8 +255,8 @@
       <file leaf-file-name="MoveHandler.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
-              <caret line="323" column="44" lean-forward="false" selection-start-line="323" selection-start-column="44" selection-end-line="323" selection-end-column="44" />
+            <state relative-caret-position="280">
+              <caret line="320" column="51" lean-forward="false" selection-start-line="320" selection-start-column="51" selection-end-line="320" selection-end-column="51" />
               <folding>
                 <element signature="docComment;class#MoveHandler#0" expanded="false" />
                 <element signature="docComment;method#MoveHandler#0;class#MoveHandler#0" expanded="false" />
@@ -1734,7 +1730,7 @@
       <workItem from="1541369527704" duration="2242000" />
       <workItem from="1541373523241" duration="24000" />
       <workItem from="1544959604360" duration="23217000" />
-      <workItem from="1545115431431" duration="6914000" />
+      <workItem from="1545115431431" duration="6968000" />
     </task>
     <task id="LOCAL-00001" summary="More infra">
       <created>1539875834088</created>
@@ -1988,7 +1984,14 @@
       <option name="project" value="LOCAL" />
       <updated>1545122481665</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="level exception works">
+      <created>1545123929456</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1545123929456</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2024,7 +2027,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120104000" />
+    <option name="totallyTimeSpent" value="120158000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -2070,7 +2073,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Expanded the grasshopper&#10;Added model for the grasshopper&#10;Seperate method for the spider and the grasshopper" />
     <MESSAGE value="The grasshopper now has method to make sure it moves into a straight line" />
     <MESSAGE value="Grasshopper unit test work&#10;Could use a unit test for the straight line, but wasn't thought of at the start." />
     <MESSAGE value="Added unit test so that Soldier ant cannot &quot;magically&quot; move to the other side of the board while stuck in a board" />
@@ -2095,7 +2097,8 @@
     <MESSAGE value="More cleaning" />
     <MESSAGE value="Got most it working, still have to do some little work on it" />
     <MESSAGE value="Can't seem to fix the chain bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="Can't seem to fix the chain bug" />
+    <MESSAGE value="level exception works" />
+    <option name="LAST_COMMIT_MESSAGE" value="level exception works" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2438,8 +2441,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="323" column="44" lean-forward="false" selection-start-line="323" selection-start-column="44" selection-end-line="323" selection-end-column="44" />
+        <state relative-caret-position="280">
+          <caret line="320" column="51" lean-forward="false" selection-start-line="320" selection-start-column="51" selection-end-line="320" selection-end-column="51" />
           <folding>
             <element signature="docComment;class#MoveHandler#0" expanded="false" />
             <element signature="docComment;method#MoveHandler#0;class#MoveHandler#0" expanded="false" />

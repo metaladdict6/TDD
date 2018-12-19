@@ -4,9 +4,9 @@
     <bookmark url="file://$PROJECT_DIR$/src/nl/hanze/hive/Game.java" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6079205-ce21-4ff6-a8c6-0ae945402a35" name="Default" comment="spiders working kinda&#10;THe rest should be running properlyu">
+    <list default="true" id="a6079205-ce21-4ff6-a8c6-0ae945402a35" name="Default" comment="Refactoring&#10;Refacoring because it's easy progress and makes everything easier to&#10;develop.">
+      <change afterPath="$PROJECT_DIR$/src/nl/hanze/hive/BeetleRuleChecker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nl/hanze/hive/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/nl/hanze/hive/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -76,19 +76,28 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/GameRuleChecker.java">
+        <entry file="file://$PROJECT_DIR$/test/SoldierAntSpec.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+            <state relative-caret-position="216">
+              <caret line="77" selection-start-line="77" selection-end-line="77" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#121#122#0" expanded="true" />
-                <element signature="e#146#147#0" expanded="true" />
-                <element signature="method#legalMove#0;class#GameRuleChecker#0" />
-                <element signature="docComment;method#hasOneNeighbour#0;class#GameRuleChecker#0" />
-                <element signature="method#hasOneNeighbour#0;class#GameRuleChecker#0" />
-                <element signature="docComment;method#calculateDepthOfStep#0;class#GameRuleChecker#0" />
-                <element signature="method#calculateDepthOfStep#0;class#GameRuleChecker#0" />
+                <element signature="method#soldierAntLegalMove#0;class#SoldierAntSpec#0" />
+                <element signature="method#soliderIsRemovedFromOldLocation#0;class#SoldierAntSpec#0" />
+                <element signature="method#moveToOccupiedSpace#0;class#SoldierAntSpec#0" />
+                <element signature="method#cannotMoveThroughMaze#0;class#SoldierAntSpec#0" />
+                <element signature="method#moveToSameSpace#0;class#SoldierAntSpec#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/SoldierAntRuleChecker.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="93">
+              <caret line="13" column="39" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
+              <folding>
+                <element signature="docComment;method#soldierAntCanMove#0;class#SoldierAntRuleChecker#0" />
               </folding>
             </state>
           </provider>
@@ -97,78 +106,25 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="498" column="62" lean-forward="true" selection-start-line="498" selection-start-column="62" selection-end-line="498" selection-end-column="62" />
+            <state relative-caret-position="14">
+              <caret line="46" column="7" lean-forward="true" selection-start-line="46" selection-start-column="7" selection-end-line="46" selection-end-column="7" />
               <folding>
                 <element signature="docComment;class#MoveHandler#0" />
                 <element signature="docComment;method#MoveHandler#0;class#MoveHandler#0" />
                 <element signature="docComment;method#moveTile#0;class#MoveHandler#0" />
                 <element signature="docComment;method#updateQueen#0;class#MoveHandler#0" />
-                <element signature="method#updateQueen#0;class#MoveHandler#0" />
                 <element signature="docComment;method#checkTileSpecificRules#0;class#MoveHandler#0" />
-                <element signature="method#checkTileSpecificRules#0;class#MoveHandler#0" />
                 <element signature="docComment;method#breaksTileChain#0;class#MoveHandler#0" />
                 <element signature="method#breaksTileChain#0;class#MoveHandler#0" />
                 <element signature="docComment;method#moveBeetle#0;class#MoveHandler#0" />
-                <element signature="method#moveBeetle#0;class#MoveHandler#0" />
                 <element signature="docComment;method#moveSoldierAnt#0;class#MoveHandler#0" />
-                <element signature="method#moveSoldierAnt#0;class#MoveHandler#0" />
                 <element signature="docComment;method#moveGrasshopper#0;class#MoveHandler#0" />
-                <element signature="method#moveGrasshopper#0;class#MoveHandler#0" />
                 <element signature="docComment;method#moveQueen#0;class#MoveHandler#0" />
-                <element signature="method#moveQueen#0;class#MoveHandler#0" />
                 <element signature="docComment;method#moveSpider#0;class#MoveHandler#0" />
                 <element signature="docComment;method#calculateDistanceRoundedDown#0;class#MoveHandler#0" />
                 <element signature="method#calculateDistanceRoundedDown#0;class#MoveHandler#0" />
                 <element signature="docComment;method#calculateDistance#0;class#MoveHandler#0" />
                 <element signature="method#calculateDistance#0;class#MoveHandler#0" />
-                <element signature="docComment;method#soldierAntCanMove#0;class#MoveHandler#0" />
-                <element signature="method#soldierAntCanMove#0;class#MoveHandler#0" />
-                <element signature="docComment;method#requiredSpiderSteps#0;class#MoveHandler#0" />
-                <element signature="method#isNeighbour#0;class#MoveHandler#0" />
-                <element signature="docComment;method#requiredGrasshopperSteps#0;class#MoveHandler#0" />
-                <element signature="method#requiredGrasshopperSteps#0;class#MoveHandler#0" />
-                <element signature="docComment;method#grassHopperTravelingInStraightLine#0;class#MoveHandler#0" />
-                <element signature="method#grassHopperTravelingInStraightLine#0;class#MoveHandler#0" />
-                <element signature="e#21700#21701#0" expanded="true" />
-                <element signature="e#21730#21731#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/Game.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="140" column="36" selection-start-line="140" selection-start-column="36" selection-end-line="140" selection-end-column="36" />
-              <folding>
-                <element signature="method#Game#0;class#Game#0" />
-                <element signature="docComment;method#move#0;class#Game#0" />
-                <element signature="method#move#0;class#Game#0" />
-                <element signature="docComment;method#pass#0;class#Game#0" />
-                <element signature="method#pass#0;class#Game#0" />
-                <element signature="docComment;method#hasValidMovesOrCanPlayTile#0;class#Game#0" />
-                <element signature="method#hasValidMovesOrCanPlayTile#0;class#Game#0" />
-                <element signature="method#getCurrentPlayersTile#0;class#Game#0" />
-                <element signature="docComment;method#isWinner#0;class#Game#0" />
-                <element signature="method#isWinner#0;class#Game#0" />
-                <element signature="docComment;method#isDraw#0;class#Game#0" />
-                <element signature="docComment;method#nextPlayer#0;class#Game#0" />
-                <element signature="method#nextPlayer#0;class#Game#0" />
-                <element signature="docComment;method#findNeighbours#0;class#Game#0" />
-                <element signature="docComment;method#findNeighbours#1;class#Game#0" />
-                <element signature="method#findNeighbours#1;class#Game#0" />
-                <element signature="docComment;method#getCell#0;class#Game#0" />
-                <element signature="docComment;method#getCell#1;class#Game#0" />
-                <element signature="method#getCell#1;class#Game#0" />
-                <element signature="docComment;method#getOpponent#0;class#Game#0" />
-                <element signature="method#getOpponent#0;class#Game#0" />
-                <element signature="docComment;method#getGrid#0;class#Game#0" />
-                <element signature="docComment;method#setBlackQueenCell#0;class#Game#0" />
-                <element signature="docComment;method#setWhiteQueenCell#0;class#Game#0" />
-                <element signature="method#setBlackNotPlayedTiles#0;class#Game#0" />
-                <element signature="method#setWhiteNotPlayedTiles#0;class#Game#0" />
               </folding>
             </state>
           </provider>
@@ -195,7 +151,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperNotMovingInLineException.java" />
         <option value="$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperMoveToSamePlaceException.java" />
         <option value="$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperMoveToOccupiedSquare.java" />
         <option value="$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperMoveOverUnOccupiedException.java" />
@@ -237,15 +192,16 @@
         <option value="$PROJECT_DIR$/src/nl/hanze/hive/PlayHandler.java" />
         <option value="$PROJECT_DIR$/test/GameSpec.java" />
         <option value="$PROJECT_DIR$/test/SpiderSpec.java" />
-        <option value="$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperRuleChecker.java" />
-        <option value="$PROJECT_DIR$/src/nl/hanze/hive/BeetleRuleChecker.java" />
-        <option value="$PROJECT_DIR$/src/nl/hanze/hive/SoldierAntRuleChecker.java" />
-        <option value="$PROJECT_DIR$/src/nl/hanze/hive/SpiderRuleChecker.java" />
         <option value="$PROJECT_DIR$/src/nl/hanze/hive/RuleChecker.java" />
         <option value="$PROJECT_DIR$/src/nl/hanze/hive/GameState.java" />
         <option value="$PROJECT_DIR$/src/nl/hanze/hive/GameRuleChecker.java" />
         <option value="$PROJECT_DIR$/src/nl/hanze/hive/Game.java" />
+        <option value="$PROJECT_DIR$/src/nl/hanze/hive/BeetleRuleChecker.java" />
+        <option value="$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperRuleChecker.java" />
+        <option value="$PROJECT_DIR$/src/nl/hanze/hive/QueenRuleChecker.java" />
+        <option value="$PROJECT_DIR$/src/nl/hanze/hive/SpiderRuleChecker.java" />
         <option value="$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java" />
+        <option value="$PROJECT_DIR$/src/nl/hanze/hive/SoldierAntRuleChecker.java" />
       </list>
     </option>
   </component>
@@ -368,7 +324,7 @@
     <property name="SearchEverywhereHistoryKey" value=" {&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545251705077" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545253787618" />
     <property name="js-jscs-nodeInterpreter" value="/usr/bin/node" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src" />
@@ -912,7 +868,7 @@
       <workItem from="1545115431431" duration="6968000" />
       <workItem from="1545131083791" duration="14721000" />
       <workItem from="1545222272795" duration="10740000" />
-      <workItem from="1545250547316" duration="1129000" />
+      <workItem from="1545250547316" duration="3203000" />
     </task>
     <task id="LOCAL-00001" summary="More infra">
       <created>1539875834088</created>
@@ -1201,22 +1157,17 @@
       <option name="project" value="LOCAL" />
       <updated>1545236583981</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Refactoring&#10;Refacoring because it's easy progress and makes everything easier to&#10;develop.">
+      <created>1545251760158</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1545251760158</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_in_TDD - 2018.12.19 at 16h 17m 34s.xml">
-      <configuration name="All in TDD" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SpiderSpec_moveToDirectNeighbours - 2018.12.19 at 16h 22m 35s.xml">
-      <configuration name="SpiderSpec.moveToDirectNeighbours" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SpiderSpec_moveToDirectNeighbours - 2018.12.19 at 16h 23m 31s.xml">
-      <configuration name="SpiderSpec.moveToDirectNeighbours" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SpiderSpec_moveToDirectNeighbours - 2018.12.19 at 17h 05m 41s.xml">
-      <configuration name="SpiderSpec.moveToDirectNeighbours" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="All_in_TDD - 2018.12.19 at 17h 06m 09s.xml">
       <configuration name="All in TDD" configurationId="JUnit" />
     </history-entry>
@@ -1235,9 +1186,21 @@
     <history-entry file="All_in_TDD - 2018.12.19 at 21h 34m 47s.xml">
       <configuration name="All in TDD" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="All_in_TDD - 2018.12.19 at 21h 47m 31s.xml">
+      <configuration name="All in TDD" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_TDD - 2018.12.19 at 22h 07m 44s.xml">
+      <configuration name="All in TDD" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_TDD - 2018.12.19 at 22h 08m 55s.xml">
+      <configuration name="All in TDD" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_TDD - 2018.12.19 at 22h 09m 38s.xml">
+      <configuration name="All in TDD" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="146748000" />
+    <option name="totallyTimeSpent" value="148822000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -1321,7 +1284,6 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added gamebuilder to build the initial board and tiles each player has." />
     <MESSAGE value="A lot of javadoc&#10;Added a unit test to placingTileSpec&#10;Added a significant amount of javadoc to the moveHandler&#10;Added a bit of javadoc to game&#10;Renamed the GameBuilder to BoardBuilder&#10;" />
     <MESSAGE value="Javadoc and started with pass" />
     <MESSAGE value="started with the pass method" />
@@ -1346,34 +1308,23 @@
     <MESSAGE value="Updates&#10;Created new method that return a boolean. &#10;This boolean indicates that the location the player istrying to play to &#10;is an neighbour or not.&#10;This is relevant for a couple of tiles" />
     <MESSAGE value="progress" />
     <MESSAGE value="spiders working kinda&#10;THe rest should be running properlyu" />
-    <option name="LAST_COMMIT_MESSAGE" value="spiders working kinda&#10;THe rest should be running properlyu" />
+    <MESSAGE value="Refactoring&#10;Refacoring because it's easy progress and makes everything easier to&#10;develop." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactoring&#10;Refacoring because it's easy progress and makes everything easier to&#10;develop." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java</url>
-          <line>371</line>
-          <properties />
-          <option name="timeStamp" value="121" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java</url>
-          <line>365</line>
-          <properties />
-          <option name="timeStamp" value="123" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java</url>
-          <line>357</line>
-          <properties />
-          <option name="timeStamp" value="127" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/nl/hanze/hive/PlayHandler.java</url>
           <line>36</line>
           <properties />
           <option name="timeStamp" value="139" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/nl/hanze/hive/SoldierAntRuleChecker.java</url>
+          <line>18</line>
+          <properties />
+          <option name="timeStamp" value="141" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -1383,7 +1334,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/QueenMoveTooFarException.java" />
     <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/QueenMoveToOccupiedSpaceException.java" />
     <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperMoveOnSquareException.java" />
     <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/SpiderMoveToOccupiedSpaceException.java" />
@@ -1603,20 +1553,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/SoldierAntSpec.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="62" column="16" selection-start-line="62" selection-start-column="16" selection-end-line="62" selection-end-column="16" />
-          <folding>
-            <element signature="method#soldierAntLegalMove#0;class#SoldierAntSpec#0" />
-            <element signature="method#soliderIsRemovedFromOldLocation#0;class#SoldierAntSpec#0" />
-            <element signature="method#moveToOccupiedSpace#0;class#SoldierAntSpec#0" />
-            <element signature="method#cannotMoveThroughMaze#0;class#SoldierAntSpec#0" />
-            <element signature="method#moveToSameSpace#0;class#SoldierAntSpec#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/SpiderSpec.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="915">
@@ -1646,38 +1582,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/SoldierAntRuleChecker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/SpiderRuleChecker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="53" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/RuleChecker.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperRuleChecker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/BeetleRuleChecker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="89" selection-start-line="6" selection-start-column="89" selection-end-line="6" selection-end-column="89" />
         </state>
       </provider>
     </entry>
@@ -1712,51 +1620,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/BeetleRuleChecker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="498" column="62" lean-forward="true" selection-start-line="498" selection-start-column="62" selection-end-line="498" selection-end-column="62" />
+        <state relative-caret-position="133">
+          <caret line="16" column="23" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/GrassHopperRuleChecker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="759">
+          <caret line="98" column="5" selection-start-line="98" selection-start-column="5" selection-end-line="98" selection-end-column="5" />
           <folding>
-            <element signature="docComment;class#MoveHandler#0" />
-            <element signature="docComment;method#MoveHandler#0;class#MoveHandler#0" />
-            <element signature="docComment;method#moveTile#0;class#MoveHandler#0" />
-            <element signature="docComment;method#updateQueen#0;class#MoveHandler#0" />
-            <element signature="method#updateQueen#0;class#MoveHandler#0" />
-            <element signature="docComment;method#checkTileSpecificRules#0;class#MoveHandler#0" />
-            <element signature="method#checkTileSpecificRules#0;class#MoveHandler#0" />
-            <element signature="docComment;method#breaksTileChain#0;class#MoveHandler#0" />
-            <element signature="method#breaksTileChain#0;class#MoveHandler#0" />
-            <element signature="docComment;method#moveBeetle#0;class#MoveHandler#0" />
-            <element signature="method#moveBeetle#0;class#MoveHandler#0" />
-            <element signature="docComment;method#moveSoldierAnt#0;class#MoveHandler#0" />
-            <element signature="method#moveSoldierAnt#0;class#MoveHandler#0" />
-            <element signature="docComment;method#moveGrasshopper#0;class#MoveHandler#0" />
-            <element signature="method#moveGrasshopper#0;class#MoveHandler#0" />
-            <element signature="docComment;method#moveQueen#0;class#MoveHandler#0" />
-            <element signature="method#moveQueen#0;class#MoveHandler#0" />
-            <element signature="docComment;method#moveSpider#0;class#MoveHandler#0" />
-            <element signature="docComment;method#calculateDistanceRoundedDown#0;class#MoveHandler#0" />
-            <element signature="method#calculateDistanceRoundedDown#0;class#MoveHandler#0" />
-            <element signature="docComment;method#calculateDistance#0;class#MoveHandler#0" />
-            <element signature="method#calculateDistance#0;class#MoveHandler#0" />
-            <element signature="docComment;method#soldierAntCanMove#0;class#MoveHandler#0" />
-            <element signature="method#soldierAntCanMove#0;class#MoveHandler#0" />
-            <element signature="docComment;method#requiredSpiderSteps#0;class#MoveHandler#0" />
-            <element signature="method#isNeighbour#0;class#MoveHandler#0" />
-            <element signature="docComment;method#requiredGrasshopperSteps#0;class#MoveHandler#0" />
-            <element signature="method#requiredGrasshopperSteps#0;class#MoveHandler#0" />
-            <element signature="docComment;method#grassHopperTravelingInStraightLine#0;class#MoveHandler#0" />
-            <element signature="method#grassHopperTravelingInStraightLine#0;class#MoveHandler#0" />
-            <element signature="e#21700#21701#0" expanded="true" />
-            <element signature="e#21730#21731#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;method#requiredGrasshopperSteps#0;class#GrassHopperRuleChecker#0" />
+            <element signature="docComment;method#grassHopperTravelingInStraightLine#0;class#GrassHopperRuleChecker#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/QueenRuleChecker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="21" column="9" lean-forward="true" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/SpiderRuleChecker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1188">
+          <caret line="96" column="5" selection-start-line="96" selection-start-column="5" selection-end-line="96" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;method#requiredSpiderSteps#0;class#SpiderRuleChecker#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="140" column="36" selection-start-line="140" selection-start-column="36" selection-end-line="140" selection-end-column="36" />
+        <state relative-caret-position="1125">
+          <caret line="146" column="36" lean-forward="true" selection-start-line="146" selection-start-column="36" selection-end-line="146" selection-end-column="36" />
           <folding>
             <element signature="method#Game#0;class#Game#0" />
             <element signature="docComment;method#move#0;class#Game#0" />
@@ -1784,6 +1688,55 @@
             <element signature="docComment;method#setWhiteQueenCell#0;class#Game#0" />
             <element signature="method#setBlackNotPlayedTiles#0;class#Game#0" />
             <element signature="method#setWhiteNotPlayedTiles#0;class#Game#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/SoldierAntSpec.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="77" selection-start-line="77" selection-end-line="77" />
+          <folding>
+            <element signature="method#soldierAntLegalMove#0;class#SoldierAntSpec#0" />
+            <element signature="method#soliderIsRemovedFromOldLocation#0;class#SoldierAntSpec#0" />
+            <element signature="method#moveToOccupiedSpace#0;class#SoldierAntSpec#0" />
+            <element signature="method#cannotMoveThroughMaze#0;class#SoldierAntSpec#0" />
+            <element signature="method#moveToSameSpace#0;class#SoldierAntSpec#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/MoveHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14">
+          <caret line="46" column="7" lean-forward="true" selection-start-line="46" selection-start-column="7" selection-end-line="46" selection-end-column="7" />
+          <folding>
+            <element signature="docComment;class#MoveHandler#0" />
+            <element signature="docComment;method#MoveHandler#0;class#MoveHandler#0" />
+            <element signature="docComment;method#moveTile#0;class#MoveHandler#0" />
+            <element signature="docComment;method#updateQueen#0;class#MoveHandler#0" />
+            <element signature="docComment;method#checkTileSpecificRules#0;class#MoveHandler#0" />
+            <element signature="docComment;method#breaksTileChain#0;class#MoveHandler#0" />
+            <element signature="method#breaksTileChain#0;class#MoveHandler#0" />
+            <element signature="docComment;method#moveBeetle#0;class#MoveHandler#0" />
+            <element signature="docComment;method#moveSoldierAnt#0;class#MoveHandler#0" />
+            <element signature="docComment;method#moveGrasshopper#0;class#MoveHandler#0" />
+            <element signature="docComment;method#moveQueen#0;class#MoveHandler#0" />
+            <element signature="docComment;method#moveSpider#0;class#MoveHandler#0" />
+            <element signature="docComment;method#calculateDistanceRoundedDown#0;class#MoveHandler#0" />
+            <element signature="method#calculateDistanceRoundedDown#0;class#MoveHandler#0" />
+            <element signature="docComment;method#calculateDistance#0;class#MoveHandler#0" />
+            <element signature="method#calculateDistance#0;class#MoveHandler#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/nl/hanze/hive/SoldierAntRuleChecker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="93">
+          <caret line="13" column="39" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
+          <folding>
+            <element signature="docComment;method#soldierAntCanMove#0;class#SoldierAntRuleChecker#0" />
           </folding>
         </state>
       </provider>

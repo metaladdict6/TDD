@@ -137,7 +137,7 @@ public class Game implements Hive {
 
     private boolean checkIfMovePossible(Game game, String message, int fromQ, int fromR, int toQ, int toR) {
         try {
-            Cell cell = game.moveHandler.genericRulesChecker(fromQ, fromR, toQ, toR);
+            Cell cell = game.moveHandler.checkTileSpecificRules(fromQ, fromR, toQ, toR);
             game.moveHandler.checkTileSpecificRules(fromQ, fromR, toQ, toR, cell);
             String destinationCoordinates = "q = " + toQ + " r =" + toR;
             String startingCoordinates = "q = " + fromQ + " r = " + fromR;

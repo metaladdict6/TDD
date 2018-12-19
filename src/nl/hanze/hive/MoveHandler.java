@@ -17,12 +17,16 @@ class MoveHandler {
 
     private Game game;
 
+
+    private RuleChecker generic;
+
     /**
      * The move handle wil handle any moves of the game. It will also throw the necessary exceptions.
      * @param game The game the handler wil handle moves for.
      */
     MoveHandler(Game game) {
         this.game = game;
+        this.generic = new GameRuleChecker(game);
     }
 
     /**
@@ -35,7 +39,7 @@ class MoveHandler {
      * @throws Hive.IllegalMove
      */
     void moveTile(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
-        Cell fromCell = genericRulesChecker(fromQ, fromR, toQ, toR);
+        Cell fromCell = this.generic.legalMove(fromQ, fromR, toQ, toR);
         Cell toCell = checkTileSpecificRules(fromQ, fromR, toQ, toR, fromCell);
         if (toCell == null) {
             throw new Hive.IllegalMove("The cell you want to move to is null");
@@ -88,33 +92,7 @@ class MoveHandler {
         throw new Hive.IllegalMove("There is no valid tile");
     }
 
-    /**
-     * This method checks for the rules that apply to every tile.
-     * @param fromQ Starting horizontal position.
-     * @param fromR Starting vertical position.
-     * @param toQ Destination horizontal position
-     * @param toR Destination vertical position.
-     * @return The from cell that will be poped if every other check also works.
-     * @throws Hive.IllegalMove
-     */
-    Cell genericRulesChecker(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
-        Cell originalCell = game.getCell(fromQ, fromR);
-        if (!game.queenPlayed()) {
-            throw new GameExceptions.GameMoveBeforeQueenPlacement("You have to place your Queen before moving your pieces");
-        } else if(!hasOneNeighbour(fromQ, fromR, toQ, toR)){
-            throw new GameExceptions.GameMoveToSpaceWithoutNeighboursException("You have to move your piece next to another piece.");
-        } else if(originalCell.size() == 0) {
-            throw new Hive.IllegalMove("Nothing to move");
-        } else if (originalCell.cellOwner() != game.currentPlayer){
-            throw new Hive.IllegalMove("You cannot move the piece of another player!");
-        } else if(breaksTileChain(fromQ, fromR, toQ, toR)) {
-            throw new GameBreakTileChainException("You cannot break the tile chain!");
-        } else if(calculateDepthOfStep(fromQ,  fromR,  toQ, toR) > 2) {
-            throw new GameExceptions.GameToBigHeighDifferenceException("You can only step one level up or down");
-        } else {
-            return originalCell;
-        }
-    }
+
 
     /**
      * This method checks if the move breaks the
@@ -309,29 +287,6 @@ class MoveHandler {
     }
 
     /**
-     * This method checks if the destination has the minimum of one neighbour.
-     * @param fromQ The origin Q
-     * @param fromR The origin R
-     * @param toQ The destination Q
-     * @param toR The destination R
-     * @return
-     */
-    private boolean hasOneNeighbour(int fromQ, int fromR, int toQ, int toR) {
-        ArrayList<Cell> neighbours = game.findNeighbours(toQ, toR);
-        Cell currentCell = game.getCell(fromQ, fromR);
-        boolean twoLevels = currentCell.size() > 1;
-        int amountOfNeighbours = 0;
-        for (Cell cell: neighbours) {
-            if (!cell.equals(currentCell) || twoLevels){
-                if (cell.cellOwner() != null) {
-                    amountOfNeighbours++;
-                }
-            }
-        }
-        return amountOfNeighbours > 0;
-    }
-
-    /**
      * This method calculates the distance between two coordinates and rounds it down.
      * This method is used to check if a tile is being moved too far or not far enough.
      * @param fromQ The horizontal starting position
@@ -344,30 +299,7 @@ class MoveHandler {
         return calculateDistance(fromQ, fromR, toQ, toR).intValue();
     }
 
-    /**
-     * This method checks if the dept of the move isn't too deep
-     * @param fromQ The horizontal starting position
-     * @param fromR The vertical starting position.
-     * @param toQ The horizontal destination position.
-     * @param toR The vertical destination position.
-     * @return
-     */
-    private int calculateDepthOfStep(int fromQ, int fromR, int toQ, int toR) {
-        HashMap<Integer, HashMap<Integer, Cell>> grid = this.game.getGrid();
-        Cell current = this.game.getCell(fromQ, fromR);
-        Cell destination = this.game.getCell(toQ, toR);
-        int currentSize = current.size();
-        int desinationSize = destination.size();
-        if (currentSize == desinationSize) {
-            return 0;
-        }
-        else if (currentSize > desinationSize) {
 
-            return  currentSize - desinationSize;
-        }else {
-            return currentSize - desinationSize;
-        }
-    }
 
     /**
      * This method calculates the distance between two coordinates.
@@ -557,6 +489,14 @@ class MoveHandler {
         } else if((fromQ - 1) == toQ && (fromR + 1) == toR) {
             return true;
         } else return (fromQ + 1) == toQ && (fromR - 1) == toR;
+    }
+
+    public RuleChecker getGeneric() {
+        return generic;
+    }
+
+    public Cell checkTileSpecificRules(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove{
+        return this.generic.legalMove(fromQ, fromR, toQ, toR);
     }
 }
 

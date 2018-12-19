@@ -32,6 +32,24 @@ public class SpiderSpec {
         }
     }
 
+    @Test
+    public void moveToDirectNeighbours() {
+        Game game = new Game();
+        try {
+            game.getCell(0, 0).add(Hive.Player.WHITE, Hive.Tile.SPIDER);
+            game.getCell(2, -1).add(Hive.Player.WHITE, Hive.Tile.BEETLE);
+            game.getCell(2, 0).add(Hive.Player.WHITE, Hive.Tile.QUEEN_BEE);
+            game.setWhiteQueenCell( game.getCell(2, 0));
+            game.getCell(1, 1).add(Hive.Player.WHITE, Hive.Tile.BEETLE);
+            game.move(0, 0, 0, 1);
+        } catch (Hive.IllegalMove illegalMove) {
+            System.out.println(illegalMove.getMessage());
+        } finally {
+            Assert.assertEquals(Hive.Tile.SPIDER, game.getCell(0, 1).getTopTile());
+        }
+    }
+
+
     @Test(expected = SpiderMoveException.SpiderMoveToOccupiedSpaceException.class)
     public void moveToOccupiedSpace() throws Exception {
         Game game = new Game();

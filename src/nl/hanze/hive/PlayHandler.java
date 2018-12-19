@@ -1,7 +1,6 @@
 package nl.hanze.hive;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * This class handles any and all concerning the playing of tiles.
@@ -17,44 +16,59 @@ public class PlayHandler {
 
     private MoveHandler moveHandler;
 
-    public PlayHandler(Game game, MoveHandler moveHandler){
+
+    PlayHandler(Game game, MoveHandler moveHandler){
         this.game = game;
         this.moveHandler = moveHandler;
     }
 
-    public void playTile(Hive.Tile tile, int q, int r) throws Hive.IllegalMove {
-        if (isPieceAvailable(tile)) {
-            if(canPlaceAnyTile()) {
-                HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
-                Cell cell = game.getCell(grid, r, q);
-                if (cell.size() != 0) {
-                    throw new PlaceException.PlaceOnExistingPieceException("The coordinates you are trying to play too is occupied");
-                } else {
-                    ArrayList<Cell> neighbours = this.game.findNeighbours(q, r);
-                    if (hasNotPlayedTile()) {
-                        if (noEnemies(neighbours)){
-                            playTile(cell, tile);
-                        } else {
-                            throw new PlaceException.PlaceWithoutNeighboursException("The coordinate you are trying to play too is not "
-                                    + "adjunct to a friendly piece or is next to an opponents piece");
-                        }
-                    } else if(allFriends(neighbours) && noEnemies(neighbours)) {
+    void playTile(Hive.Tile tile, int q, int r) throws Hive.IllegalMove {
+        Cell cell = game.getCell(q, r);
+        if (!isPieceAvailable(tile)){
+            throw new PlaceException.PlaceTooManyPiecesException("This piece isn't available");
+        }else if(!needToPlayQueen()){
+            throw new PlaceException.PlaceQueenBeforeContinuingException("You have to play your Queen");
+        } else if(cell.size() != 0) {
+            throw new PlaceException.PlaceOnExistingPieceException("The coordinates you are trying to play too is occupied");
+        } else {
+            ArrayList<Cell> neighbours = this.game.findNeighbours(q, r);
+            boolean allFriends = allFriends(neighbours);
+            boolean noEnemies = noEnemies(neighbours);
+            if (playerHasNotPlayedTile()) {
+                if(!opponentHasPlayedTile()){
+                    if(opponentNextToMe(neighbours)){
                         playTile(cell, tile);
-                    } else {
-                        throw new PlaceException.PlaceWithoutNeighboursException("The coordinate you are trying to play too is not " +
-                                "adjunct to a friendly piece or is next to an opponents piece");
+                    }else {
+                        throw new PlaceException.InitalPieceNeedsANeighbourException
+                                ("The piece needs to be next to the first piece on the board");
                     }
                 }
+                else if (noEnemies){
+                    playTile(cell, tile);
+                } else {
+                    throw new PlaceException.PlaceNextToOpponentException("The coordinate you are trying to play too is not "
+                            + "adjunct to a friendly piece or is next to an opponents piece");
+                }
+            } else if(allFriends && noEnemies) {
+                playTile(cell, tile);
             } else {
-                throw new PlaceException.PlaceQueenBeforeContinuingException("You have to play your Queen");
-            }
+                if (!noEnemies) {
+                    throw new PlaceException.PlaceNextToOpponentException("The coordinates you are trying to play too is" +
+                            "next to an opponent");
+                }
+                else if (!allFriends) {
+                    throw new PlaceException.PlaceWithoutNeighboursException("The coordinate you are trying to play too " +
+                            "is not adjunct to a friendly piece");
+                }else {
+                    throw new Hive.IllegalMove("Unknown error");
+                }
 
-        } else {
-            throw new PlaceException.PlaceTooManyPiecesException("This piece isn't available");
+            }
         }
+
     }
 
-    private boolean canPlaceAnyTile() {
+    private boolean needToPlayQueen() {
         if(game.currentPlayer == Hive.Player.WHITE) {
             if (game.getWhiteNotPlayedTiles().size() == 8) {
                 return game.queenPlayed();
@@ -74,8 +88,16 @@ public class PlayHandler {
      * This method checks if the current player has played any tiles.
      * @return If the current player has played a tile.
      */
-    private boolean hasNotPlayedTile() {
+    private boolean playerHasNotPlayedTile() {
         if (game.currentPlayer == Hive.Player.WHITE) {
+            return game.getWhiteNotPlayedTiles().size() == 11;
+        } else {
+            return game.getBlackNotPlayedTiles().size() == 11;
+        }
+    }
+
+    private boolean opponentHasPlayedTile() {
+        if (game.getOpponent() == Hive.Player.WHITE) {
             return game.getWhiteNotPlayedTiles().size() == 11;
         } else {
             return game.getBlackNotPlayedTiles().size() == 11;
@@ -144,16 +166,27 @@ public class PlayHandler {
      * @return
      * @throws Hive.IllegalMove
      */
-    private boolean noEnemies(ArrayList<Cell> neighbours) throws Hive.IllegalMove {
+    private boolean noEnemies(ArrayList<Cell> neighbours)  {
         for(Cell cell : neighbours) {
             Hive.Player cellOwner = cell.cellOwner();
             if (cellOwner != null) {
                 if (cellOwner == game.getOpponent()) {
-                    throw new PlaceException.PlaceNextToOpponentException("You cannot place a piece next to your opponents pieces");
+                    return false;
                 }
             }
         }
         return true;
     }
 
+    private boolean opponentNextToMe(ArrayList<Cell> neighbours) {
+        for(Cell cell : neighbours) {
+            Hive.Player cellOwner = cell.cellOwner();
+            if (cellOwner != null) {
+                if (cellOwner == game.getOpponent()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }

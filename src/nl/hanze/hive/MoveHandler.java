@@ -267,18 +267,45 @@ class MoveHandler {
      * @throws Hive.IllegalMove
      */
     private Cell moveSpider(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
-        int travelDistance = requiredSpiderSteps(fromQ, fromR, toQ, toR);
         Cell cell = game.getCell(toQ, toR);
+
+        int travelDistance = requiredSpiderSteps(fromQ, fromR, toQ, toR);
+        boolean specialRoute = pathFindspider(fromQ, fromR, toQ, toR);
+
         if(fromQ == toQ && fromR == toR) {
             throw new SpiderMoveException.SpiderMoveToSameSpaceException("You cannot move to the same space.");
-        } else if(travelDistance < 3) {
+        } else if(travelDistance < 3 && !specialRoute) {
             throw new SpiderMoveException.SpiderMoveNotFarEnoughException("You cannot move less then three cells");
-        } else if(travelDistance > 3) {
+        } else if(travelDistance > 3 && !specialRoute) {
             throw new SpiderMoveException.SpiderMoveTooFarAwayException("You cannot move more then three cells");
-        } else if( cell.getTopTile() != null) {
+        }
+        if(cell.getTopTile() != null) {
             throw new SpiderMoveException.SpiderMoveToOccupiedSpaceException("You cannot move a spider to an occupied space");
         }
         return cell;
+    }
+
+    private boolean pathFindspider(int fromQ, int fromR, int toQ, int toR) {
+        ArrayList<Cell> cells = game.findNeighbours(fromQ, fromR);
+        Cell origin = game.getCell(fromQ, fromR);
+        Cell desination = game.getCell(toQ, toR);
+        for (Cell firstMove: cells) {
+            if (firstMove.cellOwner() == null) {
+                for (Cell secondMove: game.findNeighbours(firstMove.getCoordinateQ(), firstMove.getCoordinateR())) {
+                    if(!firstMove.equals(secondMove) && secondMove != origin && secondMove.cellOwner() == null) {
+                        for (Cell thirdMove: game.findNeighbours(secondMove.getCoordinateQ(), secondMove.getCoordinateR())){
+                            boolean uniqueThird = thirdMove.equals(firstMove) || secondMove.equals(thirdMove);
+                            if(!uniqueThird && thirdMove != origin && thirdMove.cellOwner() == null) {
+                                if (thirdMove == desination) {
+                                    return  true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     /**
@@ -452,10 +479,6 @@ class MoveHandler {
             currentCell = options.get(key);
         }
         return steps;
-    }
-
-    private boolean spiderIsConnectedToChain() {
-        return false;
     }
 
     private boolean isNeighbour(int fromQ, int fromR, int toQ, int toR){

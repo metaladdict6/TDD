@@ -1,7 +1,7 @@
 package nl.hanze.hive;
 
 /**
- * Created by Robert Ziengs on 16-12-2018.
+ * @author Robert Ziengs, Leon Wetzel
  */
 public class PlaceException {
     /**
@@ -12,6 +12,11 @@ public class PlaceException {
         public PlaceNextToOpponentException(String message) {
             super(message);
         }
+    }
+
+    public static class InitalPieceNeedsANeighbourException extends Hive.IllegalMove{
+
+        public InitalPieceNeedsANeighbourException(String message) { super(message);}
     }
 
     /**
@@ -25,7 +30,7 @@ public class PlaceException {
     }
 
     /**
-     * Created by Robert Ziengs on 16-12-2018.
+     * @author Robert Ziengs, Leon Wetzel
      */
     public static class PlaceQueenBeforeContinuingException extends Hive.IllegalMove {
 

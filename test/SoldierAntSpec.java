@@ -60,7 +60,7 @@ public class SoldierAntSpec {
     }
 
     @Test(expected = SoldierAntMoveException.SoldierAntNoPathToDesinationException.class)
-    public void noPiecesConnectToDesinination() {
+    public void noPiecesConnectToDestination() {
         Game game = new Game();
         Hive.Player white  = Hive.Player.WHITE;
         Hive.Tile beetle = Hive.Tile.BEETLE;

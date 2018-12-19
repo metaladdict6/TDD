@@ -215,21 +215,10 @@ public class GameSpec {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
         game.play(Game.Tile.BEETLE, -3, 0);
-        game.play(Game.Tile.BEETLE, -1, 0);
+        game.play(Game.Tile.BEETLE, -2, 0);
         game.move(-1, 0, 0, -1);
     }
 
-    @Test(expected = GameBreakTileChainException.class)
-    public void breakTileChain() throws Exception {
-        Game game = new Game();
-        HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
-        grid.get(0).get(1).add(Game.Player.BLACK, Game.Tile.QUEEN_BEE);
-        game.setBlackQueenCell(grid.get(0).get(0));
-        grid.get(0).get(0).add(Game.Player.WHITE, Game.Tile.BEETLE);
-        grid.get(0).get(-1).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
-        game.setWhiteQueenCell(grid.get(0).get(-2));
-        game.move(0, 0, 0, -1);
-    }
 
 
 }

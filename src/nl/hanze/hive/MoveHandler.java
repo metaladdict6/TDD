@@ -87,146 +87,55 @@ class MoveHandler {
         if (moveCheckers.containsKey(tile)){
             return this.moveCheckers.get(tile).legalMove(fromQ, fromR, toQ, toR);
         }
-        switch (tile){
-            case BEETLE:
-                return moveBeetle(fromQ, fromR, toQ, toR);
-            case GRASSHOPPER:
-                return moveGrasshopper(fromQ, fromR, toQ, toR);
-            case QUEEN_BEE:
-                return moveQueen(fromQ, fromR, toQ, toR);
-            case SPIDER:
-                return moveSpider(fromQ, fromR, toQ, toR);
-            case SOLDIER_ANT:
-                return moveSoldierAnt(fromQ, fromR, toQ, toR);
-        }
         throw new Hive.IllegalMove("There is no valid tile");
     }
 
     /**
-     * This method checks if the move breaks the
+     * This method checks if the move breaks the chain of connected tiles
      * @param fromQ Starting horizontal position.
      * @param fromR Starting vertical position.
-     * @param toQ Destination horizontal position
-     * @param toR Destination vertical position.
      * @return If this breaks the chain or not.
      */
-    private boolean breaksTileChain(int fromQ, int fromR, int toQ, int toR) {
+    public boolean keepsChainConnected(int fromQ, int fromR) {
         HashMap<Integer, HashMap<Integer, Cell>> grid = BoardBuilder.copyGrid(game.getGrid());
-//        HashSet<Cell> cellsWithNeighbours = new HashSet<>();
-//        for (HashMap<Integer, Cell> row: grid.values()) {
-//            for(Integer key: row.keySet()) {
-//                Cell cell = row.get(key);
-//                if (cell.size() != 0) {
-//                    for (Cell neighbour: game.findNeighbours(cell.getCoordinateQ(), cell.getCoordinateR(), grid)) {
-//                        if (neighbour.size() > 0) {
-//                            cellsWithNeighbours.add(cell);
-//                            break;
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        Cell current = grid.get(fromR).get(fromQ);
-//        cellsWithNeighbours.remove(current);
-//        Cell destination = grid.get(toR).get(toQ);
-//        destination.add(game.currentPlayer, current.pop());
-//        cellsWithNeighbours.add(destination);
-//        ArrayList<Cell> cells = new ArrayList<>();
-//        for (HashMap<Integer, Cell> row: grid.values()) {
-//            for(Cell cell: row.values()) {
-//                if (cell.size() != 0) {
-//                    cells.add(cell);
-//                }
-//            }
-//        }
-//        for (Cell cell: cells) {
-//            if (cellsWithNeighbours.contains(cell)) {
-//                boolean hasNeighbour = false;
-//                for (Cell neighbour: game.findNeighbours(cell.getCoordinateQ(), cell.getCoordinateR(), grid)) {
-//                    if (neighbour.size() > 0) {
-//                        hasNeighbour = true;
-//                    }
-//                }
-//                if (!hasNeighbour) {
-//                    current.add(game.currentPlayer, destination.pop());
-//                    return true;
-//                }
-//            }
-//        }
-//        current.add(game.currentPlayer, destination.pop());
-        return false;
-    }
-
-    /**
-     * This method returns the cell the beetle wants to move to. If it is an illegal move it will throw
-     * an exception.
-     * @param fromQ The origin Q
-     * @param fromR The origin R
-     * @param toQ The destination Q
-     * @param toR The destination R
-     * @return Cell The cell the Beetle is going to move to.
-     * @throws Hive.IllegalMove Will be BeetleMoveException so a proper test can be written for this method.
-     */
-    private Cell moveBeetle(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
-        Cell cell = game.getCell(toQ, toR);
-        if(!isNeighbour(fromQ, fromR, toQ, toR)) {
-            throw new BeetleMoveException("You cannot move the beetle more then one cell!");
-        }else if(fromQ == toQ && fromR == toR){
-            throw new BeetleMoveException("You cannot move to the same space!");
+        HashSet<Cell> occupiedCells = new HashSet<>();
+        ArrayList<HashSet<Cell>> everybodysNeighbours = new ArrayList<>();
+        Cell origin = game.getCell(fromQ, fromR);
+        for (HashMap<Integer, Cell> row: grid.values()) {
+            for (Integer key : row.keySet()) {
+                Cell cell = row.get(key);
+                if (cell.size() != 0) {
+                    if(!(cell.getCoordinateQ() == fromQ && cell.getCoordinateR() == fromR)){
+                        occupiedCells.add(cell);
+                    }
+                }
+            }
         }
-        return cell;
+        for(Cell cell: occupiedCells) {
+            HashSet<Cell> theseNeighbours = new HashSet<>();
+            everybodysNeighbours.add(theseNeighbours);
+            for(Cell neighbour: game.findNeighbours(cell)){
+                if(!neighbour.equals(origin)){
+                    findAllNeighbours(theseNeighbours, origin, neighbour);
+                }
+            }
+        }
+        int chainLength = everybodysNeighbours.get(0).size();
+        for(HashSet<Cell> cells: everybodysNeighbours){
+            if(chainLength != cells.size()){
+                return false;
+            }
+        }
+        return true;
     }
 
-    /**
-     * This method return the cell the Soldier ant will be moved to if the move doesn't break any rules.
-     * @param fromQ The origin Q
-     * @param fromR The origin R
-     * @param toQ The destination Q
-     * @param toR The destination R
-     * @return
-     * @throws Hive.IllegalMove
-     */
-    private Cell moveSoldierAnt(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
-        return null;
-    }
-
-    /**
-     * Moves a grasshopper from one location to another.
-     * @param fromQ
-     * @param fromR
-     * @param toQ
-     * @param toR
-     * @return
-     * @throws Hive.IllegalMove
-     */
-    private Cell moveGrasshopper(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
-       return null;
-    }
-
-    /**
-     * This method moves the Queen and throws an exception if the move does not follow the rules.
-     * @param fromQ The origin Q
-     * @param fromR The origin R
-     * @param toQ The destination Q
-     * @param toR The destination R
-     * @return Cell The cell the Queen is going to move to.
-     * @throws Hive.IllegalMove The throw Exception if the move is invalid.
-     */
-    private Cell moveQueen(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
-        return null;
-    }
-
-    /**
-     * This method moves the Spider and throws an exception if the move does not follow the rules.
-     * @param fromQ The origin Q
-     * @param fromR The origin R
-     * @param toQ The destination Q
-     * @param toR The destination R
-     * @return Cell The cell the Spider is going to move to.
-     * @throws Hive.IllegalMove
-     */
-    private Cell moveSpider(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
-        return null;
+    private void findAllNeighbours(HashSet<Cell> neighbours, Cell origin, Cell current){
+        for(Cell cell: game.findNeighbours(current)){
+            if(cell.occupied() && !neighbours.contains(cell) && !cell.equals(origin)){
+                neighbours.add(cell);
+                findAllNeighbours(neighbours, origin, cell);
+            }
+        }
     }
 
     /**
@@ -261,7 +170,7 @@ class MoveHandler {
         return Math.sqrt(absoluteValue);
     }
 
-    public boolean isNeighbour(int fromQ, int fromR, int toQ, int toR){
+    boolean isNeighbour(int fromQ, int fromR, int toQ, int toR){
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
         Cell destination = game.getCell(toQ, toR);
         ArrayList<Cell> neighbours = game.findNeighbours(fromQ, fromR);
@@ -273,12 +182,11 @@ class MoveHandler {
         return false;
     }
 
-    public RuleChecker getGeneric() {
-        return generic;
-    }
-
-    public Cell checkTileSpecificRules(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove{
+    Cell checkTileSpecificRules(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove{
         return this.generic.legalMove(fromQ, fromR, toQ, toR);
     }
+
+
+
 }
 

@@ -33,6 +33,25 @@ public class SpiderSpec {
     }
 
     @Test
+    public void removedFromOldLocation(){
+        Game game = new Game();
+        HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
+        grid.get(0).get(-3).add(Game.Player.WHITE, Game.Tile.SPIDER);
+        grid.get(0).get(-2).add(Game.Player.WHITE, Game.Tile.SOLDIER_ANT);
+        grid.get(-1).get(-1).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        grid.get(-1).get(0).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        grid.get(-2).get(0).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
+        game.setWhiteQueenCell(grid.get(-2).get(0));
+        try{
+            game.move(-3, 0, 0, -3);
+        }catch (Exception exception) {
+            System.out.print(exception.getMessage());
+        }finally {
+            Assert.assertEquals(null, grid.get(0).get(-3).getTopTile());
+        }
+    }
+
+    @Test
     public void moveToDirectNeighbours() {
         Game game = new Game();
         try {
@@ -48,7 +67,6 @@ public class SpiderSpec {
             Assert.assertEquals(Hive.Tile.SPIDER, game.getCell(0, 1).getTopTile());
         }
     }
-
 
     @Test(expected = SpiderMoveException.SpiderMoveToOccupiedSpaceException.class)
     public void moveToOccupiedSpace() throws Exception {

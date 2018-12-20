@@ -125,4 +125,15 @@ public class PlacingTileSpec {
         game.setWhiteNotPlayedTiles(tiles);
         game.play(Hive.Tile.BEETLE, 0, 0);
     }
+
+
+    @Test
+    public void tileCountIsUpdated() throws Exception{
+        Game game = new Game();
+        LinkedList<Hive.Tile> tiles = new LinkedList<>();
+        BoardBuilder.initialiseTiles(tiles);
+        game.setWhiteNotPlayedTiles(tiles);
+        game.play(Hive.Tile.BEETLE, 0, 0);
+        Assert.assertEquals(10, tiles.size());
+    }
 }

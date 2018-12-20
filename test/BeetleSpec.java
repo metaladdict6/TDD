@@ -32,6 +32,22 @@ public class BeetleSpec {
     }
 
     @Test
+    public void beetleRemovedFromOldSpace(){
+        Game game = new Game();
+        HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
+        grid.get(0).get(-3).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
+        grid.get(0).get(-1).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        game.setWhiteQueenCell(grid.get(-3).get(0));
+        try {
+            game.move(-1, 0, -2, 0);
+        } catch (Hive.IllegalMove illegalMove) {
+            System.out.println(illegalMove.getMessage());
+        } finally {
+            Assert.assertEquals(null, grid.get(0).get(-1).getTopTile());
+        }
+    }
+
+    @Test
     public void moveToOccupiedSpace() {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();

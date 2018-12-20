@@ -131,4 +131,8 @@ public class Cell implements Cloneable {
     public Cell clone() throws CloneNotSupportedException {
         return (Cell) super.clone();
     }
+
+    public boolean occupied(){
+        return this.tiles.size() > 0;
+    }
 }

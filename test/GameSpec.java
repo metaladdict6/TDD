@@ -219,6 +219,20 @@ public class GameSpec {
         game.move(-1, 0, 0, -1);
     }
 
-
+    @Test
+    public void noContactInSlide(){
+        Game game = new Game();
+        game.getCell(0, 0).add(Hive.Player.WHITE, Hive.Tile.QUEEN_BEE);
+        game.setWhiteQueenCell(game.getCell(0, 0));
+        game.getCell(0, 1).add(Hive.Player.WHITE, Hive.Tile.BEETLE);
+        game.getCell(-1, 2).add(Hive.Player.WHITE, Hive.Tile.BEETLE);
+        try {
+            game.move(0, 1, -1, 1);
+        } catch (Hive.IllegalMove illegalMove) {
+            illegalMove.printStackTrace();
+        }finally {
+            Assert.assertEquals(game.getCell(0, 1).getTopTile(), Hive.Tile.BEETLE);
+        }
+    }
 
 }

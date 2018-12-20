@@ -11,7 +11,7 @@ public class SpiderRuleChecker implements RuleChecker {
 
     private MoveHandler moveHandler;
 
-    public SpiderRuleChecker(Game game, MoveHandler moveHandler) {
+    SpiderRuleChecker(Game game, MoveHandler moveHandler) {
         this.game = game;
         this.moveHandler = moveHandler;
     }
@@ -19,21 +19,31 @@ public class SpiderRuleChecker implements RuleChecker {
     @Override
     public Cell legalMove(int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove{
         Cell cell = game.getCell(toQ, toR);
-
         int travelDistance = requiredSpiderSteps(fromQ, fromR, toQ, toR);
-        boolean specialRoute = pathFindspider(fromQ, fromR, toQ, toR);
-
         if(fromQ == toQ && fromR == toR) {
             throw new SpiderMoveException.SpiderMoveToSameSpaceException("You cannot move to the same space.");
-        } else if(travelDistance < 3 && !specialRoute) {
-            throw new SpiderMoveException.SpiderMoveNotFarEnoughException("You cannot move less then three cells");
-        } else if(travelDistance > 3 && !specialRoute) {
-            throw new SpiderMoveException.SpiderMoveTooFarAwayException("You cannot move more then three cells");
-        }
-        if(cell.getTopTile() != null) {
+        } else if(cell.getTopTile() != null) {
             throw new SpiderMoveException.SpiderMoveToOccupiedSpaceException("You cannot move a spider to an occupied space");
         }
-        return cell;    }
+        pathingIsValid(travelDistance, fromQ, fromR, toQ, toR);
+        return cell;
+    }
+
+    private boolean pathingIsValid(int steps, int fromQ, int fromR, int toQ, int toR) throws Hive.IllegalMove {
+        if(steps == 3){
+            return true;
+        }
+        if(steps < 3 ) {
+            if(!foundValidPath(fromQ, fromR, toQ, toR)){
+                throw new SpiderMoveException.SpiderMoveNotFarEnoughException("You cannot move less then three cells");
+            }
+        } else if(steps > 3) {
+            if(!foundValidPath(fromQ, fromR, toQ, toR)) {
+                throw new SpiderMoveException.SpiderMoveTooFarAwayException("You cannot move more then three cells");
+            }
+        }
+        return true;
+    }
 
     /**
      * This method counts the amount of steps spider needs to make along the board to reach it's destination.
@@ -73,23 +83,73 @@ public class SpiderRuleChecker implements RuleChecker {
         return steps;
     }
 
-    private boolean pathFindspider(int fromQ, int fromR, int toQ, int toR) {
-        ArrayList<Cell> cells = game.findNeighbours(fromQ, fromR);
+    private boolean foundValidPath(int fromQ, int fromR, int toQ, int toR) {
         Cell origin = game.getCell(fromQ, fromR);
-        Cell desination = game.getCell(toQ, toR);
-        for (Cell firstMove: cells) {
-            if (firstMove.cellOwner() == null) {
-                for (Cell secondMove: game.findNeighbours(firstMove.getCoordinateQ(), firstMove.getCoordinateR())) {
-                    if(!firstMove.equals(secondMove) && secondMove != origin && secondMove.cellOwner() == null) {
-                        for (Cell thirdMove: game.findNeighbours(secondMove.getCoordinateQ(), secondMove.getCoordinateR())){
-                            boolean uniqueThird = thirdMove.equals(firstMove) || secondMove.equals(thirdMove);
-                            if(!uniqueThird && thirdMove != origin && thirdMove.cellOwner() == null) {
-                                if (thirdMove == desination) {
-                                    return  true;
+        Cell destination = game.getCell(toQ, toR);
+        for (Cell firstMove: findNeighbours(origin)) {
+            if (checkFirstMoveSlideIsLegal(firstMove, origin)) {
+                for (Cell secondMove: findNeighbours(firstMove)) {
+                    if(checkSecondSlideIsLegal(origin, firstMove, secondMove)) {
+                        for (Cell thirdMove: findNeighbours(secondMove)){
+                            if(checkThirdSlideIsLegal(origin, firstMove, secondMove, thirdMove)) {
+                                if (thirdMove.equals(destination)) {
+                                    return true;
                                 }
                             }
                         }
                     }
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean checkFirstMoveSlideIsLegal(Cell firstMove, Cell origin){
+        return notOccupied(firstMove) &&
+                cellHasNeighbour(origin, firstMove.getCoordinateQ(), firstMove.getCoordinateR());
+    }
+
+    private boolean checkSecondSlideIsLegal(Cell origin, Cell firstMove, Cell secondMove){
+        boolean notFirstMove = !firstMove.equals(secondMove);
+        boolean notOrigin = !secondMove.equals(origin);
+        return notFirstMove &&
+                notOrigin &&
+                notOccupied(secondMove) &&
+                cellHasNeighbour(origin, secondMove.getCoordinateQ(), secondMove.getCoordinateR());
+    }
+
+    private boolean checkThirdSlideIsLegal(Cell origin, Cell firstMove, Cell secondMove, Cell thirdMove){
+        boolean notFirstMove = !firstMove.equals(thirdMove);
+        boolean notSecondMove = !secondMove.equals(thirdMove);
+        boolean notOrigin = !thirdMove.equals(origin);
+        return  notFirstMove &&
+                notSecondMove &&
+                notOrigin &&
+                notOccupied(thirdMove) &&
+                cellHasNeighbour(origin, thirdMove.getCoordinateQ(), thirdMove.getCoordinateR());
+    }
+
+
+    private boolean notOccupied(Cell cell){
+        return cell.cellOwner() == null;
+    }
+
+    private ArrayList<Cell> findNeighbours(Cell move){
+        return game.findNeighbours(move.getCoordinateQ(), move.getCoordinateR());
+    }
+
+    /**
+     * This method helps to check if one of the slides the spider is going for has a piece adjacent to it.
+     * @param origin
+     * @param fromQ
+     * @param fromR
+     * @return
+     */
+    private boolean cellHasNeighbour(Cell origin, int fromQ, int fromR) {
+        for (Cell cell: game.findNeighbours(fromQ, fromR)){
+            if(!cell.equals(origin)){
+                if(cell.getTopTile() != null){
+                    return true;
                 }
             }
         }

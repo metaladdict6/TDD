@@ -23,6 +23,8 @@ public class SoldierAntRuleChecker implements RuleChecker {
             throw new SoldierAntMoveException.SoldierAntMoveToOccupiedSpace("You cannot move to an occupied space");
         } else if(!soldierAntCanMove(fromQ, fromR, toQ, toR)) {
             throw new SoldierAntMoveException.SoldierAntNoPathToDesinationException("No path to destination!");
+        }else if(!this.moveHandler.keepsChainConnected(fromQ, fromR)){
+            throw new GameBreakTileChainException("Breaks chain at soldier move");
         }
         return cell;
     }
@@ -52,7 +54,8 @@ public class SoldierAntRuleChecker implements RuleChecker {
                     return true;
                 } else if (neighbour.cellOwner() == null) {
                     if (!visited.contains(neighbour)){
-                        ArrayList<Cell> neighboursOfNeighbours = game.findNeighbours(neighbour.getCoordinateQ(),
+                        ArrayList<Cell> neighboursOfNeighbours =
+                                game.findNeighbours(neighbour.getCoordinateQ(),
                                 neighbour.getCoordinateR());
                         boolean hasOneNeighbour = false;
                         int neighboursCount = 0;

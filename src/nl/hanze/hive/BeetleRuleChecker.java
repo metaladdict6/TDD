@@ -18,6 +18,8 @@ public class BeetleRuleChecker implements RuleChecker {
             throw new BeetleMoveException("You cannot move the beetle more then one cell!");
         }else if(fromQ == toQ && fromR == toR){
             throw new BeetleMoveException("You cannot move to the same space!");
+        }else if(!moveHandler.keepsChainConnected(fromQ, fromR)){
+            throw new GameBreakTileChainException("Breaks chain at beetle move");
         }
         return cell;
     }

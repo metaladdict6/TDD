@@ -337,4 +337,8 @@ public class Game implements Hive {
     public Cell getWhiteQueenCell() {
         return whiteQueenCell;
     }
+
+    public ArrayList<Cell> findNeighbours(Cell cell) {
+        return this.findNeighbours(cell.getCoordinateQ(), cell.getCoordinateR());
+    }
 }

@@ -91,54 +91,6 @@ class MoveHandler {
     }
 
     /**
-     * This method checks if the move breaks the chain of connected tiles
-     * @param fromQ Starting horizontal position.
-     * @param fromR Starting vertical position.
-     * @return If this breaks the chain or not.
-     */
-    public boolean keepsChainConnected(int fromQ, int fromR) {
-        HashMap<Integer, HashMap<Integer, Cell>> grid = BoardBuilder.copyGrid(game.getGrid());
-        HashSet<Cell> occupiedCells = new HashSet<>();
-        ArrayList<HashSet<Cell>> everybodysNeighbours = new ArrayList<>();
-        Cell origin = game.getCell(fromQ, fromR);
-        for (HashMap<Integer, Cell> row: grid.values()) {
-            for (Integer key : row.keySet()) {
-                Cell cell = row.get(key);
-                if (cell.size() != 0) {
-                    if(!(cell.getCoordinateQ() == fromQ && cell.getCoordinateR() == fromR)){
-                        occupiedCells.add(cell);
-                    }
-                }
-            }
-        }
-        for(Cell cell: occupiedCells) {
-            HashSet<Cell> theseNeighbours = new HashSet<>();
-            everybodysNeighbours.add(theseNeighbours);
-            for(Cell neighbour: game.findNeighbours(cell)){
-                if(!neighbour.equals(origin)){
-                    findAllNeighbours(theseNeighbours, origin, neighbour);
-                }
-            }
-        }
-        int chainLength = everybodysNeighbours.get(0).size();
-        for(HashSet<Cell> cells: everybodysNeighbours){
-            if(chainLength != cells.size()){
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private void findAllNeighbours(HashSet<Cell> neighbours, Cell origin, Cell current){
-        for(Cell cell: game.findNeighbours(current)){
-            if(cell.occupied() && !neighbours.contains(cell) && !cell.equals(origin)){
-                neighbours.add(cell);
-                findAllNeighbours(neighbours, origin, cell);
-            }
-        }
-    }
-
-    /**
      * This method calculates the distance between two coordinates and rounds it down.
      * This method is used to check if a tile is being moved too far or not far enough.
      * @param fromQ The horizontal starting position
@@ -186,7 +138,90 @@ class MoveHandler {
         return this.generic.legalMove(fromQ, fromR, toQ, toR);
     }
 
+    /**
+     * This method checks if the move breaks the chain of connected tiles
+     * @param fromQ Starting horizontal position.
+     * @param fromR Starting vertical position.
+     * @return If this breaks the chain or not.
+     */
+    boolean everythingIsConnected(int fromQ, int fromR) {
+        HashMap<Integer, HashMap<Integer, Cell>> grid = BoardBuilder.copyGrid(game.getGrid());
+        HashSet<Cell> occupiedCells = new HashSet<>();
+        Cell origin = game.getCell(fromQ, fromR);
+        if(origin.size() > 1){
+            return true;
+        }
+        getAllOccupiedCells(occupiedCells, grid, fromQ, fromR);
 
+        ArrayList<HashSet<Cell>> everybodyNeighbours = new ArrayList<>();
+
+        for(Cell cell: occupiedCells) {
+            HashSet<Cell> cellChain = new HashSet<>();
+            everybodyNeighbours.add(cellChain);
+            cellChain.add(cell);
+            findAllNeighbours(cellChain, origin, cell);
+        }
+        return allChainsTheSame(occupiedCells, everybodyNeighbours);
+    }
+
+    private void getAllOccupiedCells(HashSet<Cell> occupiedCells, HashMap<Integer, HashMap<Integer, Cell>> grid,
+                                     int fromQ, int fromR){
+        for (HashMap<Integer, Cell> row: grid.values()) {
+            for (Integer key : row.keySet()) {
+                Cell cell = row.get(key);
+                if (cell.size() != 0) {
+                    if(!(cell.getCoordinateQ() == fromQ && cell.getCoordinateR() == fromR)){
+                        occupiedCells.add(cell);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * This method checks if all the hashets have the same contents, meaning the same cell coordinates.
+     * @param everybodyNeighbours the gathered hashsets.
+     * @return
+     */
+    private boolean allChainsTheSame(HashSet<Cell> occupiedCells, ArrayList<HashSet<Cell>> everybodyNeighbours){
+        HashSet<Cell> hashSet = null;
+        for (HashSet<Cell> cellHashSet: everybodyNeighbours){
+            if(hashSet == null){
+                hashSet = cellHashSet;
+            }else {
+                for(Cell cell: cellHashSet){
+                    if(!containsCell(hashSet, cell)){
+                        return false;
+                    }
+                }
+                hashSet = cellHashSet;
+            }
+        }
+        return true;
+    }
+
+    private boolean containsCell(HashSet<Cell> cells, Cell toCheck){
+        for(Cell cell: cells){
+            if(theSameCell(cell, toCheck)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean theSameCell(Cell cell, Cell compareCell){
+        return cell.getCoordinateQ() == compareCell.getCoordinateQ() &&
+                cell.getCoordinateR() == compareCell.getCoordinateR();
+    }
+
+    private void findAllNeighbours(HashSet<Cell> neighbours, Cell origin, Cell current){
+        for(Cell cell: game.findNeighbours(current)){
+            if(cell.occupied() && !containsCell(neighbours, cell) && !theSameCell(cell, origin)){
+                neighbours.add(cell);
+                findAllNeighbours(neighbours, origin, cell);
+            }
+        }
+    }
 
 }
 

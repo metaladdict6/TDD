@@ -24,6 +24,8 @@ public class SpiderRuleChecker implements RuleChecker {
             throw new SpiderMoveException.SpiderMoveToSameSpaceException("You cannot move to the same space.");
         } else if(cell.getTopTile() != null) {
             throw new SpiderMoveException.SpiderMoveToOccupiedSpaceException("You cannot move a spider to an occupied space");
+        }else if(!moveHandler.everythingIsConnected(fromQ, fromR)){
+            throw new GameBreakTileChainException("Breaks chain at beetle move");
         }
         pathingIsValid(travelDistance, fromQ, fromR, toQ, toR);
         return cell;

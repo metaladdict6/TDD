@@ -126,7 +126,6 @@ public class PlacingTileSpec {
         game.play(Hive.Tile.BEETLE, 0, 0);
     }
 
-
     @Test
     public void tileCountIsUpdated() throws Exception{
         Game game = new Game();

@@ -18,21 +18,17 @@ public class SoldierAntSpec {
     public void soldierAntLegalMove() {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
-        grid.get(0).get(1).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
-        grid.get(0).get(-1).add(Game.Player.WHITE, Game.Tile.BEETLE);
-        grid.get(1).get(-1).add(Game.Player.WHITE, Game.Tile.BEETLE);
-        grid.get(1).get(1).add(Game.Player.WHITE, Game.Tile.BEETLE);
-        grid.get(2).get(0).add(Game.Player.WHITE, Game.Tile.BEETLE);
-        grid.get(2).get(-1).add(Game.Player.WHITE, Game.Tile.BEETLE);
-        grid.get(0).get(0).add(Game.Player.WHITE, Game.Tile.SOLDIER_ANT);
-        game.setWhiteQueenCell(grid.get(0).get(-2));
-        grid.get(0).get(2).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        game.getCell(-3, 0).add(Game.Player.WHITE, Game.Tile.SOLDIER_ANT);
+        game.getCell(-2, 0).add(Game.Player.WHITE, Game.Tile.SOLDIER_ANT);
+        game.getCell(-1, 0).add(Game.Player.WHITE, Game.Tile.SOLDIER_ANT);
+        game.getCell(0, 0).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
+        game.setWhiteQueenCell(game.getCell(0, 0));
         try {
-            game.move(0, 0, 3, 0);
+            game.move(-3, 0, 1, 0);
         } catch (Hive.IllegalMove illegalMove) {
             illegalMove.printStackTrace();
         } finally {
-            Assert.assertEquals(Game.Tile.SOLDIER_ANT, grid.get(0).get(3).getTopTile());
+            Assert.assertEquals(Game.Tile.SOLDIER_ANT, game.getCell(1, 0).getTopTile());
         }
     }
 

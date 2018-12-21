@@ -19,15 +19,16 @@ public class BeetleSpec {
     public void legalBeetleMove() {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
-        grid.get(0).get(-3).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
-        grid.get(0).get(-1).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        game.getCell(-1, 0).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        game.getCell(-2, 0).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
+        game.getCell(-3, 0).add(Hive.Player.WHITE, Hive.Tile.BEETLE);
         game.setWhiteQueenCell(grid.get(-3).get(0));
         try {
-            game.move(-1, 0, -2, 0);
+            game.move(-1, 0, -1, -1);
         } catch (Hive.IllegalMove illegalMove) {
             System.out.println(illegalMove.getMessage());
         } finally {
-            Assert.assertEquals(Game.Tile.BEETLE, grid.get(0).get(-2).getTopTile());
+            Assert.assertEquals(Game.Tile.BEETLE, grid.get(-1).get(-1).getTopTile());
         }
     }
 
@@ -35,15 +36,16 @@ public class BeetleSpec {
     public void beetleRemovedFromOldSpace(){
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
-        grid.get(0).get(-3).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
-        grid.get(0).get(-1).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        game.getCell(-1, 0).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        game.getCell(-2, 0).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
+        game.getCell(-3, 0).add(Hive.Player.WHITE, Hive.Tile.BEETLE);
         game.setWhiteQueenCell(grid.get(-3).get(0));
         try {
-            game.move(-1, 0, -2, 0);
+            game.move(-1, 0, -1, -1);
         } catch (Hive.IllegalMove illegalMove) {
             System.out.println(illegalMove.getMessage());
         } finally {
-            Assert.assertEquals(null, grid.get(0).get(-1).getTopTile());
+            Assert.assertEquals(null, game.getCell(-1, 0).getTopTile());
         }
     }
 
@@ -51,16 +53,17 @@ public class BeetleSpec {
     public void moveToOccupiedSpace() {
         Game game = new Game();
         HashMap<Integer, HashMap<Integer, Cell>> grid = game.getGrid();
-        grid.get(0).get(-3).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
-        grid.get(0).get(-2).add(Game.Player.BLACK, Game.Tile.BEETLE);
-        grid.get(0).get(-1).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        game.getCell(-1, 0).add(Game.Player.WHITE, Game.Tile.BEETLE);
+        game.getCell(-2, 0).add(Game.Player.WHITE, Game.Tile.QUEEN_BEE);
+        game.getCell(-3, 0).add(Hive.Player.WHITE, Hive.Tile.SPIDER);
+        game.getCell(-4, 0).add(Hive.Player.WHITE, Hive.Tile.BEETLE);
         game.setWhiteQueenCell(grid.get(-3).get(0));
         try {
-            game.move(-1, 0, -2, 0);
+            game.move(-4, 0, -3, 0);
         } catch (Hive.IllegalMove illegalMove) {
             System.out.println(illegalMove.getMessage());
         } finally {
-            Assert.assertEquals(Game.Player.WHITE, grid.get(0).get(-2).cellOwner());
+            Assert.assertEquals(Game.Tile.BEETLE, grid.get(0).get(-3).getTopTile());
         }
     }
 

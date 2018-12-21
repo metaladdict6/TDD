@@ -19,6 +19,8 @@ public class QueenRuleChecker implements RuleChecker {
         Cell cell = game.getCell(toQ, toR);
         if (cell.size() > 0) {
             throw new QueenMoveException.QueenMoveToOccupiedSpaceException("You cannot move to an occupied space.");
+        }else if(!moveHandler.everythingIsConnected(fromQ, fromR)){
+            throw new GameBreakTileChainException("Breaks chain at beetle move");
         }
         return cell;
     }

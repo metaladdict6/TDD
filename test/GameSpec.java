@@ -1,7 +1,4 @@
-import nl.hanze.hive.Cell;
-import nl.hanze.hive.Game;
-import nl.hanze.hive.GameExceptions;
-import nl.hanze.hive.Hive;
+import nl.hanze.hive.*;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -180,7 +177,7 @@ public class GameSpec {
     }
 
     @Test
-    public void noContactInSlide(){
+    public void noContactInSlideBeetle(){
         Game game = new Game();
         game.getCell(0, 0).add(Hive.Player.WHITE, Hive.Tile.QUEEN_BEE);
         game.setWhiteQueenCell(game.getCell(0, 0));
@@ -195,4 +192,14 @@ public class GameSpec {
         }
     }
 
+
+    @Test(expected = GameBreakTileChainException.class)
+    public void noContactInSlideBeetleException() throws Hive.IllegalMove{
+        Game game = new Game();
+        game.getCell(0, 0).add(Hive.Player.WHITE, Hive.Tile.QUEEN_BEE);
+        game.setWhiteQueenCell(game.getCell(0, 0));
+        game.getCell(0, 1).add(Hive.Player.WHITE, Hive.Tile.BEETLE);
+        game.getCell(-1, 2).add(Hive.Player.WHITE, Hive.Tile.BEETLE);
+        game.move(0, 1, -1, 1);
+    }
 }
